@@ -1,5 +1,6 @@
 FarmLink App
-Project Overview
+
+
 FarmLink App is a responsive marketplace platform connecting farmers to buyers. It enables farmers to upload products, buyers to browse through product listings, search and filter products, view detailed product info with farmer profiles, and add products to their cart for purchase.
 
 This README outlines the core features, team responsibilities, and development guidelines.
