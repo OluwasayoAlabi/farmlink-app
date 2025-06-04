@@ -1,0 +1,42 @@
+/* Custom loader animation (optional enhancement) */
+
+body {
+    background-color: pink;
+  }
+  
+#loader::after {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+    border: 2px solid #4B5563; /* Tailwind gray-700 */
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Optional override for product image to ensure consistent height */
+  .product-card img {
+    height: 12rem;
+    object-fit: cover;
+  }
+  
+  /* Smooth transition for search input focus */
+  #searchInput:focus {
+    outline: none;
+    border-color: #10B981; /* Tailwind green-500 */
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  }
+  
+  /* Message text center if not using Tailwind here */
+  #noProducts, #loader {
+    font-size: 1rem;
+  }
+  
