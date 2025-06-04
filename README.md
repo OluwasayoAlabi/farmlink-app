@@ -109,7 +109,7 @@ Assigned to: Irene Faadong
 
 
 Contact
-For questions or collaboration, reach out to the project maintainer at emilyalabi@gmail.com
+For questions or collaboration, reach out to the project maintainer at emilyalabi98@gmail.com
 
 
 
