@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Farmlink | Product Listing</title>
+
+    <link rel="stylesheet" href="cart.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-green-700 text-white py-4 shadow">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-2xl font-bold">Welcome to Farmlink</h1>
+      </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="container mx-auto px-4 py-10">
+      <h2 id="category-title" class="text-3xl font-semibold mb-8 text-center">
+        Vegetables
+      </h2>
+      <div
+        id="product-list"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-6"
+      ></div>
+
+      <!-- View Cart Button -->
+      <div class="text-center mb-6">
+        <button
+          id="toggle-cart-btn"
+          class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded shadow transition"
+        >
+          View Cart
+        </button>
+      </div>
+
+      <!-- Cart Details (hidden by default) -->
+      <section
+        id="cart-section"
+        class="max-w-4xl mx-auto my-10 bg-white p-6 rounded-lg shadow hidden"
+      >
+        <h2 class="text-2xl font-bold text-green-800 mb-6">Cart</h2>
+
+        <div
+          class="flex font-semibold border-b pb-2 text-sm text-gray-600 uppercase"
+        >
+          <span class="w-1/2">Item</span>
+          <span class="w-1/4">Price</span>
+          <span class="w-1/4">Quantity</span>
+        </div>
+
+        <div class="cart-items"></div>
+
+        <!-- Total and Buttons Section -->
+        <div class="mt-6">
+          <div class="text-lg font-semibold text-gray-800 text-right">
+            Total: <span class="total text-green-700 font-bold">$0.00</span>
+          </div>
+
+          <div class="mt-4 flex justify-between">
+            <button
+              class="btn-purchase bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-md text-sm"
+            >
+              Place Order
+            </button>
+
+            <button
+              id="close-cart-btn"
+              class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded shadow transition"
+            >
+              Close Cart
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pagination controls -->
+      <div id="pagination" class="flex justify-center space-x-2 mt-6"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-700 text-white py-6 mt-12">
+      <div class="container mx-auto px-4 text-center">
+        <p class="mb-2">© 2025 Farmlink. All rights reserved.</p>
+        <p>Connecting local farmers to the world. Eat fresh, live healthy.</p>
+      </div>
+    </footer>
+
+    <script src="cart.js"></script>
+  </body>
+</html>
+
+
