@@ -6,6 +6,7 @@ FarmLink App is a responsive marketplace platform connecting farmers to buyers. 
 This README outlines the core features, team responsibilities, and development guidelines.
 
 Features
+
 Farmer Product Upload Form
 Description:
 A form for farmers to submit new products including name, category, price, quantity, and image upload.
@@ -22,6 +23,7 @@ Assigned to: Oreoluwa Akinboade
 
 
 Product Cards Grid (Product Listing Page)
+
 Description:
 Display products as responsive cards showing image, name, price, and quantity.
 
@@ -39,6 +41,7 @@ Assigned to: Oluwasayo Alabi
 
 
 Search and Filter
+
 Description:
 Enable users to search products by name and filter by category, price, and location.
 
@@ -56,6 +59,7 @@ Assigned to: Blessing Ikyav
 
 
 Product Detail Page + Farmer Profile
+
 Description:
 Show detailed product info with multiple images and farmer profile details (name, rating, location).
 
@@ -72,7 +76,8 @@ Fetch product and farmer data dynamically by product ID.
 Assigned to: Edudje Wisdom
 
 
-Add to Cart / Order Button
+Add to Cart / Order Button & System 
+
 Description:
 Allow users to add products to a cart or initiate orders from listing or detail pages.
 
@@ -85,6 +90,20 @@ Dynamic cart count badge updates.
 UI feedback (toast messages) when adding items.
 
 Prepare data for checkout integration in future.
+
+Assigned to: Irene Faadong
+
+
+Pagination
+
+Description:
+Manage long product lists by paginating or infinite scrolling to improve performance.
+
+Key tasks:
+
+- Implement page buttons or scroll listener
+- Load product batches dynamically
+- Update product grid without reloading the page
 
 Assigned to: Irene Faadong
 
