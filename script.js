@@ -12,6 +12,24 @@ const products = [
     image: "images/leafy-vegetables.webp"
   },
   {
+    name: "Onions",
+    price: 5000,
+    quantity: "50 pcs",
+    image: "images/Onions 2.webp"
+  },
+  {
+    name: "Okra",
+    price: 2000,
+    quantity: "20 pcs",
+    image: "images/okra 2.jpg"
+  },
+  {
+    name: "Peppers",
+    price: 2000,
+    quantity: "30 pcs",
+    image: "images/pepper.jpg"
+  },
+  {
     name: "Apples",
     price: 200,
     quantity: "1pc",
@@ -24,10 +42,22 @@ const products = [
     image: "images/Bananas 3.webp"
   },
   {
-    name: "Agbalumo",
+    name: "Cherry/Agbalumo",
     price: 100,
     quantity: "1pc",
     image: "images/Agbalumo.webp"
+  },
+  {
+    name: "Oranges",
+    price: 500,
+    quantity: "2pcs",
+    image: "images/oranges.jpg"
+  },
+  {
+    name: "Watermelons",
+    price: 2000,
+    quantity: "1pc",
+    image: "images/watermelons.jpg"
   },
   {
     name: "Fresh Catfish",
@@ -52,6 +82,48 @@ const products = [
     price: 6500,
     quantity: "1 kilo",
     image: "images/Frozen Chicken.webp"
+  },
+  {
+    name: "Goat",
+    price: 50000,
+    quantity: "20kg",
+    image: "images/goat.jpg"
+  },
+  {
+    name: "Yam",
+    price: 1500,
+    quantity: "1pc",
+    image: "images/Yam tuber.webp"
+  },
+  {
+    name: "Beans",
+    price: 60000,
+    quantity: "1 bag",
+    image: "images/bag of beans.jpg"
+  },
+  {
+    name: "Groundnuts",
+    price: 4500,
+    quantity: "1 bottle",
+    image: "images/groundnut.jpg"
+  },
+  {
+    name: "Maize",
+    price: 13000,
+    quantity: "50kg",
+    image: "images/maize.jpg"
+  },
+  {
+    name: "Cocoa",
+    price: 17500,
+    quantity: "1kg",
+    image: "images/cocoa.jpg"
+  },
+  {
+    name: "Rice",
+    price: 84000,
+    quantity: "50kg",
+    image: "images/bag of rice.jpg"
   }
 ];
 
