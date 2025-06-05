@@ -22,8 +22,7 @@
 }
 
 .pagination button.active {
-  background-color: #28a745; /* Green */
-  color: white;
+  background-color: #28a745; 
   border-color: #28a745;
   cursor: default;
   box-shadow: 0 0 6px rgba(40, 167, 69, 0.6);
@@ -39,7 +38,7 @@
 
 .pagination button.prev:hover,
 .pagination button.next:hover {
-  background-color: #28a745; /* Light green hover */
+  background-color: #28a745; 
   border-color: #28a745;
   color: white;
 
