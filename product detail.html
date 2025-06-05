@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Detail page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brightOrange: '#FF6600',
+            forestGreen: '#228B22',
+            earthBrown: '#8B4513',
+            goldenYellow: '#FFB300',
+            offWhite: '#FAFAF0',
+            charcoalBlack: '#333333',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-offWhite text-charcoalBlack">
+
+<section class="px-4 py-10 mx-auto max-w-7xl">
+  <h1 class="mb-6 text-3xl font-bold text-center text-earthBrown md:text-4xl">
+    Available Farm Products
+  </h1>
+
+  <!-- Search and filter -->
+  <div class="flex flex-col gap-4 mb-8 sm:flex-row sm:items-center sm:justify-between">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search products..."
+      class="w-full px-4 py-2 text-sm border rounded-lg sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-goldenYellow"
+    />
+    <select
+      id="categoryFilter"
+      class="w-full px-4 py-2 text-sm border rounded-lg sm:w-1/4 focus:outline-none focus:ring-2 focus:ring-goldenYellow"
+    >
+      <option value="all">All Categories</option>
+      <option value="vegetables">Vegetables</option>
+      <option value="fruits">Fruits</option>
+      <option value="animalproducts">Animal Products</option>
+      <option value="staples">Bags/Staples</option>
+    </select>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <!-- Vegetables -->
+    <div class="product-card" data-name="tomatoes" data-category="vegetables">
+      <a href="product-detail.html?product=tomatoes" class="block h-full">
+        <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+          <img src="./images/Tomatoes 1.webp" alt="Fresh Tomatoes" class="object-cover w-full h-40 rounded-lg" />
+          <div class="flex flex-col flex-grow mt-3">
+            <h2 class="text-lg font-bold text-earthBrown">Fresh Tomatoes</h2>
+            <p class="mt-1 text-xs text-forestGreen">Vegetables</p>
+            <p class="mt-2 text-sm">Juicy, organically grown tomatoes</p>
+            <p class="mt-auto font-semibold text-forestGreen">₦1,500 / basket</p>
+          </div>
+          <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+            Buy Now
+          </button>
+        </section>
+      </a>
+    </div>
+
+    <div class="product-card" data-name="vegetables" data-category="vegetables">
+      <a href="product-detail.html?product=vegetables" class="block h-full">
+        <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+          <img src="./images/leafy-vegetables.webp" alt="Fresh Vegetables" class="object-cover w-full h-40 rounded-lg" />
+          <div class="flex flex-col flex-grow mt-3">
+            <h2 class="text-lg font-bold text-earthBrown">Fresh Vegetables</h2>
+            <p class="mt-1 text-xs text-forestGreen">Vegetables</p>
+            <p class="mt-2 text-sm">Assorted leafy vegetables</p>
+            <p class="mt-auto font-semibold text-forestGreen">₦1,200 / bunch</p>
+          </div>
+          <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+            Buy Now
+          </button>
+        </section>
+      </a>
+    </div>
+
+    <div class="product-card" data-name="onions" data-category="vegetables">
+  <a href="product-detail.html?product=onions" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/onions.jpeg" alt="Fresh Onions" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Onions</h2>
+        <p class="mt-1 text-xs text-forestGreen">Vegetables</p>
+        <p class="mt-2 text-sm">Fresh red onions</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦800 / basket</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+<div class="product-card" data-name="okra" data-category="vegetables">
+  <a href="product-detail.html?product=okra" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/okra.jpeg" alt="Fresh Okra" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Okra</h2>
+        <p class="mt-1 text-xs text-forestGreen">Vegetables</p>
+        <p class="mt-2 text-sm">Green slimy okra</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦900 / basket</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+<div class="product-card" data-name="pepper" data-category="vegetables">
+  <a href="product-detail.html?product=pepper" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/pepper.jpeg" alt="Fresh Pepper" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Pepper</h2>
+        <p class="mt-1 text-xs text-forestGreen">Vegetables</p>
+        <p class="mt-2 text-sm">Spicy red pepper mix</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦1,200 / basket</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+    <!-- Fruits -->
+    <div class="product-card" data-name="apples" data-category="fruits">
+      <a href="product-detail.html?product=apples" class="block h-full">
+        <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+          <img src="./images/apple.jpeg" alt="Fresh Apples" class="object-cover w-full h-40 rounded-lg" />
+          <div class="flex flex-col flex-grow mt-3">
+            <h2 class="text-lg font-bold text-earthBrown">Fresh Apples</h2>
+            <p class="mt-1 text-xs text-forestGreen">Fruits</p>
+            <p class="mt-2 text-sm">Crisp and juicy apples</p>
+            <p class="mt-auto font-semibold text-forestGreen">₦2,500/basket</p>
+          </div>
+          <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+            Buy Now
+          </button>
+        </section>
+      </a>
+    </div>
+
+    <div class="product-card" data-name="agbalumo" data-category="fruits">
+      <a href="product-detail.html?product=agbalumo" class="block h-full">
+        <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+          <img src="./images/Agbalumo.webp" alt="African Star Apple" class="object-cover w-full h-40 rounded-lg" />
+          <div class="flex flex-col flex-grow mt-3">
+            <h2 class="text-lg font-bold text-earthBrown">Agbalumo</h2>
+            <p class="mt-1 text-xs text-forestGreen">Fruits</p>
+            <p class="mt-2 text-sm">Sweet African star apples</p>
+            <p class="mt-auto font-semibold text-forestGreen">₦1000 /basket</p>
+          </div>
+          <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+            Buy Now
+          </button>
+        </section>
+      </a>
+    </div>
+    <div class="product-card" data-name="bananas" data-category="fruits">
+  <a href="product-detail.html?product=bananas" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/Bananas 2.webp" alt="Bananas" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Bananas</h2>
+        <p class="mt-1 text-xs text-forestGreen">Fruits</p>
+        <p class="mt-2 text-sm">Sweet ripe bananas</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦1,800 / bunch</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+<div class="product-card" data-name="oranges" data-category="fruits">
+  <a href="product-detail.html?product=oranges" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/oranges.jpeg" alt="Oranges" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Oranges</h2>
+        <p class="mt-1 text-xs text-forestGreen">Fruits</p>
+        <p class="mt-2 text-sm">Juicy citrus fruits</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦2000/ basket</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+<div class="product-card" data-name="watermelons" data-category="fruits">
+  <a href="product-detail.html?product=watermelons" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/watermelons.jpeg" alt="Watermelons" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Watermelons</h2>
+        <p class="mt-1 text-xs text-forestGreen">Fruits</p>
+        <p class="mt-2 text-sm">Large, juicy watermelons</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦3,500 each</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+    <!-- Animal Products -->
+    <div class="product-card" data-name="freshcatfish" data-category="animalproducts">
+      <a href="product-detail.html?product=freshcatfish" class="block h-full">
+        <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+          <img src="./images/Catfish.jpg" alt="Fresh Catfish" class="object-cover w-full h-40 rounded-lg" />
+          <div class="flex flex-col flex-grow mt-3">
+            <h2 class="text-lg font-bold text-earthBrown">Fresh Catfish</h2>
+            <p class="mt-1 text-xs text-forestGreen">Animal Products</p>
+            <p class="mt-2 text-sm">Freshwater catfish</p>
+            <p class="mt-auto font-semibold text-forestGreen">₦4,000 / fish</p>
+          </div>
+          <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+            Buy Now
+          </button>
+        </section>
+      </a>
+    </div>
+
+    <div class="product-card" data-name="livechicken" data-category="animalproducts">
+      <a href="product-detail.html?product=livechicken" class="block h-full">
+        <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+          <img src="./images/Live Chicken.webp" alt="Live Chicken" class="object-cover w-full h-40 rounded-lg" />
+          <div class="flex flex-col flex-grow mt-3">
+            <h2 class="text-lg font-bold text-earthBrown">Live Chicken</h2>
+            <p class="mt-1 text-xs text-forestGreen">Animal Products</p>
+            <p class="mt-2 text-sm">Free-range healthy chicken</p>
+            <p class="mt-auto font-semibold text-forestGreen">₦35,000 / bird</p>
+          </div>
+          <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+            Buy Now
+          </button>
+        </section>
+      </a>
+    </div>
+
+    <div class="product-card" data-name="frozen fish" data-category="animalproducts">
+  <a href="product-detail.html?product=frozenfish" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/Frozen fish.jpg" alt="Frozen Fish" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Frozen Fish</h2>
+        <p class="mt-1 text-xs text-forestGreen">Animal Products</p>
+        <p class="mt-2 text-sm">Cleaned and frozen fish</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦3,000 / kg</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+<div class="product-card" data-name="frozen chicken" data-category="animalproducts">
+  <a href="product-detail.html?product=frozenchicken" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/Frozen Chicken.webp" alt="Frozen Chicken" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Frozen Chicken</h2>
+        <p class="mt-1 text-xs text-forestGreen">Animal Products</p>
+        <p class="mt-2 text-sm">Processed frozen chicken</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦4,500 / pack</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+<div class="product-card" data-name="goat" data-category="animalproducts">
+  <a href="product-detail.html?product=goat" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/goat.jpeg" alt="Live Goat" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Live Goat</h2>
+        <p class="mt-1 text-xs text-forestGreen">Animal Products</p>
+        <p class="mt-2 text-sm">Healthy male goat</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦50,000 each</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+    <!-- Staples -->
+    <div class="product-card" data-name="rice" data-category="staples">
+      <a href="product-detail.html?product=rice" class="block h-full">
+        <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+          <img src="./images/bag of rice.jpeg" alt="Bag of Rice" class="object-cover w-full h-40 rounded-lg" />
+          <div class="flex flex-col flex-grow mt-3">
+            <h2 class="text-lg font-bold text-earthBrown">Bag of Rice</h2>
+            <p class="mt-1 text-xs text-forestGreen">Staples</p>
+            <p class="mt-2 text-sm">Premium quality rice</p>
+            <p class="mt-auto font-semibold text-forestGreen">₦100,000 / bag</p>
+          </div>
+          <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+            Buy Now
+          </button>
+        </section>
+      </a>
+    </div>
+
+    <div class="product-card" data-name="beans" data-category="staples">
+      <a href="product-detail.html?product=beans" class="block h-full">
+        <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+          <img src="./images/bag of beans.jpeg" alt="Bag of Beans" class="object-cover w-full h-40 rounded-lg" />
+          <div class="flex flex-col flex-grow mt-3">
+            <h2 class="text-lg font-bold text-earthBrown">Bag of Beans</h2>
+            <p class="mt-1 text-xs text-forestGreen">Staples</p>
+            <p class="mt-2 text-sm">High quality beans</p>
+            <p class="mt-auto font-semibold text-forestGreen">₦150,000 / bag</p>
+          </div>
+          <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+            Buy Now
+          </button>
+        </section>
+      </a>
+    </div>
+
+    <!-- Bags/Bigger Quantities (Staples/Crops) -->
+<div class="product-card" data-name="yam" data-category="staples">
+  <a href="product-detail.html?product=yam" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/Yam-tuber.webp" alt="Yam Tubers" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Yam</h2>
+        <p class="mt-1 text-xs text-forestGreen">Staples / Crops</p>
+        <p class="mt-2 text-sm">Big tubers of yam</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦12,000 / dozen</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+<div class="product-card" data-name="groundnuts" data-category="staples">
+  <a href="product-detail.html?product=groundnuts" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/groundnut.jpeg" alt="Groundnuts" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Groundnuts</h2>
+        <p class="mt-1 text-xs text-forestGreen">Staples / Crops</p>
+        <p class="mt-2 text-sm">Large sack of dry groundnuts</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦8,500 / bag</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+<div class="product-card" data-name="maize" data-category="staples">
+  <a href="product-detail.html?product=maize" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/maize.jpeg" alt="Maize" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Maize</h2>
+        <p class="mt-1 text-xs text-forestGreen">Staples / Crops</p>
+        <p class="mt-2 text-sm">Dried maize in large quantity</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦9,000 / bag</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+<div class="product-card" data-name="cocoa" data-category="staples">
+  <a href="product-detail.html?product=cocoa" class="block h-full">
+    <section class="flex flex-col h-full p-4 transition bg-white rounded-lg shadow hover:shadow-md hover:ring-2 hover:ring-goldenYellow">
+      <img src="./images/cocoa.jpeg" alt="Cocoa Beans" class="object-cover w-full h-40 rounded-lg" />
+      <div class="flex flex-col flex-grow mt-3">
+        <h2 class="text-lg font-bold text-earthBrown">Cocoa</h2>
+        <p class="mt-1 text-xs text-forestGreen">Staples / Crops</p>
+        <p class="mt-2 text-sm">High-quality cocoa beans</p>
+        <p class="mt-auto font-semibold text-forestGreen">₦40,000 / bag</p>
+      </div>
+      <button class="w-full px-4 py-2 mt-3 text-sm font-medium text-white transition rounded-lg bg-forestGreen hover:bg-green-700">
+        Buy Now
+      </button>
+    </section>
+  </a>
+</div>
+
+  </div>
+</section>
+
+<script>
+  // Search and filter functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const productCards = document.querySelectorAll('.product-card');
+
+    function filterProducts() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCategory = categoryFilter.value;
+
+      productCards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const category = card.dataset.category;
+        const matchesSearch = name.includes(searchTerm);
+        const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+
+        if (matchesSearch && matchesCategory) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    categoryFilter.addEventListener('change', filterProducts);
+  });
+</script>
+
+</body>
+</html>
