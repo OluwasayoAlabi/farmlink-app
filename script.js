@@ -80,7 +80,7 @@ const products = [
   {
     name: "Frozen Chicken",
     price: 6500,
-    quantity: "1 kilo",
+    quantity: "1kg",
     image: "images/Frozen Chicken.webp"
   },
   {
@@ -92,7 +92,7 @@ const products = [
   {
     name: "Yam",
     price: 1500,
-    quantity: "1pc",
+    quantity: "1 tuber",
     image: "images/Yam tuber.webp"
   },
   {
