@@ -6,15 +6,12 @@ const placeOrderBtn = document.getElementById("btn-purchase");
 toggleCartBtn.addEventListener("click", () => {
   cartSection.classList.remove("hidden");
 
-  // toggleCartBtn.classList.add("bg-[#FF6600]", "hover:bg-yellow-400");
-  // toggleCartBtn.classList.remove("bg-green-600", "hover:bg-green-700");
 });
 
 closeCartBtn.addEventListener("click", () => {
   cartSection.classList.add("hidden");
 
-  // toggleCartBtn.classList.remove("bg-[#FF6600]", "hover:bg-yellow-400");
-  // toggleCartBtn.classList.add("bg-green-600", "hover:bg-green-700");
+ 
 
   toggleCartBtn.textContent = "View Cart";
 });
