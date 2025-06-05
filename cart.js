@@ -1,26 +1,21 @@
 const toggleCartBtn = document.getElementById("toggle-cart-btn");
 const closeCartBtn = document.getElementById("close-cart-btn");
 const cartSection = document.getElementById("cart-section");
+const placeOrderBtn = document.getElementById("btn-purchase"); 
 
 toggleCartBtn.addEventListener("click", () => {
-  const isHidden = cartSection.classList.contains("hidden");
-  if (isHidden) {
-    cartSection.classList.remove("hidden");
-    toggleCartBtn.classList.add("bg-teal-600", "hover:bg-teal-700");
-    toggleCartBtn.classList.remove("bg-green-600", "hover:bg-green-700");
-    toggleCartBtn.textContent = "Hide Cart";
-  } else {
-    cartSection.classList.add("hidden");
-    toggleCartBtn.classList.add("bg-green-600", "hover:bg-green-700");
-    toggleCartBtn.classList.remove("bg-teal-600", "hover:bg-teal-700");
-    toggleCartBtn.textContent = "View Cart";
-  }
+  cartSection.classList.remove("hidden");
+
+  // toggleCartBtn.classList.add("bg-[#FF6600]", "hover:bg-yellow-400");
+  // toggleCartBtn.classList.remove("bg-green-600", "hover:bg-green-700");
 });
 
 closeCartBtn.addEventListener("click", () => {
   cartSection.classList.add("hidden");
-  toggleCartBtn.classList.add("bg-green-600", "hover:bg-green-700");
-  toggleCartBtn.classList.remove("bg-teal-600", "hover:bg-teal-700");
+
+  // toggleCartBtn.classList.remove("bg-[#FF6600]", "hover:bg-yellow-400");
+  // toggleCartBtn.classList.add("bg-green-600", "hover:bg-green-700");
+
   toggleCartBtn.textContent = "View Cart";
 });
 
@@ -120,7 +115,7 @@ function updateTotal() {
     const cartRow = cartRows[i];
     const priceElement = cartRow.getElementsByClassName("cart-price")[0];
     const quantityElement = cartRow.getElementsByClassName("cart-gty")[0];
-    const price = parseFloat(priceElement.innerText.replace("$", ""));
+    const price = parseFloat(priceElement.innerText.replace("₦", ""));
     const quantity = quantityElement.value;
     total += price * quantity;
   }
@@ -133,12 +128,14 @@ function updateTotal() {
 }
 
 function placeOrderClicked() {
+  
   if (cartItemsContainer.children.length === 0) {
     alert("Your cart is empty!");
     return;
   }
 
   alert("Thank you for your order!");
+  
 
   while (cartItemsContainer.firstChild) {
     cartItemsContainer.removeChild(cartItemsContainer.firstChild);
@@ -147,9 +144,17 @@ function placeOrderClicked() {
 
   cartSection.classList.add("hidden");
   toggleCartBtn.textContent = "View Cart";
+
+ 
+
   toggleCartBtn.classList.add("bg-green-600", "hover:bg-green-700");
   toggleCartBtn.classList.remove("bg-teal-600", "hover:bg-teal-700");
+
+ 
 }
+
+
+
 
 function showAddToCartMessage(button) {
   const originalText = button.innerHTML;
@@ -157,7 +162,7 @@ function showAddToCartMessage(button) {
 
   button.innerHTML = "✓ Item Added";
   button.className =
-    "add-to-cart bg-teal-200 text-teal-900 font-semibold px-4 py-2 rounded transition";
+    "add-to-cart bg-[#FF6600] text-white font-semibold px-4 py-2 rounded transition";
 
   setTimeout(() => {
     button.innerHTML = originalText;
@@ -168,7 +173,7 @@ function showAddToCartMessage(button) {
 const categories = [
   {
     key: "vegetables",
-    title: "Available Products",
+    title: "Vegetables",
     products: [
       {
         id: 1,
@@ -186,88 +191,103 @@ const categories = [
       },
       {
         id: 3,
+        name: "Onions",
+        price: 5000,
+        unit: " pc",
+        image: "images/Onions 2.webp",
+      },
+      {
+        id: 4,
+        name: "Okra",
+        price: 2000,
+        unit: "pc",
+        image: "images/okra 2.jpg",
+      },
+      {
+        id: 5,
+        name: "Peppers",
+        price: 2000,
+        unit: " pc",
+        image: "images/pepper.jpg",
+      },
+    ],
+  },
+  {
+    key: "fruits",
+    title: "Fruits",
+    products: [
+      {
+        id: 6,
         name: "Apples",
         price: 200,
         unit: "pc",
         image: "images/Apples.webp",
       },
       {
-        id: 4,
+        id: 7,
         name: "Bananas",
         price: 600,
         unit: "bunch",
         image: "images/Bananas 3.webp",
       },
       {
-        id: 5,
-        name: "Agbalumo",
+        id: 8,
+        name: "Cherry/Agbalumo",
         price: 100,
         unit: "pc",
         image: "images/Agbalumo.webp",
       },
       {
-        id: 6,
-        name: "Frozen Chicken",
-        price: 6500,
-        unit: "kilo",
-        image: "images/Frozen Chicken.webp",
+        id: 9,
+        name: "Oranges",
+        price: 500,
+        unit: "pc",
+        image: "images/oranges.jpg",
       },
+
       {
-        id: 7,
-        name: "Fresh Tomatoes",
+        id: 10,
+        name: "Watermelons",
         price: 2000,
         unit: "pc",
-        image: "images/Tomatoes 1.webp",
-      },
-      {
-        id: 8,
-        name: "Fresh Vegetables",
-        price: 2500,
-        unit: "kg",
-        image: "images/leafy-vegetables.webp",
+        image: "images/watermelons.jpg",
       },
     ],
   },
   {
-    key: "fruits",
-    title: "Available Products",
+    key: "livestock",
+    title: "Livestock",
     products: [
       {
-        id: 9,
+        id: 11,
         name: "Fresh Catfish",
         price: 3000,
         unit: "kg",
         image: "images/Catfish.jpg",
       },
-      {
-        id: 10,
-        name: "Frozen Fish",
-        price: 2000,
-        unit: "kg",
-        image: "images/Frozen fish.jpg",
-      },
-      {
-        id: 11,
-        name: "Live Chicken",
-        price: 1000,
-        unit: "kg",
-        image: "images/Live Chicken.webp",
-      },
+
       {
         id: 12,
-        name: "Frozen Chicken",
-        price: 6500,
-        unit: "kilo",
-        image: "images/Frozen Chicken.webp",
+        name: "Live Chicken",
+        price: 10000,
+        unit: "kg",
+        image: "images/Live Chicken.webp",
       },
 
       {
         id: 13,
-        name: "Fresh Catfish",
-        price: 3000,
+        name: "Goat",
+        price: 50000,
         unit: "kg",
-        image: "images/Catfish.jpg",
+        image: "images/goat.jpg",
       },
+    ],
+  },
+
+  {
+    key: "animalproducts",
+    title: "Animal Products",
+    products: [
       {
         id: 14,
         name: "Frozen Fish",
@@ -275,129 +295,69 @@ const categories = [
         unit: "kg",
         image: "images/Frozen fish.jpg",
       },
+
       {
         id: 15,
-        name: "Live Chicken",
-        price: 10000,
-        unit: "kg",
-        image: "images/Live Chicken.webp",
-      },
-      {
-        id: 16,
-        name: "Fresh Vegetables",
-        price: 2500,
-        unit: "kg",
-        image: "images/leafy-vegetables.webp",
-      },
-    ],
-  },
-  {
-    key: "animalProducts",
-    title: "Available Products",
-    products: [
-      {
-        id: 17,
-        name: "Fresh Tomatoes",
-        price: 2000,
-        unit: "pc",
-        image: "images/Tomatoes 1.webp",
-      },
-      {
-        id: 18,
-        name: "Fresh Vegetables",
-        price: 2500,
-        unit: "kg",
-        image: "images/leafy-vegetables.webp",
-      },
-      {
-        id: 19,
-        name: "Apples",
-        price: 200,
-        unit: "pc",
-        image: "images/Apples.webp",
-      },
-      {
-        id: 20,
-        name: "Bananas",
-        price: 600,
-        unit: "bunch",
-        image: "images/Bananas 3.webp",
-      },
-      {
-        id: 21,
-        name: "Agbalumo",
-        price: 100,
-        unit: "pc",
-        image: "images/Agbalumo.webp",
-      },
-      {
-        id: 22,
-        name: "Fresh Tomatoes",
-        price: 2000,
-        unit: "pc",
-        image: "images/Tomatoes 1.webp",
-      },
-      {
-        id: 23,
-        name: "Fresh Vegetables",
-        price: 2500,
-        unit: "kg",
-        image: "images/leafy-vegetables.webp",
-      },
-      {
-        id: 24,
-        name: "Apples",
-        price: 200,
-        unit: "pc",
-        image: "images/Apples.webp",
-      },
-    ],
-  },
-  {
-    key: "bags",
-    title: "Available Products",
-    products: [
-      {
-        id: 25,
-        name: "Fresh Catfish",
-        price: 3000,
-        unit: "kg",
-        image: "images/Catfish.jpg",
-      },
-      {
-        id: 26,
-        name: "Frozen Fish",
-        price: 2000,
-        unit: "kg",
-        image: "images/Frozen fish.jpg",
-      },
-      {
-        id: 27,
-        name: "Live Chicken",
-        price: 10000,
-        unit: "kg",
-        image: "images/Live Chicken.webp",
-      },
-      {
-        id: 28,
         name: "Frozen Chicken",
         price: 6500,
-        unit: "kilo",
+        unit: "kg",
         image: "images/Frozen Chicken.webp",
       },
       {
-        id: 29,
-        name: "Fresh Tomatoes",
-        price: 2000,
-        unit: "pc",
-        image: "images/Tomatoes 1.webp",
+        id: 16,
+        name: "Eggs",
+        price: 6500,
+        unit: "kg",
+        image: "images/eggs.jpg",
+      },
+    ],
+  },
+
+  {
+    key: "crops",
+    title: " Staples/Crops",
+    products: [
+      {
+        id: 17,
+        name: "Yam",
+        price: 1500,
+        unit: "tuber",
+        image: "images/Yam tuber.webp",
       },
       {
-        id: 30,
-        name: "Fresh Vegetables",
-        price: 2500,
+        id: 18,
+        name: "Beans",
+        price: 60000,
+        unit: " bag",
+        image: "images/bag of beans.jpg",
+      },
+      {
+        id: 19,
+        name: "Groundnuts",
+        price: 4500,
+        unit: "bottle",
+        image: "images/groundnut.jpg",
+      },
+      {
+        id: 20,
+        name: "Maize",
+        price: 13000,
         unit: "kg",
-        image: "images/leafy-vegetables.webp",
+        image: "images/maize.jpg",
+      },
+      {
+        id: 21,
+        name: "Cocoa",
+        price: 17500,
+        unit: "kg",
+        image: "images/cocoa.jpg",
+      },
+      {
+        id: 22,
+        name: "Rice",
+        price: 84000,
+        unit: "kg",
+        image: "images/bag of rice.jpg",
       },
     ],
   },
