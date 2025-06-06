@@ -1,17 +1,14 @@
 const toggleCartBtn = document.getElementById("toggle-cart-btn");
 const closeCartBtn = document.getElementById("close-cart-btn");
 const cartSection = document.getElementById("cart-section");
-const placeOrderBtn = document.getElementById("btn-purchase"); 
+const placeOrderBtn = document.getElementById("btn-purchase");
 
 toggleCartBtn.addEventListener("click", () => {
   cartSection.classList.remove("hidden");
-
 });
 
 closeCartBtn.addEventListener("click", () => {
   cartSection.classList.add("hidden");
-
- 
 
   toggleCartBtn.textContent = "View Cart";
 });
@@ -124,15 +121,14 @@ function updateTotal() {
   )}`;
 }
 
+
 function placeOrderClicked() {
-  
   if (cartItemsContainer.children.length === 0) {
     alert("Your cart is empty!");
     return;
   }
 
   alert("Thank you for your order!");
-  
 
   while (cartItemsContainer.firstChild) {
     cartItemsContainer.removeChild(cartItemsContainer.firstChild);
@@ -142,16 +138,9 @@ function placeOrderClicked() {
   cartSection.classList.add("hidden");
   toggleCartBtn.textContent = "View Cart";
 
- 
-
-  toggleCartBtn.classList.add("bg-green-600", "hover:bg-green-700");
-  toggleCartBtn.classList.remove("bg-teal-600", "hover:bg-teal-700");
-
- 
+  toggleCartBtn.classList.add("bg-green-700", "hover:bg-green-600");
+  toggleCartBtn.classList.remove("bg-teal-700", "hover:bg-teal-600");
 }
-
-
-
 
 function showAddToCartMessage(button) {
   const originalText = button.innerHTML;
@@ -200,12 +189,35 @@ const categories = [
         unit: "pc",
         image: "images/okra 2.jpg",
       },
+
+      {
+        id: 5,
+        name: "Garden Eggs",
+        price: 3000,
+        quantity: "1 dozen",
+        image: "images/garden eggs.jpg",
+      },
       {
         id: 5,
         name: "Peppers",
         price: 2000,
         unit: " pc",
         image: "images/pepper.jpg",
+      },
+
+      {
+        id: 5,
+        name: "Plaintains",
+        price: 2000,
+        quantity: "1 bunch",
+        image: "images/plaintains.webp",
+      },
+      {
+        id: 5,
+        name: "Cucumbers",
+        price: 1500,
+        quantity: "1pc",
+        image: "images/cucumber 2.webp",
       },
     ],
   },
@@ -249,6 +261,33 @@ const categories = [
         unit: "pc",
         image: "images/watermelons.jpg",
       },
+
+      {
+        id: 6,
+        name: "Mangoes",
+        price: 800,
+        unit: "pc",
+        image: "images/mangoes.webp",
+      },
+      {
+        id: 7,
+        name: "Pineapples",
+        price: 1500,
+        unit: "pc",
+        image: "images/pineapple.webp",
+      },
+      {
+        name: "Avocados",
+        price: 2000,
+        unit: "pc",
+        image: "images/avocado 2.jpg",
+      },
+      {
+        name: "Pawpaw",
+        price: 2550,
+        unit: "pc",
+        image: "images/pawpaw 2.jpg",
+      },
     ],
   },
   {
@@ -278,6 +317,27 @@ const categories = [
         unit: "kg",
         image: "images/goat.jpg",
       },
+      {
+        id: 13,
+        name: "Sheep",
+        price: 300000,
+        unit: "50kg",
+        image: "images/sheep.jpg",
+      },
+      {
+        id: 13,
+        name: "Ram",
+        price: 420000,
+        unit: "100kg",
+        image: "images/ram.jpg",
+      },
+      {
+        id: 13,
+        name: "Cattle",
+        price: 600000,
+        unit: "400kg",
+        image: "images/cows.jpg",
+      },
     ],
   },
 
@@ -304,7 +364,7 @@ const categories = [
         id: 16,
         name: "Eggs",
         price: 6500,
-        unit: "kg",
+        unit: "crate",
         image: "images/eggs.jpg",
       },
     ],
@@ -326,13 +386,13 @@ const categories = [
         name: "Beans",
         price: 60000,
         unit: " bag",
-        image: "images/bag of beans.jpg",
+        image: "images/bag of beans.jpeg",
       },
       {
         id: 19,
         name: "Groundnuts",
         price: 4500,
-        unit: "bottle",
+        unit: "kg",
         image: "images/groundnut.jpg",
       },
       {
@@ -355,6 +415,49 @@ const categories = [
         price: 84000,
         unit: "kg",
         image: "images/bag of rice.jpg",
+      },
+    ],
+  },
+
+  {
+    key: "Bags",
+    title: " Bags/Bigger Quantities",
+    products: [
+      {
+        id: 22,
+        name: "Rice",
+        price: 84000,
+        unit: "kg",
+        image: "images/bag of rice.jpg",
+      },
+
+      {
+        id: 21,
+        name: "Cocoa",
+        price: 17500,
+        unit: "kg",
+        image: "images/cocoa.jpg",
+      },
+      {
+        id: 20,
+        name: "Maize",
+        price: 13000,
+        unit: "kg",
+        image: "images/maize.jpg",
+      },
+      {
+        id: 18,
+        name: "Beans",
+        price: 60000,
+        unit: " bag",
+        image: "images/bag of beans.jpeg",
+      },
+      {
+        id: 19,
+        name: "Groundnuts",
+        price: 4500,
+        unit: "bottle",
+        image: "images/groundnut.jpg",
       },
     ],
   },
@@ -383,7 +486,7 @@ function renderCategory(pageIndex) {
         <img src="${product.image}" alt="${product.name}" class="image h-40 object-cover rounded-md mb-4" />
         <h3 class="title font-semibold text-lg mb-1">${product.name}</h3>
         <p class="price text-green-700 font-bold mb-4">₦${product.price} / ${product.unit}</p>
-        <button class="add-to-cart mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded shadow transition">
+        <button class="add-to-cart mt-auto bg-green-700 hover:bg-green-600 text-white font-semibold py-2 rounded shadow transition">
           Add to Cart
         </button>
       `;
