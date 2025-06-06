@@ -13,7 +13,7 @@
 #file-input::file-selector-button {
   margin-right: 10px;
   border: none;
-  background:var(--color-green-600);
+  background:var(--color-green-700);
   padding: 5px 10px;
   border-radius: 8px;
   color: #fff;
@@ -22,7 +22,7 @@
 }
 
 #file-input::file-selector-button:hover {
-  background: var(--color-green-700);
+  background: var(--color-green-600);
 }
 
 #product-form{
@@ -31,7 +31,7 @@ background-color: #fafaf0;
 .nav-bar{
   display: flex;
   justify-content: center;
-  background-color: var(--color-green-600);
+  background-color: var(--color-green-700);
 }
 .header{
   display: flex;
