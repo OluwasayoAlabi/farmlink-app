@@ -13,7 +13,7 @@
 #file-input::file-selector-button {
   margin-right: 10px;
   border: none;
-  background:var(--color-green-500);
+  background:var(--color-green-600);
   padding: 5px 10px;
   border-radius: 8px;
   color: #fff;
@@ -31,15 +31,15 @@ background-color: #fafaf0;
 .nav-bar{
   display: flex;
   justify-content: center;
-  background: hsla(144, 100%, 39%, 1);
+  background: hsla(142, 100%, 33%, 1);
 
-  background: linear-gradient(90deg, hsla(144, 100%, 39%, 1) 9%, hsla(142, 100%, 33%, 1) 48%);
+  background: linear-gradient(90deg, hsla(142, 100%, 33%, 1) 0%, hsla(145, 100%, 25%, 1) 58%);
 
-  background: -moz-linear-gradient(90deg, hsla(144, 100%, 39%, 1) 9%, hsla(142, 100%, 33%, 1) 48%);
+  background: -moz-linear-gradient(90deg, hsla(142, 100%, 33%, 1) 0%, hsla(145, 100%, 25%, 1) 58%);
 
-  background: -webkit-linear-gradient(90deg, hsla(144, 100%, 39%, 1) 9%, hsla(142, 100%, 33%, 1) 48%);
+  background: -webkit-linear-gradient(90deg, hsla(142, 100%, 33%, 1) 0%, hsla(145, 100%, 25%, 1) 58%);
 
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00C950", endColorstr="#00A63E", GradientType=1 );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#00A63E", endColorstr="#008236", GradientType=1 );
 }
 .header{
   display: flex;
