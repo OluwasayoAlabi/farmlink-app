@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Product Detail + farmer's profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail + Farmer's Profile</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .thumbnail {
+      transition: all 0.3s ease;
+    }
+    .thumbnail:hover {
+      transform: scale(1.05);
+    }
+    .selected-thumbnail {
+      border-color: #FF6600;
+    }
+  </style>
   <script>
     tailwind.config = {
       theme: {
@@ -16,8 +28,7 @@
             goldenYellow: '#FFB300',
             offWhite: '#FAFAF0',
             charcoalBlack: '#333333',
-            lightGray: '#f5f5f5',
-            darkOrange: '#cc5200'
+            darkOrange: '#E65100',
           }
         }
       }
@@ -25,363 +36,1300 @@
   </script>
 </head>
 <body class="font-sans bg-offWhite text-charcoalBlack">
-
-  <main class="max-w-xl p-3 mx-auto mt-4">
-    <a href="./product detail.html" class="inline-block mb-3 text-sm underline text-forestGreen">← Back to Products</a>
+  <main class="max-w-6xl p-4 mx-auto mt-4">
+    <a href="./product detail.html" class="inline-flex items-center mb-4 text-sm font-medium text-forestGreen hover:underline">
+      <i class="mr-2 fas fa-arrow-left"></i> Back to Products
+    </a>
     
-    <div id="productDetail" class="p-3 space-y-4 overflow-hidden bg-white border shadow sm:p-4 rounded-xl border-lightGray"></div>
+    <div id="productDetail" class="overflow-hidden bg-white shadow-md rounded-xl">
+      <!-- Loading state -->
+      <div id="loading" class="p-8 text-center">
+        <i class="text-3xl fas fa-spinner fa-spin text-forestGreen"></i>
+        <p class="mt-4">Loading product details...</p>
+      </div>
+    </div>
   </main>
 
   <script>
+  
     const products = {
-      // Vegetables
       tomatoes: {
+        id: "prod001",
         name: "Fresh Tomatoes",
         category: "Vegetables",
-        description: "Ripe and juicy tomatoes, perfect for your meals.",
-        price: "₦1,500 / basket",
-        image: "./images/Tomatoes 1.webp",
+        description: "Juicy, ripe, and bursting with flavor - perfect for stews, salads, and sauces. Grown organically without synthetic pesticides.",
+        price: "₦2,000",
+        quantity: "20 baskets in stock",
+        rating: 4.8,
+        reviews: 124,
+        viewing: 15,
+        sold: 24,
+        images: [
+          "./images/Tomatoes 1.webp",
+          "./images/Tomatoes 1.webp",
+          "./images/Tomatoes 1.webp"
+        ],
         farmer: {
+          id: "farmer001",
           name: "Musa Ibrahim",
           location: "Kano, Nigeria",
-          experience: "10+ years in organic farming.",
-          phone: "+2348012345678",
-          photo: "./images/farmer's profile.jpeg"
+          experience: "9+ years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2015",
+        },
+        details: {
+          weight: "500g per basket",
+          shelfLife: "5 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
         }
       },
-      freshvegetables: {
+
+       vegetables: {
+        id: "prod002",
         name: "Fresh Vegetables",
         category: "Vegetables",
-        description: "A mix of fresh, locally grown vegetables.",
-        price: "₦2,000 / bundle",
-        image: "./images/leafy-vegetables.webp",
+        description: "A vibrant mix of garden-fresh veggies to elevate your meals.",
+        price: "₦2,500",
+        quantity: "12 baskets in stock",
+        rating: 4.8,
+        reviews: 124,
+        viewing: 15,
+        sold: 24,
+        images: [
+          "./images/leafy-vegetables.webp",
+          "./images/leafy-vegetables.webp",
+          "./images/leafy-vegetables.webp"
+        ],
         farmer: {
-          name: "Amina Yusuf",
-          location: "Kaduna, Nigeria",
-          experience: "8 years farming experience.",
-          phone: "+2348098765432",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      onions: {
-        name: "Onions",
-        category: "Vegetables",
-        description: "Fresh onions for all your cooking needs.",
-        price: "₦800 / basket",
-        image: "./images/onions.jpeg",
-        farmer: {
-          name: "John Ade",
-          location: "Lagos, Nigeria",
-          experience: "15 years farming onions.",
-          phone: "+2348123456789",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      okra: {
-        name: "Okra",
-        category: "Vegetables",
-        description: "Fresh green okra, handpicked daily.",
-        price: "₦900 / basket",
-        image: "./images/okra.jpeg",
-        farmer: {
-          name: "Fola Johnson",
-          location: "Oyo, Nigeria",
-          experience: "12 years growing okra.",
-          phone: "+2348134567890",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      pepper: {
-        name: "Pepper",
-        category: "Vegetables",
-        description: "Spicy and fresh peppers.",
-        price: "₦1,200 / basket",
-        image: "./images/pepper.jpeg",
-        farmer: {
-          name: "Ngozi Eze",
+          id: "farmer002",
+          name: "Chinedu Okafor",
           location: "Enugu, Nigeria",
-          experience: "9 years in pepper farming.",
-          phone: "+2348145678901",
-          photo: "./images/farmer's profile.jpeg"
+          experience: "10 years in organic farming",
+          photo: "./images/farmer's profile.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2015",
+        },
+        details: {
+          weight: "5kg per basket",
+          shelfLife: "7 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
         }
       },
-
-      // Fruits
-      apples: {
-        name: "Apples",
-        category: "Fruits",
-        description: "Sweet and crunchy apples from local farms.",
-        price: "₦2,500 / basket",
-        image: "./images/apple.jpeg",
+ onions: {
+        id: "prod003",
+        name: "Fresh Onions",
+        category: "Vegetables",
+        description: "Aromatic and crips onions to add depth to your dishes.",
+        price: "₦5,000",
+        quantity: "50 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/onions.jpeg",
+          "./images/onions.jpeg",
+          "./images/onions.jpeg"
+        ],
         farmer: {
-          name: "Grace Ojo",
-          location: "Jos, Nigeria",
-          experience: "7 years apple farming.",
-          phone: "+2348156789012",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      bananas: {
-        name: "Bananas",
-        category: "Fruits",
-        description: "Fresh ripe bananas.",
-        price: "₦1,800 / bunch",
-        image: "./images/Bananas 2.webp",
-        farmer: {
-          name: "Emeka Obi",
-          location: "Abuja, Nigeria",
-          experience: "10 years banana cultivation.",
-          phone: "+2348167890123",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      agbalumo: {
-        name: "Agbalumo",
-        category: "Fruits",
-        description: "Tasty and tangy African star apple (Agbalumo).",
-        price: "₦1,000 / basket",
-        image: "./images/Agbalumo.webp",
-        farmer: {
-          name: "Binta Sule",
-          location: "Benue, Nigeria",
-          experience: "5 years specialty fruit farming.",
-          phone: "+2348178901234",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      oranges: {
-        name: "Oranges",
-        category: "Fruits",
-        description: "Juicy fresh oranges.",
-        price: "₦2,000 / basket",
-        image: "./images/oranges.jpeg",
-        farmer: {
-          name: "Tunde Bakare",
-          location: "Ondo, Nigeria",
-          experience: "11 years orange farming.",
-          phone: "+2348189012345",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      watermelons: {
-        name: "Watermelons",
-        category: "Fruits",
-        description: "Sweet and refreshing watermelons.",
-        price: "₦3,500 / piece",
-        image: "./images/watermelons.jpeg",
-        farmer: {
-          name: "Sadiq Bello",
-          location: "Sokoto, Nigeria",
-          experience: "9 years watermelon farming.",
-          phone: "+2348190123456",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-
-      // Animal Products
-      freshcatfish: {
-        name: "Fresh Catfish",
-        category: "Animal Products",
-        description: "Freshly caught catfish.",
-        price: "₦4,000 / kg",
-        image: "./images/Catfish.jpg",
-        farmer: {
-          name: "Hassan Musa",
-          location: "Delta, Nigeria",
-          experience: "14 years fishing.",
-          phone: "+2348201234567",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      frozenfish: {
-        name: "Frozen Fish",
-        category: "Animal Products",
-        description: "Quality frozen fish preserved fresh.",
-        price: "₦3,000 / kg",
-        image: "./images/Frozen fish.jpg",
-        farmer: {
-          name: "Ngozi Chukwu",
-          location: "Rivers, Nigeria",
-          experience: "10 years fish handling.",
-          phone: "+2348212345678",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      livechicken: {
-        name: "Live Chicken",
-        category: "Animal Products",
-        description: "Healthy live chickens from the farm.",
-        price: "₦35,000 / bird",
-        image: "./images/Live Chicken.webp",
-        farmer: {
-          name: "Adeola Johnson",
-          location: "Ekiti, Nigeria",
-          experience: "13 years poultry farming.",
-          phone: "+2348223456789",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      frozenchicken: {
-        name: "Frozen Chicken",
-        category: "Animal Products",
-        description: "Fresh frozen chickens, ready for cooking.",
-        price: "₦4,500 / bird",
-        image: "./images/Frozen Chicken.webp",
-        farmer: {
-          name: "Femi Akin",
-          location: "Lagos, Nigeria",
-          experience: "12 years poultry industry.",
-          phone: "+2348234567890",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      goat: {
-        name: "Goat",
-        category: "Animal Products",
-        description: "Healthy live goats, perfect for meat.",
-        price: "₦50,000 / head",
-        image: "./images/goat.jpeg",
-        farmer: {
-          name: "Zainab Yusuf",
-          location: "Kaduna, Nigeria",
-          experience: "20 years livestock farming.",
-          phone: "+2348245678901",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-
-      // Bags / Bigger Quantities
-      yam: {
-        name: "Yam",
-        category: "Bags / Bigger Quantities",
-        description: "Fresh yam tubers in large quantities.",
-        price: "₦12,000 / bag",
-        image: "./images/Yam-tuber.webp",
-        farmer: {
-          name: "Chinedu Eze",
-          location: "Enugu, Nigeria",
-          experience: "18 years yam farming.",
-          phone: "+2348256789012",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      beans: {
-        name: "Beans",
-        category: "Bags / Bigger Quantities",
-        description: "Premium quality beans.",
-        price: "₦150,000 / bag",
-        image: "./images/bag of beans.jpeg",
-        farmer: {
-          name: "Aisha Bello",
-          location: "Kano, Nigeria",
-          experience: "15 years crop farming.",
-          phone: "+2348267890123",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      groundnuts: {
-        name: "Groundnuts",
-        category: "Bags / Bigger Quantities",
-        description: "Fresh groundnuts in bulk.",
-        price: "₦8,500 / bag",
-        image: "./images/groundnut.jpeg",
-        farmer: {
-          name: "Emmanuel Okoro",
-          location: "Niger, Nigeria",
-          experience: "10 years groundnut farming.",
-          phone: "+2348278901234",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      maize: {
-        name: "Maize",
-        category: "Bags / Bigger Quantities",
-        description: "Good quality maize for food and feed.",
-        price: "₦9,000 / bag",
-        image: "./images/maize.jpeg",
-        farmer: {
-          name: "Halima Sani",
+          id: "farmer003",
+          name: "Fatima Bello",
           location: "Kwara, Nigeria",
-          experience: "13 years maize farming.",
-          phone: "+2348289012345",
-          photo: "./images/farmer's profile.jpeg"
+          experience: "3 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "250g per basket",
+          shelfLife: "10 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
         }
       },
-      cocoa: {
-        name: "Cocoa",
-        category: "Bags / Bigger Quantities",
-        description: "Premium cocoa beans.",
-        price: "₦40,000 / bag",
-        image: "./images/cocoa.jpeg",
-        farmer: {
-          name: "Joseph Nnamdi",
-          location: "Cross River, Nigeria",
-          experience: "17 years cocoa farming.",
-          phone: "+2348290123456",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      rice: {
-        name: "Bag of Rice",
-        category: "Bags / Bigger Quantities",
-        description: "High-quality rice bagged for sale.",
-        price: "₦100,000 / bag",
-        image: "./images/bag of rice.jpeg",
-        farmer: {
-          name: "Kemi Adebayo",
-          location: "Ogun, Nigeria",
-          experience: "12 years rice farming.",
-          phone: "+2348301234567",
-          photo: "./images/farmer's profile.jpeg"
-        }
-      },
-      vegetables: {
-        name: "Fresh Vegetables",
+       okra: {
+        id: "prod004",
+        name: "Fresh Okra",
         category: "Vegetables",
-        description: "Assorted leafy vegetables",
-        price: "₦100,000 / bag",
-        image: "./images/leafy-vegetables.webp",
+        description: "Tender and slimy in the best way-ideal for soups and stew.",
+        price: "₦5,000",
+        quantity: "20 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/okra.jpeg",
+          "./images/okra.jpeg",
+          "./images/okra.jpeg"
+        ],
         farmer: {
-          name: "Kemi Adebayo",
-          location: "Ogun, Nigeria",
-          experience: "12 years vegetable farming.",
-          phone: "+2348301234567",
-          photo: "./images/farmer's profile.jpeg"
+          id: "farmer004",
+          name: "Adebayo Ojo",
+          location: "Oyo, Nigeria",
+          experience: "4 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2013",
+        },
+        details: {
+          weight: "250g per basket",
+          shelfLife: "10 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
         }
-      }
+      },
+       pepper: {
+        id: "prod005",
+        name: "Fresh Red Hot Pepper",
+        category: "Vegetables",
+        description: "Spicy and colorful peppers to kick up the heat in your receipe.",
+        price: "₦2,000",
+        quantity: "30 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/pepper.jpeg",
+          "./images/pepper.jpeg",
+          "./images/pepper.jpeg"
+        ],
+        farmer: {
+          id: "farmer005",
+          name: "Hassan Ibrahim",
+          location: "Kaduna, Nigeria",
+          experience: "6 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2013",
+        },
+        details: {
+          weight: "250g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      }, 
+  gardeneggs: {
+        id: "prod006",
+        name: "Fresh Garden Eggs",
+        category: "Vegetables",
+        description: "Lovely and sweet",
+        price: "₦3,000",
+        quantity: "1 dozen",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          
+        ],
+        farmer: {
+          id: "farmer006",
+          name: "Grace Uduak",
+          location: "Akwa Ibom, Nigeria",
+          experience: "6 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2013",
+        },
+        details: {
+          weight: "250g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      }, 
+
+      plantain: {
+        id: "prod007",
+        name: "Fresh plantain",
+        category: "Vegetables",
+        description: "Lovely and sweet",
+        price: "₦2,000",
+        quantity: "1 bunch",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          
+        ],
+        farmer: {
+          id: "farmer007",
+          name: "Ifeanyi Nwosu",
+          location: "Anambra, Nigeria",
+          experience: "2 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2013",
+        },
+        details: {
+          weight: "20g per bunch",
+          shelfLife: "25 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      }, 
+  cucumber: {
+        id: "prod008",
+        name: "Fresh Green Cucumber",
+        category: "Vegetables",
+        description: "Fresh green healthy cucumber",
+        price: "₦1,500",
+        quantity: "1 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          
+        ],
+        farmer: {
+          id: "farmer007",
+          name: "Ifeanyi Nwosu",
+          location: "Anambra, Nigeria",
+          experience: "2 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2013",
+        },
+        details: {
+          weight: "20g per bunch",
+          shelfLife: "25 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      }, 
+
+      
+      
+ // fruits
+      apples: {
+        id: "prod009",
+        name: "Fresh Apples",
+        category: "Fruits",
+        description: "Crips and sweet apples for a healthy snack on the go.",
+        price: "₦200",
+        quantity: "1 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/Apples.webp",
+          "./images/Apples.webp",
+          "./images/Apples.webp"
+        ],
+        farmer: {
+          id: "farmer009",
+          name: "Sani Garba",
+          location: "Sokoto, Nigeria",
+          experience: "6 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2013",
+        },
+        details: {
+          weight: "250g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+
+         bananas: {
+        id: "prod010",
+        name: "Naturally Sweet Bananas",
+        category: "Fruits",
+        description: "Naturally sweet and energy-boosting bananas for your day.",
+        price: "₦600",
+        quantity: "1 bunch",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/Bananas 2.webp",
+          "./images/Bananas 2.webp",
+          "./images/Bananas 2.webp"
+        ],
+        farmer: {
+          id: "farmer010",
+          name: "Esther Ogunleye",
+          location: "Ondo, Nigeria",
+          experience: "7 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2013",
+        },
+        details: {
+          weight: "250g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+     agbalumo: {
+        id: "prod011",
+        name: "Fresh Cherry/Agbalumo",
+        category: "Fruits",
+        description: "Tangy and unique, a delightful treat native to our lands.",
+        price: "₦100",
+        quantity: "1 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/Agbalumo.webp",
+          "./images/Agbalumo.webp",
+          "./images/Agbalumo.webp"
+        ],
+        farmer: {
+          id: "farmer011",
+          name: "Esther Oloyi",
+          location: "Ondo, Nigeria",
+          experience: "3 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2013",
+        },
+        details: {
+          weight: "250g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+     
+       oranges: {
+        id: "prod012",
+        name: "Fresh Oranges",
+        category: "Fruits",
+        description: "Juicy and refreshing oranges packed with vitamin c.",
+        price: "₦500",
+        quantity: "2 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/oranges.jpeg",
+          "./images/oranges.jpeg",
+          "./images/oranges.jpeg"
+        ],
+        farmer: {
+          id: "farmer012",
+          name: "Abike Olodi",
+          location: "Ogun, Nigeria",
+          experience: "6 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "250g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+ watermelons: {
+        id: "prod013",
+        name: "Fresh Watermelons",
+        category: "Fruits",
+        description: "Juicy and refreshing watermelons.",
+        price: "₦2,000",
+        quantity: "1 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/watermelons.jpeg",
+          "./images/watermelons.jpeg",
+          "./images/watermelons.jpeg"
+        ],
+        farmer: {
+          id: "farmer013",
+          name: "Arike Ola",
+          location: "Niger, Nigeria",
+          experience: "6 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "550g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+
+      mango: {
+        id: "prod014",
+        name: "Fresh Mango",
+        category: "Fruits",
+        description: "Juicy Mango.",
+        price: "₦2,000",
+        quantity: "1 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/mango.jpeg",
+          "./images/mango.jpeg",
+          "./images/mango.jpeg"
+        ],
+        farmer: {
+          id: "farmer014",
+          name: "Anna peter",
+          location: "Delta, Nigeria",
+          experience: "9 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "550g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+      pineapples: {
+        id: "prod015",
+        name: "Fresh ",
+        category: "Fruits",
+        description: "Sweet refreshing pineapples.",
+        price: "₦2,000",
+        quantity: "1 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/pineapples.jpeg",
+          "./images/pineapples.jpeg",
+          "./images/pineapples.jpeg"
+        ],
+        farmer: {
+          id: "farmer015",
+          name: "Arike Ola",
+          location: "Niger, Nigeria",
+          experience: "6 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "550g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+
+      avocados: {
+        id: "prod016",
+        name: "Fresh ",
+        category: "Fruits",
+        description: "Juicy and refreshing avocados.",
+        price: "₦2,000",
+        quantity: "1 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/avocados.jpeg",
+          "./images/avocados.jpeg",
+          "./images/avocados.jpeg"
+        ],
+        farmer: {
+          id: "farmer016",
+          name: "Arike Ola",
+          location: "Ogun, Nigeria",
+          experience: "6 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "550g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+
+       pawpaw: {
+        id: "prod017",
+        name: "Fresh ",
+        category: "Fruits",
+        description: "Juicy and refreshing pawpaw.",
+        price: "₦2,550",
+        quantity: "1 pcs",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/pawpaw.jpeg",
+          "./images/pawpaw.jpeg",
+          "./images/pawpaw.jpeg"
+        ],
+        farmer: {
+          id: "farmer017",
+          name: "Arike Ola",
+          location: "Abia, Nigeria",
+          experience: "6 years in organic farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "550g per basket",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+      
+
+// Livestock
+freshcatfish: {
+        id: "prod018",
+        name: "Fresh Catfish ",
+        category: "Livestock",
+        description: "Freshly caught catfish,ready for your favourite receipes.",
+        price: "₦3,000",
+        quantity: "3 kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/freshcatfish.jpeg",
+          "./images/freshcatfish.jpeg",
+          "./images/freshcatfish.jpeg"
+        ],
+        farmer: {
+          id: "farmer018",
+          name: "Ade Ota",
+          location: "Lagos, Nigeria",
+          experience: "6 years in livestock farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "3kg",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+      
+      frozenfish: {
+        id: "prod019",
+        name: "Frozen Fish ",
+        category: "Livestock",
+        description: "Convenient and preserved fish to enjoy anytime",
+        price: "₦2,000",
+        quantity: "1 kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/frozen fish.jpeg",
+          "./images/frozen fish.jpeg",
+          "./images/frozen fish.jpeg"
+        ],
+        farmer: {
+          id: "farmer019",
+          name: "Ade wale",
+          location: "Kebbie, Nigeria",
+          experience: "6 years in livestock farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "1kg",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+
+      livechicken: {
+        id: "prod020",
+        name: "Live Chicken",
+        category: "Livestock",
+        description: "Healthy and robust live chicken for your culinary needs.",
+        price: "₦10,000",
+        quantity: "8 kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/frozen fish.jpeg",
+          "./images/frozen fish.jpeg",
+          "./images/frozen fish.jpeg"
+        ],
+        farmer: {
+          id: "farmer020",
+          name: "Ade wale",
+          location: "Kebbie, Nigeria",
+          experience: "6 years in livestock farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "8kg",
+          origin: "Local farm"
+        }
+      },
+      
+      eggs: {
+        id: "prod021",
+        name: "Fresh Eggs",
+        category: " Animal products",
+        description: "Fresh eggs.",
+        price: "₦5,500",
+        quantity: "1 crate",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/eggs.jpeg",
+          "./images/eggs.jpeg",
+          "./images/eggs.jpeg"
+        ],
+        farmer: {
+          id: "farmer021",
+          name: "Ade wale",
+          location: "Kebbie, Nigeria",
+          experience: "6 years in livestock farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "30g per crate",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+      
+      frozenchicken: {
+        id: "prod022",
+        name: "Frozen Chicken",
+        category: " livestock",
+        description: "Tender and ready-to-cook chicken for quick meals",
+        price: "₦6,500",
+        quantity: "1 kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/Frozen Chicken.webp",
+          "./images/Frozen Chicken.webp",
+          "./images/Frozen Chicken.webp"
+        ],
+        farmer: {
+          id: "farmer022",
+          name: "Ade wale",
+          location: "Ekiti, Nigeria",
+          experience: "6 years in livestock farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "1kg",
+          shelfLife: "15 days",
+          storage: "Store in cool, dry place",
+          origin: "Local farm"
+        }
+      },
+      
+       goat: {
+        id: "prod023",
+        name: "Live Goat",
+        category: " livestock",
+        description: "Rich and flavorful goat meat for healthy dishes.",
+        price: "₦50,000",
+        quantity: "20 kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/goat.jpeg",
+          "./images/goat.jpeg",
+          "./images/goat.jpeg"
+        ],
+        farmer: {
+          id: "farmer023",
+          name: "Ade wale",
+          location: "Ekiti, Nigeria",
+          experience: "9 years in livestock farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "20kg per basket",
+          origin: "Local farm"
+        }
+      },
+
+      sheep: {
+        id: "prod024",
+        name: "Live Sheep",
+        category: " livestock",
+        description: "Rich and flavorful  meat for healthy dishes.",
+        price: "₦300,000",
+        quantity: "50 kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/sheep.jpeg",
+          "./images/sheep.jpeg",
+          "./images/sheep.jpeg"
+        ],
+        farmer: {
+          id: "farmer024",
+          name: "Ade wale",
+          location: "Ekiti, Nigeria",
+          experience: "9 years in livestock farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "50kg",
+          origin: "Local farm"
+        }
+      },
+
+        ram: {
+        id: "prod025",
+        name: "Live Ram",
+        category: " livestock",
+        description: "Rich and flavorful  meat for healthy dishes.",
+        price: "₦420,000",
+        quantity: "100 kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/sheep.jpeg",
+          "./images/sheep.jpeg",
+          "./images/sheep.jpeg"
+        ],
+        farmer: {
+          id: "farmer025",
+          name: "Ade wale",
+          location: "Ekiti, Nigeria",
+          experience: "9 years in livestock farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "100kg",
+          origin: "Local farm"
+        }
+      },
+
+        cattle: {
+        id: "prod026",
+        name: "Live Cattle",
+        category: " livestock",
+        description: "Rich and flavorful  meat for healthy dishes.",
+        price: "₦600,000",
+        quantity: "400 kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/sheep.jpeg",
+          "./images/sheep.jpeg",
+          "./images/sheep.jpeg"
+        ],
+        farmer: {
+          id: "farmer026",
+          name: "Ade wale",
+          location: "Ekiti, Nigeria",
+          experience: "9 years in livestock farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "400kg",
+          origin: "Local farm"
+        }
+      },
+
+      // Bags/Bigger quantities
+       yam: {
+        id: "prod028",
+        name: "Yam",
+        category: "crops",
+        description: "Starchy and filling yams.",
+        price: "₦1,500",
+        quantity: "1 kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/yam tuber.jpeg",
+          "./images/yam tuber.jpeg",
+          "./images/yam tuber.jpeg"
+        ],
+        farmer: {
+          id: "farmer028",
+          name: "Ade wale",
+          location: "Ekiti, Nigeria",
+          experience: "2 years in crop farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "1kg",
+          origin: "Local farm"
+        }
+      },
+
+      beans: {
+        id: "prod029",
+        name: "Beans",
+        category: "Bags/Bigger quantity, crop",
+        description: "Protein-rich beans, essential for a balanced diet.",
+        price: "₦60,000",
+        quantity: "1 bag",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/bag of beans.jpeg",
+          "./images/bag of beans.jpeg",
+          "./images/bag of beans.jpeg"
+        ],
+        farmer: {
+          id: "farmer029",
+          name: "Ade wale",
+          location: "Ekiti, Nigeria",
+          experience: "2 years in crop farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "1bag",
+          origin: "Local farm"
+        }
+      },
+
+  groundnuts: {
+        id: "prod030",
+        name: "Groundnuts",
+        category: "Crop",
+        description: "Crunchy and nutritious  groundnuts.",
+        price: "₦4,500",
+        quantity: "1 bottle",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/bag of groundnut.jpeg",
+          "./images/bag of groundnut.jpeg",
+          "./images/bag of groundnut.jpeg"
+        ],
+        farmer: {
+          id: "farmer030",
+          name: "Ade wale",
+          location: "Ekiti, Nigeria",
+          experience: "2 years in crop farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "1bag",
+          origin: "Local farm"
+        }
+      },
+
+      maize: {
+        id: "prod031",
+        name: "Maize",
+        category: "Crop",
+        description: "Versatille maize, perfect for various traditional meals",
+        price: "₦13,000",
+        quantity: "50kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/maize.jpeg",
+          "./images/maize.jpeg",
+          "./images/maize.jpeg"
+        ],
+        farmer: {
+          id: "farmer031",
+          name: "Ade wale",
+          location: "Ekiti, Nigeria",
+          experience: "2 years in crop farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "50kg",
+          origin: "Local farm"
+        }
+      },
+
+       cocoa: {
+        id: "prod032",
+        name: "Cocoa",
+        category: "Bags/Bigger quantity, crop",
+        description: "Premium cocoa beans for your chocolately creations.",
+        price: "₦17,500",
+        quantity: "1kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/cocoa.jpeg",
+          "./images/cocoa.jpeg",
+          "./images/cocoa.jpeg"
+        ],
+        farmer: {
+          id: "farmer032",
+          name: "Ade wale",
+          location: "Plateau, Nigeria",
+          experience: "2 years in crop farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "1kg",
+          origin: "Local farm"
+        }
+      },
+
+ rice: {
+        id: "prod033",
+        name: "Rice",
+        category: "Bags/Bigger quantity, Crop",
+        description: "Premium quality rice.",
+        price: "₦84,000",
+        quantity: "50kg",
+        rating: 4.0,
+        reviews: 124,
+        viewing: 13,
+        sold: 20,
+        images: [
+          "./images/bag of rice.jpeg",
+          "./images/bag of rice.jpeg",
+          "./images/bag of rice.jpeg"
+        ],
+        farmer: {
+          id: "farmer033",
+          name: "Bolu",
+          location: "Kastina Nigeria",
+          experience: "2 years in crop farming",
+          photo: "./images/farmer2.jpeg",
+          rating: 4.5,
+          products: 12,
+          joined: "2012",
+        },
+        details: {
+          weight: "50kg",
+          origin: "Local farm"
+        }
+      },
+
+
+      
 
     };
 
-    // Read product from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const productKey = urlParams.get("product");
-    const product = products[productKey];
-    const detailDiv = document.getElementById("productDetail");
+    // Function to display product details
+    function displayProduct(product) {
+      const detailDiv = document.getElementById("productDetail");
+      
+      if (!product) {
+        detailDiv.innerHTML = `
+          <div class="p-8 text-center">
+            <h2 class="text-2xl font-bold text-red-600">Product not found</h2>
+            <p class="mt-2 text-gray-600">The requested product could not be found.</p>
+            <a href="./b.html" class="inline-block px-4 py-2 mt-4 text-white rounded-md bg-forestGreen hover:bg-green-700">
+              Browse Products
+            </a>
+          </div>
+        `;
+        return;
+      }
 
-    if (!product) {
-      detailDiv.innerHTML = `<p class="text-lg text-red-600">Product not found.</p>`;
-    } else {
       detailDiv.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" class="object-cover w-full h-40 rounded-lg sm:h-48" />
-        <h1 class="text-xl font-bold text-earthBrown">${product.name}</h1>
-        <p class="text-sm text-forestGreen">Category: ${product.category}</p>
-        <p class="text-sm leading-snug">${product.description}</p>
-        <p class="mt-1 text-lg font-semibold text-forestGreen">${product.price}</p>
-        <button class="px-5 py-2 mt-3 font-medium text-white transition duration-200 rounded-md shadow-sm bg-forestGreen hover:bg-green-700">
-          🛒 Buy Now
-        </button>
-        <div class="flex items-start gap-3 pt-4 mt-4 border-t border-gray-200">
-          <img src="${product.farmer.photo}" alt="${product.farmer.name}" class="object-cover w-12 h-12 border rounded-full" />
-          <div class="text-sm">
-            <p class="font-semibold">${product.farmer.name}</p>
-            <p class="text-forestGreen">${product.farmer.location}</p>
-            <p class="mt-0.5">${product.farmer.experience}</p>
-            <a href="tel:${product.farmer.phone}" class="block mt-0.5 text-brightOrange">📞 ${product.farmer.phone}</a>
+        <div class="grid grid-cols-1 gap-8 p-6 lg:grid-cols-2">
+          <!-- Product Images Section -->
+          <div>
+            <div class="relative w-full mb-4 overflow-hidden bg-gray-100 rounded-lg h-96">
+              <img id="mainImage" src="${product.images[0]}" alt="${product.name}" 
+                   class="object-contain w-full h-full transition duration-300 ease-in-out hover:scale-105" />
+            </div>
+            <div class="grid grid-cols-4 gap-2">
+              ${product.images.map((img, index) => `
+                <div class="thumbnail h-20 cursor-pointer border-2 ${index === 0 ? 'selected-thumbnail border-brightOrange' : 'border-transparent'} rounded-md overflow-hidden">
+                  <img src="${img}" alt="" class="object-cover w-full h-full" data-index="${index}" />
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Product Details Section -->
+          <div>
+            <div class="mb-4">
+              <span class="inline-block px-2 py-1 text-xs font-semibold text-white rounded bg-forestGreen">
+                ${product.category}
+              </span>
+              <h1 class="mt-2 text-3xl font-bold">${product.name}</h1>
+              
+              <div class="flex items-center mt-2">
+                <div class="flex text-yellow-300">
+                  ${Array.from({length: 5}, (_, i) => `
+                    <i class="fas fa-star${i < Math.floor(product.rating) ? '' : (i < product.rating ? '-half-alt' : '')}"></i>
+                  `).join('')}
+                </div>
+                <span class="ml-2 text-gray-600">${product.rating} (${product.reviews} reviews)</span>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <span class="text-2xl font-bold text-forestGreen">${product.price}</span>
+              ${product.originalPrice ? `
+                <span class="ml-2 text-sm text-gray-500 line-through">${product.originalPrice}</span>
+                <span class="ml-2 text-xs font-semibold text-white bg-red-500 px-1.5 py-0.5 rounded">SAVE ₦${parseInt(product.originalPrice.replace(/[^\d]/g, '')) - parseInt(product.price.replace(/[^\d]/g, ''))}</span>
+              ` : ''}
+            </div>
+
+            <p class="mb-6 text-gray-700">${product.description}</p>
+
+            <!-- Product Highlights -->
+            <div class="p-4 mb-6 rounded-lg bg-gray-50">
+              <h3 class="mb-2 font-semibold">Product Highlights:</h3>
+              <ul class="pl-5 space-y-1 list-disc">
+                <li>${product.details.weight}</li>
+                <li>Shelf life: ${product.details.shelfLife}</li>
+                <li>${product.details.storage}</li>
+                <li>${product.details.origin}</li>
+                ${product.farmer.delivery ? `<li>${product.farmer.delivery}</li>` : ''}
+              </ul>
+            </div>
+
+            <div class="mb-6 space-y-3">
+              <div class="flex items-center">
+                <i class="mr-2 text-green-500 fas fa-check-circle"></i>
+                <span>Available: <span class="font-semibold">${product.quantity}</span></span>
+              </div>
+              <div class="flex items-center">
+                <i class="mr-2 text-blue-500 fas fa-eye"></i>
+                <span>${product.viewing} people currently viewing this item</span>
+              </div>
+              <div class="flex items-center">
+                <i class="mr-2 text-red-500 fas fa-fire"></i>
+                <span>${product.sold} items sold in last 3 hours</span>
+              </div>
+            </div>
+          
+            <!-- Add to Cart Section -->
+            <div class="flex flex-col items-center gap-4 mb-8 sm:flex-row">
+              <div class="flex items-center overflow-hidden border rounded-md">
+                <button class="px-3 py-2 text-lg bg-gray-200 hover:bg-gray-300">-</button>
+                <span class="w-12 px-4 py-1 text-center">1</span>
+                <button class="px-3 py-2 text-lg bg-gray-200 hover:bg-gray-300">+</button>
+              </div>
+              <button class="flex items-center justify-center flex-1 px-6 py-3 text-white transition rounded-full bg-brightOrange hover:bg-darkOrange">
+                <i class="mr-2 fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="p-3 border rounded-full text-brightOrange border-brightOrange hover:bg-orange-50">
+                <i class="fas fa-heart"></i>
+              </button>
+            </div>
+
+            <!-- Farmer Profile Section -->
+            <div class="p-6 border-t border-gray-200">
+              <h3 class="mb-4 text-xl font-semibold text-darkOrange">Farmer's Profile</h3>
+              <div class="flex flex-col items-start gap-4 sm:flex-row">
+                <img src="${product.farmer.photo}" alt="${product.farmer.name}" 
+                     class="object-cover w-16 h-16 border-2 rounded-full border-brightOrange" />
+                <div class="flex-1">
+                  <div class="flex flex-col justify-between sm:flex-row sm:items-center">
+                    <h4 class="text-lg font-bold">${product.farmer.name}</h4>
+                    <span class="px-2 py-1 text-sm text-green-800 bg-green-100 rounded">${product.farmer.certification}</span>
+                  </div>
+                  <div class="flex items-center mt-1">
+                    <div class="flex text-sm text-yellow-400">
+                      ${Array.from({length: 5}, (_, i) => `
+                        <i class="fas fa-star${i < Math.floor(product.farmer.rating) ? '' : (i < product.farmer.rating ? '-half-alt' : '')}"></i>
+                      `).join('')}
+                    </div>
+                    <span class="ml-2 text-sm text-gray-600">${product.farmer.rating} Farmer Rating</span>
+                  </div>
+                  <div class="grid grid-cols-1 gap-2 mt-3 text-sm text-gray-700 sm:grid-cols-2">
+                    <p><i class="mr-2 fas fa-map-marker-alt text-forestGreen"></i> ${product.farmer.location}</p>
+                    <p><i class="mr-2 fas fa-tractor text-forestGreen"></i> ${product.farmer.experience}</p>
+                    <p><i class="mr-2 fas fa-box-open text-forestGreen"></i> ${product.farmer.products} products listed</p>
+                    <p><i class="mr-2 fas fa-user-clock text-forestGreen"></i> Member since ${product.farmer.joined}</p>
+                  </div>
+                  <div class="flex flex-wrap gap-3 mt-4">
+                    
+                    <a href="#" class="flex items-center px-4 py-2 text-sm font-medium bg-white border rounded-md text-forestGreen border-forestGreen hover:bg-gray-50">
+                      <i class="mr-2 fas fa-store"></i> View Farm
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-white rounded-md bg-brightOrange hover:bg-darkOrange">
+                      <i class="mr-2 fas fa-truck"></i> Delivery Info
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Tabs Section -->
+        <div class="px-6 py-4 border-t border-gray-200">
+          <div class="flex border-b border-gray-200">
+            <button class="px-4 py-2 font-medium border-b-2 tab-button text-brightOrange border-brightOrange">Description</button>
+            <button class="px-4 py-2 font-medium text-gray-500 tab-button hover:text-charcoalBlack">Reviews (${product.reviews})</button>
+            <button class="px-4 py-2 font-medium text-gray-500 tab-button hover:text-charcoalBlack">Shipping & Returns</button>
+          </div>
+          <div class="py-4">
+            <p>${product.description}</p>
+            <div class="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <h4 class="font-semibold">Product Details</h4>
+                <ul class="mt-2 space-y-1">
+                  <li><span class="text-gray-600">Category:</span> ${product.category}</li>
+                  <li><span class="text-gray-600">Weight:</span> ${product.details.weight}</li>
+                  <li><span class="text-gray-600">Origin:</span> ${product.details.origin}</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold">Storage Instructions</h4>
+                <p class="mt-2">${product.details.storage}</p>
+              </div>
+            </div>
           </div>
         </div>
       `;
-    }
-  </script>
 
+      // Image gallery functionality
+      const mainImage = document.getElementById('mainImage');
+      const thumbnails = document.querySelectorAll('.thumbnail img');
+      
+      thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          // Update main image
+          mainImage.src = thumb.src;
+          
+          // Update thumbnail selection
+          document.querySelector('.selected-thumbnail')?.classList.remove('selected-thumbnail', 'border-brightOrange');
+          thumb.parentElement.classList.add('selected-thumbnail', 'border-brightOrange');
+        });
+      });
+
+      // Tab functionality
+      const tabButtons = document.querySelectorAll('.tab-button');
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          tabButtons.forEach(btn => {
+            btn.classList.remove('text-brightOrange', 'border-brightOrange');
+            btn.classList.add('text-gray-500');
+          });
+          button.classList.add('text-brightOrange', 'border-brightOrange');
+          button.classList.remove('text-gray-500');
+          // Here you would typically show/hide tab content
+        });
+      });
+    }
+
+    // Load product data
+    document.addEventListener('DOMContentLoaded', () => {
+      // Read product from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const productKey = urlParams.get("product") || "tomatoes"; // Default to tomatoes if no product specified
+      const product = products[productKey];
+      
+      // Simulate loading delay
+      setTimeout(() => {
+        document.getElementById('loading').remove();
+        displayProduct(product);
+      }, 500);
+    });
+  </script>
 </body>
 </html>
