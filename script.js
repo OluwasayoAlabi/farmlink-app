@@ -163,14 +163,14 @@ const products = [
   },
   {
     name: "Beans",
-    price: 60000,
-    quantity: "1 bag",
-    image: "images/bag of beans.jpg"
+    price: 150000,
+    quantity: "100kg",
+    image: "images/bag of beans.jpeg"
   },
   {
     name: "Groundnuts",
-    price: 4500,
-    quantity: "1 bottle",
+    price: 90000,
+    quantity: "80kg",
     image: "images/groundnut.jpg"
   },
   {
