@@ -11,11 +11,19 @@
     animation: spin 0.8s linear infinite;
   }
   
-  @keyframes spin {
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
     to {
-      transform: rotate(360deg);
+      transform: translateY(0);
+      opacity: 1;
     }
   }
+  .animate-slideDown {
+    animation: slideDown 0.6s ease-out;
+  }  
   
   .product-card img {
     height: 12rem;

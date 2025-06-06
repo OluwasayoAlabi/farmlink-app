@@ -24,10 +24,28 @@ const products = [
     image: "images/okra 2.jpg"
   },
   {
+    name: "Garden Eggs",
+    price: 3000,
+    quantity: "1 dozen",
+    image: "images/garden eggs.jpg"
+  },
+  {
     name: "Peppers",
     price: 2000,
     quantity: "30 pcs",
     image: "images/pepper.jpg"
+  },
+  {
+    name: "Plaintains",
+    price: 2000,
+    quantity: "1 bunch",
+    image: "images/plaintains.webp"
+  },
+  {
+    name: "Cucumbers",
+    price: 1500,
+    quantity: "1pc",
+    image: "images/cucumber 2.webp"
   },
   {
     name: "Apples",
@@ -60,6 +78,30 @@ const products = [
     image: "images/watermelons.jpg"
   },
   {
+    name: "Mangoes",
+    price: 800,
+    quantity: "1pc",
+    image: "images/mangoes.webp"
+  },
+  {
+    name: "Pineapples",
+    price: 1500,
+    quantity: "1pc",
+    image: "images/pineapple.webp"
+  },
+  {
+    name: "Avocados",
+    price: 2000,
+    quantity: "1pc",
+    image: "images/avocado 2.jpg"
+  },
+  {
+    name: "Pawpaw",
+    price: 2550,
+    quantity: "1pc",
+    image: "images/pawpaw 2.jpg"
+  },
+  {
     name: "Fresh Catfish",
     price: 3000,
     quantity: "3kg",
@@ -70,6 +112,12 @@ const products = [
     price: 2000,
     quantity: "1kg",
     image: "images/Frozen fish.jpg"
+  },
+  {
+    name: "Eggs",
+    price: 5500,
+    quantity: "1 crate",
+    image: "images/eggs.jpg"
   },
   {
     name: "Live Chicken",
@@ -88,6 +136,24 @@ const products = [
     price: 50000,
     quantity: "20kg",
     image: "images/goat.jpg"
+  },
+  {
+    name: "Sheep",
+    price: 300000,
+    quantity: "50kg",
+    image: "images/sheep.jpg"
+  },
+  {
+    name: "Ram",
+    price: 420000,
+    quantity: "100kg",
+    image: "images/ram.jpg"
+  },
+  {
+    name: "Cattle",
+    price: 600000,
+    quantity: "400kg",
+    image: "images/cows.jpg"
   },
   {
     name: "Yam",
@@ -150,6 +216,13 @@ function renderProducts(productsList) {
       return;
     }
 
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+});
+    
     productsList.forEach(product => {
       const card = document.createElement("div");
       card.className = "bg-white rounded shadow overflow-hidden hover:shadow-lg transition";
