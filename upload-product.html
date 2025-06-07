@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <link href="./input.css" rel="stylesheet">
+  <title>Upload Product</title>
+</head>
+<body>
+  <nav class=" text-white pt-2 pb-1 mb-4 shadow-md nav-bar">
+    <div class="header">
+      <h1>FarmLink</h1>
+      <p class="text-center text-xs">Empowering Farmers. Reducing Wastes. Connecting Markets.</p>
+</nav>
+
+  <div>
+    <form id="product-form" class="max-w-md mx-auto p-4 md:p-6 lg:p-8 rounded shadow-md md:max-w-lg lg:max-w-2xl">
+        <h2 class="text-lg md:text-xl lg:text-2xl font-bold mb-4">Upload Product</h2>
+
+      <div class="mb-4">
+    <label for="product-name" class="block text-sm font-medium mb-2">Product Name:</label>
+    <input type="text" id="product-name" name="product-name" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
+      </div>
+
+      <div class="mb-4">
+    <label for="product-description" class="block text-sm font-medium mb-2">Product Description:</label>
+    <textarea id="product-description" name="product-description" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring"></textarea>
+      </div>
+
+      <div class="mb-4">
+    <label for="product-category" class="block text-sm font-medium mb-2">Product Category:</label>
+    <select id="product-category" name="product-category" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
+      <option value="">Select a category</option>
+      <option value="animal Products">Animal Products</option>
+      <option value="bags">Bags/Bigger Quantities</option>
+      <option value="fruits">Fruits</option>
+      <option value="grains">Grains</option>
+      <option value="legumes">Legumes</option>
+      <option value="livestocks">Livestocks</option>
+      <option>Staple/Crops</option>
+      <option value="vegetables">Vegetables</option>
+    </select>
+     </div>
+
+      <div class="mb-4">
+    <label for="product-price" class="block text-sm font-medium mb-2">Product Price:</label>
+       <input type="number" id="product-price" name="product-price" placeholder="Enter price &#x20A6" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
+     </div>
+
+      <div class="mb-4">
+    <label for="product-image" class="block text-sm font-medium mb-2">Product Images:</label>
+      <input type="file" accept="image/*" required="" id="file-input">
+     </div>
+
+     <div class="mb-4">
+    <label for="quantity" class="block text-sm font-medium mb-2">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
+     </div>
+     
+      <div class="mb-4">
+    <label for="product-size" class="block text-sm font-medium mb-2">Product Size:</label>
+    <input type="text" id="product-size" name="product-size" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
+      </div>
+
+     <div class="mb-4">
+    <label for="unit-of-measurement" class="block text-sm font-medium mb-2">Unit of Measurement:</label>
+    <select id="unit-of-measurement" name="unit-of-measurement" required class="block w-full p-2 rounded-lg border  border-gray-300 focus:outline-none focus:ring max-w-md mx-auto">
+      <option value="">Select a unit</option>
+      <option value="g">g</option>
+      <option value="kg">kg</option>
+      <option value="pc">pc(s)</option>
+      <option value="bunch">bunch</option>
+      <option value="crate">crate(s)</option>
+      <option value="doz">doz</option>
+      <option value="lb">lb</option>
+    </select>
+     </div>
+    <div>
+      
+    </div>
+        <button type="submit" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring">Submit</button>
+   
+  </form>
+</div>
+
+</body>
+</html>
