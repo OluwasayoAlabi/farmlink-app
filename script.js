@@ -193,10 +193,17 @@ const products = [
   }
 ];
 
+
 const productGrid = document.getElementById("productGrid");
 const loader = document.getElementById("loader");
 const noProducts = document.getElementById("noProducts");
 const searchInput = document.getElementById("searchInput");
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
+});
 
 searchInput.addEventListener("input", () => {
   const keyword = searchInput.value.toLowerCase();
@@ -211,35 +218,67 @@ function renderProducts(productsList) {
 
   setTimeout(() => {
     loader.classList.add("hidden");
+
     if (productsList.length === 0) {
       noProducts.classList.remove("hidden");
       return;
     }
 
-    const menuToggle = document.getElementById("menuToggle");
-    const mobileMenu = document.getElementById("mobileMenu");
-
-    menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-});
-    
     productsList.forEach(product => {
       const card = document.createElement("div");
       card.className = "bg-white rounded shadow overflow-hidden hover:shadow-lg transition";
 
+      const productSlug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
+
       card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+        <div class="relative">
+          
+          <button class="fav-btn absolute top-2 right-2 p-1 rounded-full text-white hover:text-yellow-400 transition-colors duration-300">
+            <i class="fi fi-rr-heart text-lg"></i>
+          </button>
+
+          <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-md">
+        </div>
+
         <div class="p-4">
           <h2 class="text-lg font-semibold mb-1">${product.name}</h2>
           <p class="text-green-700 font-bold mb-1">₦${product.price.toLocaleString()}</p>
           <p class="text-gray-600 text-sm mb-2">Quantity: ${product.quantity}</p>
-          <button class="bg-green-600 text-white py-2 px-4 rounded w-full hover:bg-green-700">View Details</button>
+          <div class="flex items-center justify-between mt-2">
+          <a href="product details.html?product=${productSlug}" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 flex-1 text-center transition">
+          View Details
+        </a>
+            <button class="add-to-cart-btn ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300">
+              <i class="fi fi-rr-shopping-cart text-xl"></i>
+            </button>
+          </div>
         </div>
       `;
+
+      const addToCartBtn = card.querySelector('.add-to-cart-btn');
+      addToCartBtn.addEventListener('click', () => addToCart(product));
+
+      const favBtn = card.querySelector('.fav-btn');
+      favBtn.addEventListener('click', () => {
+        const icon = favBtn.querySelector('i');
+        const isFavorited = icon.classList.contains('fi-sr-heart');
+        if (isFavorited) {
+          icon.classList.remove('fi-sr-heart');
+          icon.classList.add('fi-rr-heart');
+        } else {
+          icon.classList.remove('fi-rr-heart');
+          icon.classList.add('fi-sr-heart');
+        }
+      });
 
       productGrid.appendChild(card);
     });
   }, 500);
+}
+
+
+function addToCart(product) {
+  alert(`Added ${product.name} to cart!`);
 }
 
 renderProducts(products);

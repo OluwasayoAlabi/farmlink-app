@@ -30,6 +30,13 @@
     object-fit: cover;
   }
   
+  .fi {
+    transition: transform 0.2s ease;
+  }
+  
+  button:hover .fi {
+    transform: scale(1.1);
+  }
   #searchInput:focus {
     outline: none;
     border-color: #10B981;

@@ -6,6 +6,8 @@
   <title>Farm Marketplace</title>
   <script defer src="script.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -29,10 +31,13 @@
     </button>
 
     <ul id="navLinks" class="hidden md:flex space-x-6 text-sm font-medium">
-      <li><a href="index.html" class="hover:text-yellow-300 transition">Home</a></li>
-      <li><a href="product-listing.html" class="hover:text-yellow-300 transition">Products</a></li>
-      <li><a href="upload-product.html" class="hover:text-yellow-300 transition">Upload</a></li>
-      <li><a href="contact.html" class="hover:text-yellow-300 transition">Contact</a></li>
+      <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Home</a></li>
+      <li><a href="product-listing.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Products</a></li>
+      <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Upload</a></li>
+      <li><a href="farm link search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Search</a></li>
+      <li><a href="contact.html" class="text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+      
+
     </ul>
   </div>
 
@@ -48,14 +53,17 @@
 
 
   <div class="max-w-7xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">Shop Products</h1>
+    <h1 class="text-3xl font-bold text-center my-8">Shop Products</h1>
 
     <input type="text" id="searchInput" placeholder="Search..." class="mb-6 p-2 w-full border rounded"/>
 
+    <main class="max-w-7xl mx-auto p-6">
     <!-- Product Grid -->
-    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    </div>
     
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    </div> 
+  
+
 <div id="loader" class="hidden text-center text-gray-500 mt-4">
   Loading Products...
 </div>
@@ -65,6 +73,6 @@
 </div>
 
   </div>
-
+</main>
 </body>
 </html>
