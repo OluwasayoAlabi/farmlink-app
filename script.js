@@ -234,7 +234,7 @@ function renderProducts(productsList) {
         <div class="relative">
           
           <button class="fav-btn absolute top-2 right-2 p-1 rounded-full text-white hover:text-yellow-400 transition-colors duration-300">
-            <i class="fi fi-rr-heart text-lg"></i>
+          <i class="fi fi-rr-heart text-lg"></i>
           </button>
 
           <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-md">
@@ -249,7 +249,7 @@ function renderProducts(productsList) {
           View Details
         </a>
             <button class="add-to-cart-btn ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300">
-              <i class="fi fi-rr-shopping-cart text-xl"></i>
+            <i class="fi fi-rr-shopping-cart text-xl"></i>
             </button>
           </div>
         </div>
