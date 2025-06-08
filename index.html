@@ -2,69 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Farm Marketplace</title>
-  <script defer src="script.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
-  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css" />
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
 </head>
 
 <body class="bg-gray-100">
   
 
-<nav class="bg-green-700 text-white shadow-md sticky top-0 z-50 animate-slideDown">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-    
-    <div>
-      <h1 class="text-2xl font-bold">FarmLink</h1>
-      <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
-    </div>
-
-    <button id="menuToggle" class="block md:hidden text-white focus:outline-none">  
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-           xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
-
-    <ul id="navLinks" class="hidden md:flex space-x-6 text-sm font-medium">
-      <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Home</a></li>
-      <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Products</a></li>
-      <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Upload</a></li>
-      <li><a href="search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Search</a></li>
-      <li><a href="contact.html" class="text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+  <nav class="bg-green-700 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
       
+      <div>
+        <h1 class="text-2xl font-bold">FarmLink</h1>
+        <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+      </div>
+  
+      <button id="menuToggle" class="block md:hidden ml-4 text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
 
-    </ul>
-  </div>
+      <button title="Toggle Favorite" ... >
 
-  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
-    <ul class="space-y-2">
-      <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
-      <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
-      <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
-      <li><a href="search and filter.html" class="block hover:text-yellow-300">Search</a></li>
-      <li><a href="contact.html" class="block hover:text-yellow-300">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
+      <ul class="hidden md:flex space-x-4 ml-6 text-sm font-medium">
+        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+        <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+        <li><a href="search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+        <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+        <li><a href="contact.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+      </ul>
+    </div>
+  
+    
+    <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+      <ul class="space-y-2 mt-2">
+        <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
+        <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
+        <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
+        <li><a href="search and filter.html" class="block hover:text-yellow-300">Search</a></li>
+        <li><a href="cart.html" class="block hover:text-yellow-300">Cart</a></li>
+        <li><a href="contact.html" class="block hover:text-yellow-300">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  
 
   <div class="max-w-7xl mx-auto p-6">
     <h1 class="text-3xl font-bold text-center my-8">Shop Products</h1>
 
     <input type="text" id="searchInput" placeholder="Search..." class="mb-6 p-2 w-full border rounded"/>
 
-    <main class="max-w-7xl mx-auto p-6">
     <!-- Product Grid -->
-    
-      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    </div> 
+  <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   
+  </div>
 
 <div id="loader" class="hidden text-center text-gray-500 mt-4">
   Loading Products...
@@ -75,6 +74,6 @@
 </div>
 
   </div>
-</main>
+
 </body>
 </html>
