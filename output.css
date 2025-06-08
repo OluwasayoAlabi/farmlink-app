@@ -137,6 +137,13 @@
   .top-full {
   top: 100%;
 }
+.hover\:text-yellow-300 {
+  &:hover {
+    @media (hover: hover) {
+      color: var(--color-yellow-300) /* oklch(90.5% 0.182 98.111) */;
+    }
+  }
+}
   .top-10 {
   top: calc(var(--spacing) * 10) /* 2.5rem = 40px */;
 }
@@ -249,6 +256,18 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+.space-y-2 {
+  :where(& > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 2) /* 0.5rem = 8px */ * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 2) /* 0.5rem = 8px */ * calc(1 - var(--tw-space-y-reverse)));
+  }
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
 }
 .md\:space-x-8 {
   @media (width >= 48rem /* 768px */) {
@@ -471,6 +490,9 @@
   padding-bottom: calc(var(--spacing) * 1);
 }
 .pb-2 {
+  padding-bottom: calc(var(--spacing) * 2);
+}
+.pb-4 {
   padding-bottom: calc(var(--spacing) * 2);
 }
   .text-xs {
@@ -753,6 +775,9 @@
 }
 .inset-y-0 {
   inset-block: calc(var(--spacing) * 0) /* 0rem = 0px */;
+}
+.mt-2 {
+  margin-top: calc(var(--spacing) * 2) /* 0.5rem = 8px */;
 }
 .mt-3 {
   margin-top: calc(var(--spacing) * 3) /* 0.75rem = 12px */;

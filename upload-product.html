@@ -9,53 +9,41 @@
 </head>
 <body>
   <div class="bg-green-700 text-white sticky top-0">
-     <nav class=" flex justify-between">
-
-  <div class="header">
-    <h1>FarmLink</h1>
-    <p class="text-center text-xs">Empowering Farmers. Reducing Wastes. Connecting Markets.</p>
-  </div>
-
-  <div class="flex justify-center items-center">
-     <div class="flex md:order-2 ">
-
-      <button data-collapse-toggle="navbar-search" type="button" class=" flex justify-between top-0 right-0 z-50 items-center p-2 w-10 h-10  text-sm rounded-lg  hover:bg-gray-100 focus:outline-none md:hidden cursor-pointer" aria-controls="navbar-search" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
+  <nav class="flex justify-between items-center">
+    <div class="header">
+      <h1>FarmLink</h1>
+      <p class="text-center text-xs">Empowering Farmers. Reducing Wastes. Connecting Markets.</p>
+    </div>
+    <button data-collapse-toggle="navbar-search" type="button" class="md:hidden flex items-center p-2 w-10 h-10 text-sm rounded-lg hover:bg-gray-100 focus:outline-none">
+      <span class="sr-only">Open main menu</span>
+      <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
-      </button>
-
-       <div class="hidden md:flex"> 
-      <ul class="flex" id="nav-links-large-screen"> 
-         <ul class="md:flex md:items-center z-[-1] md:z-auto md:static w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 bg-green-700 " id="nav-links"> 
-       <li><a href="#" class="hover:text-green-200 duration-150 mx-2 my-4">Home</a></li>
-        <li><a href="#" class="hover:text-green-200 duration-150 mx-2 my-4">Contact</a></li>
-        <li><a href="cart.html" class="hover:text-green-200 duration-150 mx-2 my-4">Cart</a></li>
-        <li><a href="index.html" class="hover:text-green-200 duration-150  mx-2 my-4">Product</a></li>
-        <li><a href="search and filter.html" class="hover:text-green-200 duration-150  mx-2 my-4">Search</a></li>
-    </ul>
-        
-    </div> 
-    
-      
-  </div>
-    <div class="hidden md:hidden absolute top-full left-0 w-full" id="navbar-search">
-      <ul class="md:flex md:items-center z-[-1] md:z-auto md:static w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 bg-green-700 " id="nav-links"> 
-       <li><a href="#" class="hover:text-green-200 duration-150 mx-2 my-4">Home</a></li>
-        <li><a href="#" class="hover:text-green-200 duration-150 mx-2 my-4">Contact</a></li>
-        <li><a href="cart.html" class="hover:text-green-200 duration-150 mx-2 my-4">Cart</a></li>
-        <li><a href="index.html" class="hover:text-green-200 duration-150  mx-2 my-4">Product</a></li>
-        <li><a href="search and filter.html" class="hover:text-green-200 duration-150  mx-2 my-4">Search</a></li>
-    </ul>
+    </button>
+    <div class="hidden md:flex">
+      <ul class="flex space-x-4 ml-6 text-sm font-medium">
+        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+        <li><a href="search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+        <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+        <li><a href="contact.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+      </ul>
     </div>
-
+  </nav>
+  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+    <ul class="space-y-2 mt-2">
+      <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
+      <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
+      <li><a href="search and filter.html" class="block hover:text-yellow-300">Search</a></li>
+      <li><a href="cart.html" class="block hover:text-yellow-300">Cart</a></li>
+      <li><a href="contact.html" class="block hover:text-yellow-300">Contact</a></li>
+    </ul>
   </div>
-     </nav>
-  </div>
+</div>
    
 
-  <div class="">
+  <div class=" mt-2">
     <form id="product-form" class="max-w-md mx-auto p-4 md:p-6 lg:p-8 rounded shadow-md md:max-w-lg lg:max-w-2xl">
         <h2 class="text-lg md:text-xl lg:text-2xl font-bold mb-4">Upload Product</h2>
 
