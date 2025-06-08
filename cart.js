@@ -148,6 +148,7 @@ function updateTotal() {
   )}`;
 }
 
+
 function placeOrderClicked() {
   if (cartItemsContainer.children.length === 0) {
     alert("Your cart is empty!");
