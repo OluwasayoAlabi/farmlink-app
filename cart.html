@@ -9,7 +9,50 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
+
   <body class="bg-gray-100 font-sans">
+  
+    <nav class="bg-green-700 text-white shadow-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        
+        <div>
+          <h1 class="text-2xl font-bold">FarmLink</h1>
+          <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+        </div>
+    
+        <button id="menuToggle" class="block md:hidden ml-4 text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+  
+        <button title="Toggle Favorite" ... >
+  
+        <ul class="hidden md:flex space-x-4 ml-6 text-sm font-medium">
+          <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+          <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+          <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+          <li><a href="search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+          <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+          <li><a href="contact.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+        </ul>
+      </div>
+    
+      
+      <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+        <ul class="space-y-2 mt-2">
+          <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
+          <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
+          <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
+          <li><a href="search and filter.html" class="block hover:text-yellow-300">Search</a></li>
+          <li><a href="cart.html" class="block hover:text-yellow-300">Cart</a></li>
+          <li><a href="contact.html" class="block hover:text-yellow-300">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+    
     <main class="container mx-auto px-4 py-10">
       <div class="max-w-7xl mx-auto p-6">
         <h1 class="text-3xl font-bold mb-6">Shop Products Here</h1>
@@ -29,10 +72,11 @@
 
       <div class="text-center mb-6">
         <button
-          id="toggle-cart-btn"
-          class=" bg-green-700 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded shadow transition"
-        >
-          View Cart
+        id="toggle-cart-btn"
+        class=" bg-yellow-300 hover:bg-yellow-400 text-white font-semibold py-2 px-6 rounded shadow transition" 
+          
+        >View Cart
+         
         </button>
       </div>
 
@@ -56,7 +100,8 @@
 
         <div class="mt-6">
           <div class="text-lg font-semibold text-gray-800 text-right">
-            Total: <span class="total text-green-700 font-bold">₦0.00</span>
+            Total: <span class="total text-green-700 font-bold">
+              ₦0.00</span>
           </div>
 
           <div class="mt-4 flex justify-between">
