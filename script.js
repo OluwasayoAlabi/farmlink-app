@@ -60,7 +60,7 @@ const products = [
     image: "images/Bananas 3.webp"
   },
   {
-    name: "Cherry/Agbalumo",
+    name: "Cherry-Agbalumo",
     price: 100,
     quantity: "1pc",
     image: "images/Agbalumo.webp"
@@ -193,7 +193,6 @@ const products = [
   }
 ];
 
-
 const productGrid = document.getElementById("productGrid");
 const loader = document.getElementById("loader");
 const noProducts = document.getElementById("noProducts");
@@ -201,16 +200,21 @@ const searchInput = document.getElementById("searchInput");
 const menuToggle = document.getElementById("menuToggle");
 const mobileMenu = document.getElementById("mobileMenu");
 
+// Favorites loaded from localStorage or empty array
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+// Toggle mobile menu visibility
 menuToggle.addEventListener("click", () => {
   mobileMenu.classList.toggle("hidden");
 });
-
+// Listen for search input changes
 searchInput.addEventListener("input", () => {
   const keyword = searchInput.value.toLowerCase();
   const filtered = products.filter(p => p.name.toLowerCase().includes(keyword));
   renderProducts(filtered);
 });
 
+// Render products grid
 function renderProducts(productsList) {
   productGrid.innerHTML = "";
   loader.classList.remove("hidden");
@@ -225,6 +229,9 @@ function renderProducts(productsList) {
     }
 
     productsList.forEach(product => {
+     const slug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
+      const isFavorite = favorites.includes(slug);
+    
       const card = document.createElement("div");
       card.className = "bg-white rounded shadow overflow-hidden hover:shadow-lg transition";
 
@@ -233,8 +240,11 @@ function renderProducts(productsList) {
       card.innerHTML = `
         <div class="relative">
           
-          <button class="fav-btn absolute top-2 right-2 p-1 rounded-full text-white hover:text-yellow-400 transition-colors duration-300">
-          <i class="fi fi-rr-heart text-lg"></i>
+           <button class="fav-btn absolute top-2 right-2 p-1 rounded-full ${isFavorite ? 'text-yellow-300' : 'text-green-600'} hover:text-yellow-300 transition-colors duration-300" data-slug="${slug}">
+            ${isFavorite
+              ? '<i class="fi fi-sr-heart text-lg"></i>'
+              : '<i class="fi fi-rr-heart text-lg"></i>'
+            }
           </button>
 
           <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-md">
@@ -245,18 +255,21 @@ function renderProducts(productsList) {
           <p class="text-green-700 font-bold mb-1">₦${product.price.toLocaleString()}</p>
           <p class="text-gray-600 text-sm mb-2">Quantity: ${product.quantity}</p>
           <div class="flex items-center justify-between mt-2">
-          <a href="product details.html?product=${productSlug}" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 flex-1 text-center transition">
-          View Details
-        </a>
+          <!-- In your product listing page, update the View Details link in the product card -->
+<a href="./product-detail.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 flex-1 text-center transition">
+  View Details
+</a>
+<a href="./cart.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}">
             <button class="add-to-cart-btn ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300">
             <i class="fi fi-rr-shopping-cart text-xl"></i>
             </button>
+            </a>
           </div>
         </div>
       `;
 
-      const addToCartBtn = card.querySelector('.add-to-cart-btn');
-      addToCartBtn.addEventListener('click', () => addToCart(product));
+      // const addToCartBtn = card.querySelector('.add-to-cart-btn');
+      // addToCartBtn.addEventListener('click', () => addToCart(product));
 
       const favBtn = card.querySelector('.fav-btn');
       favBtn.addEventListener('click', () => {
