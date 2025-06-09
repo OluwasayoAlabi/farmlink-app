@@ -85,12 +85,14 @@ function addItemToCart(title, price, image) {
   `;
 
   cartItemsContainer.appendChild(cartRow);
+  saveCartToLocalStorage();
 }
 
 function removeCartItem(event) {
   const buttonClicked = event.target;
   buttonClicked.parentElement.parentElement.remove();
   updateTotal();
+  saveCartToLocalStorage();
 }
 
 function quantityChanged(event) {
@@ -99,6 +101,31 @@ function quantityChanged(event) {
     input.value = 1;
   }
   updateTotal();
+  saveCartToLocalStorage();
+}
+
+function saveCartToLocalStorage() {
+  const items = [];
+  const cartRows = document.querySelectorAll(".cart-row");
+
+  cartRows.forEach((row) => {
+    const title = row.querySelector(".cart-title").innerText;
+    const price = row.querySelector(".cart-price").innerText;
+    const image = row.querySelector("img").src;
+    const quantity = row.querySelector(".cart-gty").value;
+
+    items.push({ title, price, image, quantity });
+  });
+
+  localStorage.setItem("cartItems", JSON.stringify(items));
+}
+
+function loadCartFromLocalStorage() {
+  const savedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+  savedItems.forEach((item) => {
+    addItemToCart(item.title, item.price, item.image, item.quantity);
+  });
 }
 
 function updateTotal() {
@@ -116,7 +143,7 @@ function updateTotal() {
 
   total = Math.round(total * 100) / 100;
 
-  document.getElementsByClassName("total")[0].innerText = `$${total.toFixed(
+  document.getElementsByClassName("total")[0].innerText = `₦${total.toFixed(
     2
   )}`;
 }
@@ -148,7 +175,7 @@ function showAddToCartMessage(button) {
 
   button.innerHTML = "✓ Item Added";
   button.className =
-    "add-to-cart bg-[#FF6600] text-white font-semibold px-4 py-2 rounded transition";
+    "add-to-cart bg-green-400 text-white font-semibold px-4 py-2 rounded transition";
 
   setTimeout(() => {
     button.innerHTML = originalText;
@@ -194,7 +221,7 @@ const categories = [
         id: 5,
         name: "Garden Eggs",
         price: 3000,
-        quantity: "1 dozen",
+        unit: "1 dozen",
         image: "images/garden eggs.jpg",
       },
       {
@@ -209,14 +236,14 @@ const categories = [
         id: 5,
         name: "Plaintains",
         price: 2000,
-        quantity: "1 bunch",
+        unit: "1 bunch",
         image: "images/plaintains.webp",
       },
       {
         id: 5,
         name: "Cucumbers",
         price: 1500,
-        quantity: "1pc",
+        unit: "1pc",
         image: "images/cucumber 2.webp",
       },
     ],
@@ -564,4 +591,9 @@ function setupPaginationControls() {
 
 window.addEventListener("DOMContentLoaded", () => {
   setTimeout(setupPaginationControls, 100);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadCartFromLocalStorage();
+  updateTotal();
 });

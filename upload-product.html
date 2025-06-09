@@ -8,13 +8,42 @@
   <title>Upload Product</title>
 </head>
 <body>
-  <nav class=" text-white pt-2 pb-1 mb-4 shadow-md nav-bar">
+  <div class="bg-green-700 text-white sticky top-0">
+  <nav class="flex justify-between items-center">
     <div class="header">
       <h1>FarmLink</h1>
       <p class="text-center text-xs">Empowering Farmers. Reducing Wastes. Connecting Markets.</p>
-</nav>
+    </div>
+    <button data-collapse-toggle="navbar-search" type="button" class="md:hidden flex items-center p-2 w-10 h-10 text-sm rounded-lg hover:bg-gray-100 focus:outline-none">
+      <span class="sr-only">Open main menu</span>
+      <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+    <div class="hidden md:flex">
+      <ul class="flex space-x-4 ml-6 text-sm font-medium">
+        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+        <li><a href="search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+        <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+        <li><a href="contact.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+    <ul class="space-y-2 mt-2">
+      <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
+      <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
+      <li><a href="search and filter.html" class="block hover:text-yellow-300">Search</a></li>
+      <li><a href="cart.html" class="block hover:text-yellow-300">Cart</a></li>
+      <li><a href="contact.html" class="block hover:text-yellow-300">Contact</a></li>
+    </ul>
+  </div>
+</div>
+   
 
-  <div>
+  <div class=" mt-2">
     <form id="product-form" class="max-w-md mx-auto p-4 md:p-6 lg:p-8 rounded shadow-md md:max-w-lg lg:max-w-2xl">
         <h2 class="text-lg md:text-xl lg:text-2xl font-bold mb-4">Upload Product</h2>
 
@@ -79,10 +108,11 @@
     <div>
       
     </div>
-        <button type="submit" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring">Submit</button>
+        <button type="submit" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring duration-150">Submit</button>
    
   </form>
 </div>
 
+<script src="./upload-product.js"></script>
 </body>
 </html>
