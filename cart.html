@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Farmlink | Product Listing</title>
 
-    <link rel="stylesheet" href="cart.css" />
+ <link rel="stylesheet" href="cart.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"></script>
   </head>
 
   <body class="bg-gray-100 font-sans">
@@ -55,7 +56,7 @@
     
     <main class="container mx-auto px-4 py-10">
       <div class="max-w-7xl mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-6">Shop Products Here</h1>
+        <h1 class="text-3xl font-bold mb-6 text-center">Shop Products Here</h1>
 
         <h2
           id="category-title"
@@ -119,9 +120,13 @@
           </div>
         </div>
       </section>
+      
+      <div id="pagination" class="flex justify-center mt-4"></div>
 
-      <!-- Pagination -->
-      <div id="pagination" class="flex justify-center space-x-2 mt-6"></div>
+      <div class="flex justify-center mt-4 gap-2">
+        <button id="prev-btn">Previous</button>
+        <button id="next-btn">Next</button>
+      </div>
 
     <script src="cart.js"></script>
   </body>
