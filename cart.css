@@ -36,10 +36,7 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  /* #pagination button:hover:not(.active) {
-    background-color: #ddd;
-  }
-   */
+
   #pagination button.active {
     background-color: #FF6600; 
     border-color:#FF6600; 
