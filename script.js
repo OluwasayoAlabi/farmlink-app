@@ -207,7 +207,6 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 menuToggle.addEventListener("click", () => {
   mobileMenu.classList.toggle("hidden");
 });
-
 // Listen for search input changes
 searchInput.addEventListener("input", () => {
   const keyword = searchInput.value.toLowerCase();
@@ -230,76 +229,69 @@ function renderProducts(productsList) {
     }
 
     productsList.forEach(product => {
-      const slug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
+     const slug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
       const isFavorite = favorites.includes(slug);
-
+    
       const card = document.createElement("div");
       card.className = "bg-white rounded shadow overflow-hidden hover:shadow-lg transition";
 
+      const productSlug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
+
       card.innerHTML = `
         <div class="relative">
-          <button class="fav-btn absolute top-2 right-2 p-1 rounded-full ${isFavorite ? 'text-yellow-300' : 'text-green-600'} hover:text-yellow-300 transition-colors duration-300" data-slug="${slug}">
+          
+           <button class="fav-btn absolute top-2 right-2 p-1 rounded-full ${isFavorite ? 'text-yellow-300' : 'text-green-600'} hover:text-yellow-300 transition-colors duration-300" data-slug="${slug}">
             ${isFavorite
               ? '<i class="fi fi-sr-heart text-lg"></i>'
               : '<i class="fi fi-rr-heart text-lg"></i>'
             }
           </button>
-          <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-md" />
+
+          <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-md">
         </div>
+
         <div class="p-4">
           <h2 class="text-lg font-semibold mb-1">${product.name}</h2>
           <p class="text-green-700 font-bold mb-1">₦${product.price.toLocaleString()}</p>
           <p class="text-gray-600 text-sm mb-2">Quantity: ${product.quantity}</p>
           <div class="flex items-center justify-between mt-2">
-            <a href="product details.html?product=${slug}" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 flex-1 text-center transition">View Details</a>
-            <a href="cart.html?product=${slug}" class="ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300">
-              <i class="fi fi-rr-shopping-cart text-xl"></i>
+          <!-- In your product listing page, update the View Details link in the product card -->
+<a href="./product-detail.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 flex-1 text-center transition">
+  View Details
+</a>
+<a href="./cart.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}">
+            <button class="add-to-cart-btn ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300">
+            <i class="fi fi-rr-shopping-cart text-xl"></i>
+            </button>
             </a>
           </div>
         </div>
       `;
 
+      // const addToCartBtn = card.querySelector('.add-to-cart-btn');
+      // addToCartBtn.addEventListener('click', () => addToCart(product));
+
+      const favBtn = card.querySelector('.fav-btn');
+      favBtn.addEventListener('click', () => {
+        const icon = favBtn.querySelector('i');
+        const isFavorited = icon.classList.contains('fi-sr-heart');
+        if (isFavorited) {
+          icon.classList.remove('fi-sr-heart');
+          icon.classList.add('fi-rr-heart');
+        } else {
+          icon.classList.remove('fi-rr-heart');
+          icon.classList.add('fi-sr-heart');
+        }
+      });
+
       productGrid.appendChild(card);
     });
-
-    attachFavoriteListeners();
-
   }, 500);
 }
 
-// Attach click event listeners to all favorite buttons
-function attachFavoriteListeners() {
-  document.querySelectorAll(".fav-btn").forEach(button => {
-    button.addEventListener("click", () => {
-      const slug = button.getAttribute("data-slug");
-      toggleFavorite(slug, button);
-    });
-  });
+
+function addToCart(product) {
+  alert(`Added ${product.name} to cart!`);
 }
 
-// Toggle favorite state of a product
-function toggleFavorite(slug, button) {
-  const index = favorites.indexOf(slug);
-  const isFavorited = index !== -1;
-
-  if (isFavorited) {
-    favorites.splice(index, 1);
-    button.classList.remove("text-yellow-300");
-    button.classList.add("text-green-600");
-    button.innerHTML = '<i class="fi fi-rr-heart text-lg"></i>';
-  } else {
-    favorites.push(slug);
-    button.classList.remove("text-green-600");
-    button.classList.add("text-yellow-300");
-    button.innerHTML = '<i class="fi fi-sr-heart text-lg"></i>';
-  }
-
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-}
-
-// Initial rendering on page load
-document.addEventListener("DOMContentLoaded", () => {
-
-  renderProducts(products);
-
-});
+renderProducts(products);
