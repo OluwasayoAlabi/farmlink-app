@@ -60,7 +60,7 @@ const products = [
     image: "images/Bananas 3.webp"
   },
   {
-    name: "Cherry/Agbalumo",
+    name: "Cherry-Agbalumo",
     price: 100,
     quantity: "1pc",
     image: "images/Agbalumo.webp"
