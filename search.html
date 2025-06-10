@@ -1,266 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Expanded Product Filter</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmLink - Buy Fresh Farm Produce</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .no-results {
+            display: none;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 p-6">
-  <div class="max-w-6xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6">Product Search, Filter & Sort</h1>
+<body class="bg-gray-50">
+    <!-- Header remains the same -->
+    <header class="bg-green-700 text-white">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">FarmLink</h1>
+                    <p class="mt-2">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-4 ml-6 text-sm font-medium">
+                        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+                        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+                        <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+                        <li><a href="search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+                        <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+                        <li><a href="contact.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile menu button -->
+                <button id="mobileMenuButton" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+                <ul class="space-y-2 mt-2">
+                    <li><a href="index.html" class="block text-white hover:text-yellow-300">Home</a></li>
+                    <li><a href="index.html" class="block text-white hover:text-yellow-300">Products</a></li>
+                    <li><a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a></li>
+                    <li><a href="search and filter.html" class="block text-white hover:text-yellow-300">Search</a></li>
+                    <li><a href="cart.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+                    <li><a href="contact.html" class="block text-white hover:text-yellow-300">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-    <!-- Controls -->
-    <div class="grid md:grid-cols-5 gap-4 mb-6">
-      <input
-        type="text"
-        id="search"
-        placeholder="Search products..."
-        class="col-span-2 px-4 py-2 border rounded-md shadow-sm"
-      />
-      <select id="category" class="px-4 py-2 border rounded-md shadow-sm">
-        <option value="all">All Categories</option>
-        <option value="electronics">Electronics</option>
-        <option value="clothing">Clothing</option>
-        <option value="books">Books</option>
-      </select>
-      <select id="sort" class="px-4 py-2 border rounded-md shadow-sm">
-        <option value="default">Sort</option>
-        <option value="name-asc">Name A–Z</option>
-        <option value="price-asc">Price Low–High</option>
-        <option value="price-desc">Price High–Low</option>
-      </select>
-      <button id="resetBtn" class="bg-red-500 text-white px-4 py-2 rounded-md">Reset</button>
-    </div>
+    <main class="container mx-auto px-4 py-8">
+        <!-- Filters and product grid remain the same -->
+        <div class="flex flex-col md:flex-row gap-8">
+            <aside class="w-full md:w-64 flex-shrink-0">
+                <!-- Filters section remains unchanged -->
+                <div class="bg-white p-6 rounded-lg shadow-md sticky top-4">
+                    <h2 class="text-xl font-semibold mb-4">Filters</h2>
+                    
+                    <!-- Search Box -->
+                    <div class="mb-6">
+                        <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search Products</label>
+                        <input type="text" id="search" placeholder="Type product name..." 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+                    
+                    <!-- Category Filter -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Categories</h3>
+                        <div class="space-y-2">
+                            <div>
+                                <input type="checkbox" id="bags" value="Bags/Bigger Quantities" class="category-filter" checked>
+                                <label for="bags" class="ml-2 text-sm text-gray-600">Bags/Bigger Quantities</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="crops" value="Crops" class="category-filter" checked>
+                                <label for="crops" class="ml-2 text-sm text-gray-600">Crops</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="animal" value="Animal Products" class="category-filter" checked>
+                                <label for="animal" class="ml-2 text-sm text-gray-600">Animal Products</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="fruits" value="Fruits" class="category-filter" checked>
+                                <label for="fruits" class="ml-2 text-sm text-gray-600">Fruits</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="livestock" value="Livestock" class="category-filter" checked>
+                                <label for="livestock" class="ml-2 text-sm text-gray-600">Livestock</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="vegetables" value="Vegetables" class="category-filter" checked>
+                                <label for="vegetables" class="ml-2 text-sm text-gray-600">Vegetables</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quantity Filter -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Quantity</h3>
+                        <div class="space-y-2">
+                            <div>
+                                <input type="checkbox" id="qty1" value="1-100" class="quantity-range-filter" checked>
+                                <label for="qty1" class="ml-2 text-sm text-gray-600">1-100 units</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="qty2" value="101-200" class="quantity-range-filter" checked>
+                                <label for="qty2" class="ml-2 text-sm text-gray-600">101-200 units</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="qty3" value="201-300" class="quantity-range-filter" checked>
+                                <label for="qty3" class="ml-2 text-sm text-gray-600">201-300 units</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="qty4" value="301-400" class="quantity-range-filter" checked>
+                                <label for="qty4" class="ml-2 text-sm text-gray-600">301-400 units</label>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label for="custom-quantity" class="block text-sm font-medium text-gray-700 mb-1">Custom Quantity</label>
+                            <input type="number" id="custom-quantity" placeholder="Enter exact quantity..." 
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Size Filter (Added this section) -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Sizes (kg)</h3>
+                        <div class="space-y-2">
+                            <div>
+                                <input type="checkbox" id="size1" value="1-100" class="size-range-filter" checked>
+                                <label for="size1" class="ml-2 text-sm text-gray-600">1-100kg</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="size2" value="101-200" class="size-range-filter" checked>
+                                <label for="size2" class="ml-2 text-sm text-gray-600">101-200kg</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="size3" value="201-300" class="size-range-filter" checked>
+                                <label for="size3" class="ml-2 text-sm text-gray-600">201-300kg</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="size4" value="301-400" class="size-range-filter" checked>
+                                <label for="size4" class="ml-2 text-sm text-gray-600">301-400kg</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="reset-filters" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md transition duration-200">
+                        Reset Filters
+                    </button>
+                </div>
+            </aside>
+            
+            <!-- Products Section -->
+            <div class="flex-1">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold">Fresh Farm Products</h2>
+                    <div class="text-sm text-gray-600">
+                        Showing <span id="product-count">37</span> products
+                    </div>
+                </div>
+                
+                <!-- No Results Message -->
+                <div id="no-results" class="no-results bg-white p-8 rounded-lg shadow-md text-center">
+                    <h3 class="text-xl font-medium text-gray-700 mb-2">No products found</h3>
+                    <p class="text-gray-600">Try adjusting your search or filter criteria</p>
+                </div>
+                
+                <!-- Product Grid -->
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <!-- Product Grid -->
-    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <!-- Products will be rendered here -->
-    </div>
-  </div>
+    <script>
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-  <script>
-    const products = [
-      { name: "Smartphone", category: "electronics", price: 700 },
-      { name: "T-Shirt", category: "clothing", price: 25 },
-      { name: "Novel Book", category: "books", price: 15 },
-      { name: "Laptop", category: "electronics", price: 1200 },
-      { name: "Jeans", category: "clothing", price: 50 },
-      { name: "Headphones", category: "electronics", price: 100 },
-    ];
+        // Product data
+        const products = [
+            // Bags/Bigger Quantities
+            { id: 1, name: "Bag of Beans", category: "Bags/Bigger Quantities", quantity: 1, unit: "bag", price: "₦60,000", image: "bag of beans.jpeg", size: 50 },
+            { id: 2, name: "Bag of Cocoa", category: "Bags/Bigger Quantities", quantity: 1, unit: "kg", price: "₦17,500", image: "cocoa2.jpeg", size: 65 },
+            { id: 3, name: "Bag of Groundnuts", category: "Bags/Bigger Quantities", quantity: 80, unit: "kg", price: "₦90,000", image: "groundnuts2.jpeg", size: 80 },
+            { id: 4, name: "Bag of Maize", category: "Bags/Bigger Quantities", quantity: 50, unit: "kg", price: "₦13,000", image: "maize (2).jpeg", size: 50 },
+            { id: 5, name: "Bag of Rice", category: "Bags/Bigger Quantities", quantity: 50, unit: "kg", price: "₦84,000", image: "bag of rice (2).jpeg", size: 50 },
+            
+            // Crops
+            { id: 6, name: "Groundnut ", category: "Crops", quantity: 1, unit: "kg", price: "₦4,500", image: "groundnuts2.jpeg", size: 1 },
+            { id: 7, name: "Beans ", category: "Crops", quantity: 1, unit: "kg", price: "₦7,500", image: "bag of beans.jpeg", size: 1 },
+            { id: 8, name: "Maize ", category: "Crops", quantity: 1, unit: "pc", price: "₦600", image: "maize (2).jpeg", size: 0.5 },
+            { id: 9, name: "Rice ", category: "Crops", quantity: 1, unit: "kg", price: "₦2,500", image: "bag of rice (2).jpeg", size: 1 },
+            { id: 34, name: "Cocoa", category: "Crops", quantity: 500, unit: "kg", price: "₦9,000", image: "cocoa2.jpeg", size: 500 },
+            
+            // Animal Products
+            { id: 10, name: "Fresh Catfish", category: "Animal Products", quantity: 3, unit: "kg", price: "₦3,000", image: "Catfish.jpg", size: 3 },
+            { id: 11, name: "Frozen Fish", category: "Animal Products", quantity: 1, unit: "kg", price: "₦2,000", image: "Frozen fish.jpg", size: 1 },
+            { id: 12, name: "Live Chicken", category: "Animal Products", quantity: 1, unit: "bird", price: "₦10,000", image: "Live Chicken-1.webp", size: 2 },
+            { id: 13, name: "Frozen Chicken", category: "Animal Products", quantity: 1, unit: "kg", price: "₦6,500", image: "Frozen Chicken-1.webp", size: 1 },
+            { id: 14, name: "Eggs ", category: "Animal Products", quantity: 1, unit: "crate", price: "₦5,500", image: "eggs.jpg", size: 5 },
+            
+            // Fruits
+            { id: 15, name: "Apples", category: "Fruits", quantity: 1, unit: "pc", price: "₦200", image: "Apples-1.webp", size: 0.2 },
+            { id: 16, name: "Bananas", category: "Fruits", quantity: 1, unit: "bunch", price: "₦600", image: "Bananas 3-1.webp", size: 3 },
+            { id: 17, name: "Cherry/Agbalumo", category: "Fruits", quantity: 1, unit: "pc", price: "₦100", image: "Agbalumo-1.webp", size: 0.1 },
+            { id: 18, name: "Oranges", category: "Fruits", quantity: 2, unit: "pc", price: "₦500", image: "oranges2.jpeg", size: 0.4 },
+            { id: 19, name: "Watermelons", category: "Fruits", quantity: 1, unit: "pc", price: "₦2,000", image: "watermelon2.jpeg", size: 5 },
+            { id: 32, name: "Mangoes", category: "Fruits", quantity: 1, unit: "pc", price: "₦800", image: "mangoes 2.jpg", size: 0.3 },
+            { id: 33, name: "Pawpaw", category: "Fruits", quantity: 1, unit: "pc", price: "₦2,550", image: "pawpaw 2.jpg", size: 2 },
+            { id: 35, name: "Pineapple", category: "Fruits", quantity: 1, unit: "pc", price: "₦1,500", image: "pineapple.webp", size: 1.5 },
+            { id: 37, name: "Avocado", category: "Fruits", quantity: 1, unit: "pc", price: "₦2,000", image: "avocado 2.jpg", size: 0.5 },
+            
+            // Livestock
+            { id: 20, name: "Goat", category: "Livestock", quantity: 20, unit: "kg", price: "₦50,000", image: "goats2.jpeg", size: 20 },
+            { id: 21, name: "Sheep", category: "Livestock", quantity: 50, unit: "kg", price: "₦300,000", image: "sheep.jpg", size: 50 },
+            { id: 22, name: "Cattle", category: "Livestock", quantity: 400, unit: "kg", price: "600,000", image: "cows(1).jpg", size: 400 },
+            { id: 31, name: "Ram", category: "Livestock", quantity: 100, unit: "kg", price: "₦420,000", image: "ram.jpg", size: 100 },
+            
+            // Vegetables
+            { id: 23, name: "Fresh Tomatoes", category: "Vegetables", quantity: 20, unit: "pcs", price: "₦2,000", image: "Tomatoes 1-1.webp", size: 5 },
+            { id: 24, name: "Fresh Vegetables", category: "Vegetables", quantity: 5, unit: "kg", price: "₦2,500", image: "leafy-vegetables.webp", size: 5 },
+            { id: 25, name: "Onions", category: "Vegetables", quantity: 50, unit: "pcs", price: "₦5,000", image: "onions2.jpeg", size: 10 },
+            { id: 26, name: "Okra", category: "Vegetables", quantity: 20, unit: "pcs", price: "₦2,000", image: "okro2.jpeg", size: 2 },
+            { id: 27, name: "Pepper", category: "Vegetables", quantity: 30, unit: "pcs", price: "₦2,000", image: "pepper2.jpeg", size: 3 },
+            { id: 28, name: "Cucumbers", category: "Vegetables", quantity: 1, unit: "pcs", price: "₦1,500", image: "cucumber 2.webp", size: 0.5 },
+            { id: 29, name: "Plantains", category: "Vegetables", quantity: 1, unit: "bunch", price: "₦2,000", image: "plaintains.webp", size: 3 },
+            { id: 30, name: "Yam (Tuber)", category: "Vegetables", quantity: 1, unit: "tuber", price: "₦1,500", image: "Yam tuber.webp", size: 2 },
+            { id: 36, name: "Garden Eggs", category: "Vegetables", quantity: 1, unit: "dozen", price: "₦3,000", image: "garden eggs.jpg", size: 1 }
+        ];
 
-    const productGrid = document.getElementById("productGrid");
-    const searchInput = document.getElementById("search");
-    const categorySelect = document.getElementById("category");
-    const sortSelect = document.getElementById("sort");
-    const resetBtn = document.getElementById("resetBtn");
+        // DOM Elements
+        const productGrid = document.getElementById('product-grid');
+        const searchInput = document.getElementById('search');
+        const categoryFilters = document.querySelectorAll('.category-filter');
+        const quantityRangeFilters = document.querySelectorAll('.quantity-range-filter');
+        const sizeRangeFilters = document.querySelectorAll('.size-range-filter');
+        const customQuantityInput = document.getElementById('custom-quantity');
+        const resetFiltersBtn = document.getElementById('reset-filters');
+        const productCount = document.getElementById('product-count');
+        const noResults = document.getElementById('no-results');
 
-    function renderProducts(list) {
-      productGrid.innerHTML = "";
-      if (list.length === 0) {
-        productGrid.innerHTML = `<p class="text-gray-500 col-span-full">No products found.</p>`;
-        return;
-      }
-      list.forEach(product => {
-        const productEl = document.createElement("div");
-        productEl.className = "bg-white p-4 rounded-lg shadow-md";
-        productEl.innerHTML = `
-          <h2 class="text-xl font-semibold">${product.name}</h2>
-          <p class="text-gray-500">Category: ${product.category}</p>
-          <p class="text-green-600 font-bold">$${product.price}</p>
-        `;
-        productGrid.appendChild(productEl);
-      });
-    }
+        // Initialize the page
+        function init() {
+            renderProducts(products);
+            setupEventListeners();
+        }
 
-    function filterAndSortProducts() {
-      const se
+        // Set up event listeners
+        function setupEventListeners() {
+            // Search input
+            searchInput.addEventListener('input', filterProducts);
+            
+            // Category filters
+            categoryFilters.forEach(filter => {
+                filter.addEventListener('change', filterProducts);
+            });
+            
+            // Quantity range filters
+            quantityRangeFilters.forEach(filter => {
+                filter.addEventListener('change', filterProducts);
+            });
+            
+            // Size range filters
+            sizeRangeFilters.forEach(filter => {
+                filter.addEventListener('change', filterProducts);
+            });
+            
+            // Custom quantity input
+            customQuantityInput.addEventListener('input', filterProducts);
+            
+            // Reset filters button
+            resetFiltersBtn.addEventListener('click', resetFilters);
+        }
 
+        // Filter products based on search and filters
+        function filterProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedCategories = Array.from(categoryFilters)
+                .filter(filter => filter.checked)
+                .map(filter => filter.value);
+            
+            const selectedQuantityRanges = Array.from(quantityRangeFilters)
+                .filter(filter => filter.checked)
+                .map(filter => {
+                    const [min, max] = filter.value.split('-').map(Number);
+                    return { min, max };
+                });
+                
+            const selectedSizeRanges = Array.from(sizeRangeFilters)
+                .filter(filter => filter.checked)
+                .map(filter => {
+                    const [min, max] = filter.value.split('-').map(Number);
+                    return { min, max };
+                });
+            
+            const customQuantity = customQuantityInput.value ? parseInt(customQuantityInput.value) : null;
+            
+            const filteredProducts = products.filter(product => {
+                // Check search term
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+                
+                // Check category
+                const matchesCategory = selectedCategories.includes(product.category);
+                
+                // Check quantity ranges
+                let matchesQuantityRange = selectedQuantityRanges.length === 0;
+                if (!matchesQuantityRange) {
+                    for (const range of selectedQuantityRanges) {
+                        if (product.quantity >= range.min && product.quantity <= range.max) {
+                            matchesQuantityRange = true;
+                            break;
+                        }
+                    }
+                }
+                
+                // Check size ranges
+                let matchesSizeRange = selectedSizeRanges.length === 0;
+                if (!matchesSizeRange && product.size) {
+                    for (const range of selectedSizeRanges) {
+                        if (product.size >= range.min && product.size <= range.max) {
+                            matchesSizeRange = true;
+                            break;
+                        }
+                    }
+                }
+                
+                // Check custom quantity
+                const matchesCustomQuantity = !customQuantity || product.quantity === customQuantity;
+                
+                return matchesSearch && matchesCategory && matchesQuantityRange && matchesSizeRange && matchesCustomQuantity;
+            });
+            
+            renderProducts(filteredProducts);
+        }
 
+        // Reset all filters
+        function resetFilters() {
+            searchInput.value = '';
+            categoryFilters.forEach(filter => {
+                filter.checked = true;
+            });
+            quantityRangeFilters.forEach(filter => {
+                filter.checked = true;
+            });
+            sizeRangeFilters.forEach(filter => {
+                filter.checked = true;
+            });
+            customQuantityInput.value = '';
+            filterProducts();
+        }
 
+        // Render products to the DOM
+        function renderProducts(productsToRender) {
+            productGrid.innerHTML = '';
+            
+            if (productsToRender.length === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+                productsToRender.forEach(product => {
+                    productGrid.appendChild(createProductCard(product));
+                });
+            }
+            
+            productCount.textContent = productsToRender.length;
+        }
 
+        // Create a product card element
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300';
+            
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg mb-1">${product.name}</h3>
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-gray-600">${product.category}</span>
+                        <span class="text-gray-600">Qty: ${product.quantity} ${product.unit}</span>
+                    </div>
+                    <p class="text-green-700 font-medium">${product.price}</p>
+                    <a href="cart.html" class="mt-3 w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md transition duration-200 flex items-center justify-center gap-2">
+                        <i class="fas fa-shopping-cart"></i>
+                        Add to Cart
+                    </a>
+                </div>
+            `;
+            
+            return card;
+        }
 
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Farm Link - Fresh Produce</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .cart-panel {
-      transition: right 0.3s ease-in-out;
-    }
-  </style>
-</head>
-<body class="bg-green-50 min-h-screen p-6 relative overflow-x-hidden">
-  <div class="max-w-7xl mx-auto">
-    <h1 class="text-4xl font-bold text-green-800 mb-6 text-center">🌾 Farm Link – Fresh Produce Marketplace</h1>
-
-    <!-- Filters -->
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
-      <input type="text" id="searchInput" placeholder="Search produce..."
-        class="w-full md:w-1/2 px-4 py-2 border border-green-300 rounded-md shadow-sm" />
-      <select id="categorySelect"
-        class="w-full md:w-1/4 px-4 py-2 border border-green-300 rounded-md shadow-sm">
-        <option value="all">All Categories</option>
-        <option value="vegetables">Vegetables</option>
-        <option value="fruits">Fruits</option>
-        <option value="grains">Grains</option>
-        <option value="dairy">Dairy</option>
-      </select>
-      <button onclick="toggleCart()" class="bg-green-600 text-white px-4 py-2 rounded-md shadow hover:bg-green-700">
-        🛒 View Cart (<span id="cartCount">0</span>)
-      </button>
-    </div>
-
-    <!-- Product Grid -->
-    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
-  </div>
-
-  <!-- Side Cart Panel -->
-  <div id="cartPanel"
-    class="fixed top-0 right-[-100%] cart-panel h-full w-full max-w-md bg-white shadow-lg p-6 z-50 overflow-y-auto">
-    <div class="flex justify-between items-center mb-4">
-      <h2 class="text-2xl font-bold text-green-700">🛒 Your Cart</h2>
-      <button onclick="toggleCart()" class="text-red-500 text-xl font-bold">✖</button>
-    </div>
-    <div id="cartItems" class="space-y-4"></div>
-    <div class="mt-6 border-t pt-4 text-right">
-      <p class="text-lg font-semibold">Total: $<span id="cartTotal">0.00</span></p>
-      <button class="mt-3 bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700">Checkout</button>
-    </div>
-  </div>
-
-  <script>
-    const products = [
-      { id: 1, name: "Tomatoes", category: "vegetables", price: 3, image: "https://source.unsplash.com/200x150/?tomatoes" },
-      { id: 2, name: "Mangoes", category: "fruits", price: 5, image: "https://source.unsplash.com/200x150/?mango" },
-      { id: 3, name: "Maize", category: "grains", price: 2, image: "https://source.unsplash.com/200x150/?corn" },
-      { id: 4, name: "Milk", category: "dairy", price: 4, image: "https://source.unsplash.com/200x150/?milk" },
-      { id: 5, name: "Carrots", category: "vegetables", price: 2, image: "https://source.unsplash.com/200x150/?carrot" },
-      { id: 6, name: "Bananas", category: "fruits", price: 3, image: "https://source.unsplash.com/200x150/?banana" },
-      { id: 7, name: "Rice", category: "grains", price: 6, image: "https://source.unsplash.com/200x150/?rice" },
-    ];
-
-    let cart = [];
-
-    const productGrid = document.getElementById("productGrid");
-    const searchInput = document.getElementById("searchInput");
-    const categorySelect = document.getElementById("categorySelect");
-    const cartPanel = document.getElementById("cartPanel");
-    const cartItems = document.getElementById("cartItems");
-    const cartCount = document.getElementById("cartCount");
-    const cartTotal = document.getElementById("cartTotal");
-
-    function renderProducts(list) {
-      productGrid.innerHTML = "";
-      if (list.length === 0) {
-        productGrid.innerHTML = `<p class="text-gray-500 col-span-full text-center">No produce found.</p>`;
-        return;
-      }
-
-      list.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "bg-white rounded-lg shadow p-4 border border-green-100";
-        card.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" class="w-full h-40 object-cover rounded mb-3" />
-          <h2 class="text-xl font-bold text-green-700">${product.name}</h2>
-          <p class="text-gray-500 capitalize">Category: ${product.category}</p>
-          <p class="text-green-700 font-bold mt-1">$${product.price} / kg</p>
-          <button onclick="addToCart(${product.id})" class="mt-3 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Add to Cart</button>
-        `;
-        productGrid.appendChild(card);
-      });
-    }
-
-    function filterProducts() {
-      const search = searchInput.value.toLowerCase();
-      const category = categorySelect.value;
-
-      const filtered = products.filter(p => {
-        const matchesSearch = p.name.toLowerCase().includes(search);
-        const matchesCategory = category === "all" || p.category === category;
-        return matchesSearch && matchesCategory;
-      });
-
-      renderProducts(filtered);
-    }
-
-    function addToCart(productId) {
-      const product = products.find(p => p.id === productId);
-      const cartItem = cart.find(c => c.id === productId);
-
-      if (cartItem) {
-        cartItem.qty += 1;
-      } else {
-        cart.push({ ...product, qty: 1 });
-      }
-
-      updateCart();
-    }
-
-    function updateCart() {
-      cartItems.innerHTML = "";
-      let total = 0;
-
-      cart.forEach(item => {
-        total += item.qty * item.price;
-
-        const div = document.createElement("div");
-        div.className = "flex justify-between items-center border-b pb-2";
-        div.innerHTML = `
-          <div>
-            <p class="font-semibold">${item.name}</p>
-            <p class="text-sm text-gray-500">$${item.price} × ${item.qty}</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <button onclick="changeQty(${item.id}, -1)" class="text-xl text-green-600 font-bold">−</button>
-            <span>${item.qty}</span>
-            <button onclick="changeQty(${item.id}, 1)" class="text-xl text-green-600 font-bold">+</button>
-            <button onclick="removeItem(${item.id})" class="text-red-500 ml-2">🗑️</button>
-          </div>
-        `;
-        cartItems.appendChild(div);
-      });
-
-      cartCount.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
-      cartTotal.textContent = total.toFixed(2);
-    }
-
-    function changeQty(productId, change) {
-      const item = cart.find(c => c.id === productId);
-      if (!item) return;
-      item.qty += change;
-      if (item.qty <= 0) {
-        cart = cart.filter(c => c.id !== productId);
-      }
-      updateCart();
-    }
-
-    function removeItem(productId) {
-      cart = cart.filter(c => c.id !== productId);
-      updateCart();
-    }
-
-    function toggleCart() {
-      const isOpen = cartPanel.style.right === "0px";
-      cartPanel.style.right = isOpen ? "-100%" : "0";
-    }
-
-    // Events
-    searchInput.addEventListener("input", filterProducts);
-    categorySelect.addEventListener("change", filterProducts);
-
-    // Initial render
-    renderProducts(products);
-  </script>
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
