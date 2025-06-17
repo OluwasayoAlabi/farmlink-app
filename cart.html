@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Farmlink | Product Listing</title>
+
+ <link rel="stylesheet" href="cart.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"></script>
+  </head>
+
+  <body class="bg-gray-100 font-sans">
+  
+    <nav class="bg-green-700 text-white shadow-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        
+        <div>
+          <h1 class="text-2xl font-bold">FarmLink</h1>
+          <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+        </div>
+    
+        <button id="menuToggle" class="block md:hidden ml-4 text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+  
+        <button title="Toggle Favorite" ... >
+  
+        <ul class="hidden md:flex space-x-4 ml-6 text-sm font-medium">
+          <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+          <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+          <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+          <li><a href="search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+          <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+          <li><a href="contact.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+        </ul>
+      </div>
+    
+      
+      <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+        <ul class="space-y-2 mt-2">
+          <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
+          <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
+          <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
+          <li><a href="search and filter.html" class="block hover:text-yellow-300">Search</a></li>
+          <li><a href="cart.html" class="block hover:text-yellow-300">Cart</a></li>
+          <li><a href="contact.html" class="block hover:text-yellow-300">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+    
+    <main class="container mx-auto px-4 py-10">
+      <div class="max-w-7xl mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6 text-center">Shop Products Here</h1>
+
+        <h2
+          id="category-title"
+          class="text-3xl bg-green-700 text-white p-2 font-bold mb-6 border rounded"
+        >
+          Vegetables
+        </h2>
+
+        <div
+          id="product-list"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-6"
+        ></div>
+      </div>
+
+      <div class="text-center mb-6">
+        <button
+        id="toggle-cart-btn"
+        class=" bg-yellow-300 hover:bg-yellow-400 text-white font-semibold py-2 px-6 rounded shadow transition" 
+          
+        >View Cart
+        </button>
+      </div>
+
+      <section
+        id="cart-section"
+        class="max-w-4xl mx-auto my-10 bg-white p-6 rounded-lg shadow hidden"
+      >
+        <h2 class="text-2xl text-center font-bold text-green-800 mb-6">
+          Shop Cart
+        </h2>
+
+        <div
+          class="flex font-semibold border-b pb-2 text-sm text-gray-600 uppercase"
+        >
+          <span class="w-1/2">Item</span>
+          <span class="w-1/4">Price</span>
+          <span class="w-1/4">Quantity</span>
+        </div>
+
+        <div class="cart-items"></div>
+
+        <div class="mt-6">
+          <div class="text-lg font-semibold text-gray-800 text-right">
+            Total: <span class="total text-green-700 font-bold">
+              ₦0.00</span>
+          </div>
+
+          <div class="mt-4 flex justify-between">
+            <button
+              class="btn-purchase bg-green-700 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded shadow transition"
+            >
+              Place Order
+            </button>
+
+            <button
+              id="close-cart-btn"
+              class="bg-[#FF6600] hover:bg-red-700 text-white font-semibold py-2 px-6 rounded shadow transition"
+            >
+              Close Cart
+            </button>
+          </div>
+        </div>
+      </section>
+      
+      <div id="pagination" class="flex justify-center mt-4"></div>
+
+      <div class="flex justify-center mt-4 gap-2">
+        <button id="prev-btn">Previous</button>
+        <button id="next-btn">Next</button>
+      </div>
+
+    <script src="cart.js"></script>
+  </body>
+</html>
