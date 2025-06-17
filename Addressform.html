@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Address Form | Farmlink</title>
+    <link rel="stylesheet" href="cart.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <main class="container mx-auto px-4 py-10">
+        <section id="address-section" class="max-w-4xl mx-auto my-10 bg-white p-6 rounded-lg shadow">
+            <h2 class="text-2xl text-center font-bold text-green-800 mb-6">Enter Your Address</h2>
+
+            <form id="address-form">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-semibold text-gray-700">Recipient's Name</label>
+                    <input type="text" id="name" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+                </div>
+
+                <div class="mb-4">
+                    <label for="address" class="block text-sm font-semibold text-gray-700">Address</label>
+                    <input type="text" id="address" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+                </div>
+
+                <div class="mb-4">
+                    <label for="city" class="block text-sm font-semibold text-gray-700">City</label>
+                    <input type="text" id="city" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+                </div>
+
+                <div class="mb-4">
+                    <label for="state" class="block text-sm font-semibold text-gray-700">State</label>
+                    <input type="text" id="state" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+                </div>
+
+                <div class="mb-4">
+                    <label for="postal-code" class="block text-sm font-semibold text-gray-700">Postal Code</label>
+                    <input type="text" id="postal-code" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+                </div>
+
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-semibold text-gray-700">Phone Number</label>
+                    <input type="tel" id="phone" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+                </div>
+
+                <div class="mt-6">
+                <button type="submit" class="bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-6 rounded shadow transition">Proceed to Payment</button>
+                </div>
+            </form>
+
+            <div class="mt-4 text-center">
+                <a href="cart-summary.html" class="text-[#FF6600] hover:text-red-700">Back to Cart Summary</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="CheckoutJS/Address.js">
+       
+    </script>
+</body>
+</html>
