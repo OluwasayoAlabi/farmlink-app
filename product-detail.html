@@ -37,43 +37,49 @@
 </head>
 <body class="bg-gray-100">
   
-<nav class="bg-green-700 text-white shadow-md sticky top-0 z-50 animate-slideDown">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-    
-    <div>
-      <h1 class="text-2xl font-bold">FarmLink</h1>
-      <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
-    </div>
-    <button id="menuToggle" class="block md:hidden text-white focus:outline-none">  
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-           xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
-    <ul id="navLinks" class="hidden md:flex space-x-6 text-sm font-medium">
-      <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Home</a></li>
-      <li><a href="product-listing.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Products</a></li>
-      <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Upload</a></li>
-      <li><a href="search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">Search</a></li>
-      <li><a href="contact.html" class="text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+  <nav class="bg-green-700 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
       
-    </ul>
-  </div>
-  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
-    <ul class="space-y-2">
-      <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
-      <li><a href="product-listing.html" class="block hover:text-yellow-300">Products</a></li>
-      <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
-      <li><a href="search and filter.html" class="block hover:text-yellow-300">Search</a></li>
-      <li><a href="contact.html" class="block hover:text-yellow-300">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+      <div>
+        <h1 class="text-2xl font-bold">FarmLink</h1>
+        <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+      </div>
+  
+      <button id="menuToggle" class="block md:hidden ml-4 text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <button title="Toggle Favorite" ... >
+
+      <ul class="hidden md:flex space-x-4 ml-6 text-sm font-medium">
+        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+        <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+        <li><a href="search.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+        <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+        <li><a href="contact.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+      </ul>
+    </div>
+  
+    
+    <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+      <ul class="space-y-2 mt-2">
+        <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
+        <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
+        <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
+        <li><a href="search.html" class="block hover:text-yellow-300">Search</a></li>
+        <li><a href="cart.html" class="block hover:text-yellow-300">Cart</a></li>
+        <li><a href="contact.html" class="block hover:text-yellow-300">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
 <div class="max-w-7xl mx-auto p-6 animate-fadeIn">
   <div class="flex items-center mb-6">
-    <a href="product-listing.html" class="flex items-center text-green-700 hover:text-green-800">
+    <a href="index.html" class="flex items-center text-green-700 hover:text-green-800">
       <i class="fi fi-rr-arrow-left mr-2"></i> Back to Products
     </a>
   </div>
@@ -137,9 +143,11 @@
         </div>
         
         <div class="flex space-x-4 mb-6">
+          <a href="./cart.html">
           <button id="addToCartBtn" class="flex-1 bg-green-600 text-white py-3 px-6 rounded-md hover:bg-green-700 transition flex items-center justify-center">
             <i class="fi fi-rr-shopping-cart mr-2"></i> Add to Cart
           </button>
+          </a>
           <button class="flex-1 bg-yellow-500 text-white py-3 px-6 rounded-md hover:bg-yellow-600 transition">
             Buy Now
           </button>
@@ -208,7 +216,6 @@
 </div>
 
 <script>
-  // Sample product data - in a real app, this would be fetched from your backend
   const productData = {
     "fresh-tomatoes": {
       name: "Fresh Tomatoes",
@@ -336,7 +343,7 @@
       description: "Our crisp, refreshing cucumbers are perfect for salads, sandwiches, and snacking. They are hydrating and packed with vitamins K and C. Our cucumbers are grown using organic methods and harvested at their peak freshness.",
       images: [
         "./images/cucumber 2.webp",
-"./images/cucumber 2.webp",
+        "./images/cucumber 2.webp",
         "./images/cucumber 2.webp"
       ],
       farmer: {
@@ -371,7 +378,7 @@
       images: [
         "./images/Bananas 2.webp",
         "./images/Bananas 2.webp",
-                "./images/Bananas 2.webp"
+         "./images/Bananas 2.webp"
       ],
       farmer: {
         name: "Olivia Anyanwu",
@@ -380,23 +387,24 @@
         bio: "I'm a banana farmer with over 15 years of experience. My farm spans 20 acres and produces high-quality bananas throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality."
       }
     },
-    "cherry-agbalumo": {
-      name: "Cherry/Agbalumo",
-      price: 100,
-      quantity: "1pc",
-      description: "Our fresh agbalumo fruits are in season and ready to be enjoyed. They are known for their sweet, tangy taste and chewy texture. Agbalumo is rich in vitamins and minerals, making it a healthy snack. Perfect for traditional agbalumo candy making.",
-      images: [
-        "./images/Agbalumo.webp",
-                "./images/Agbalumo.webp",
-                "./images/Agbalumo.webp"
-      ],
-      farmer: {
-        name: "Adebisi Folorunso",
-        location: "Ondo, Ondo State",
-        avatar: "https://picsum.photos/seed/farmer11/200/200.jpg",
-        bio: "I'm a small-scale farmer specializing in seasonal fruits like agbalumo. My farm is located in a region known for its fertile soil and ideal climate for fruit cultivation. I focus on sustainable farming practices and hand-pick all fruits to ensure the best quality."
-      }
-    },
+"cherry-agbalumo": {
+  name: "Cherry-Agbalumo",
+  price: 100,
+  quantity: "1pc",
+  description: "Our fresh agbalumo fruits are in season and ready to be enjoyed...",
+  images: [
+    "images/Agbalumo.webp",
+    "images/Agbalumo.webp",
+    "images/Agbalumo.webp"
+  ],
+  farmer: {  
+      name: "Adebisi Folorunso",
+      location: "Ondo, Ondo State",
+      avatar: "https://picsum.photos/seed/farmer11/200/200.jpg",
+      bio: "I'm a small-scale farmer specializing in seasonal fruits like agbalumo..."
+    
+  }
+},
     "oranges": {
       name: "Oranges",
       price: 500,
@@ -405,7 +413,7 @@
       images: [
         "./images/oranges.jpg",
         "./images/oranges.jpg",
-                "./images/oranges.jpg",
+       "./images/oranges.jpg",
       ],
       farmer: {
         name: "Emmanuel Nwachukwu",
@@ -421,8 +429,8 @@
       description: "Our sweet watermelons are perfect for hot summer days. They are refreshing, hydrating, and packed with nutrients. Our watermelons are grown using sustainable farming practices and are harvested at their peak ripeness for maximum sweetness.",
       images: [
         "./images/watermelons.jpg",
-"./images/watermelons.jpg",
-"./images/watermelons.jpg"
+        "./images/watermelons.jpg",
+        "./images/watermelons.jpg"
       ],
       farmer: {
         name: "Abdulrahman Mohammed",
@@ -437,9 +445,9 @@
       quantity: "1pc",
       description: "Our ripe mangoes are bursting with sweet flavor. They are rich in vitamins A and C, making them a healthy and delicious treat. Our mangoes are grown using organic methods and are harvested at their peak ripeness for maximum sweetness.",
       images: [
-        "https://picsum.photos/seed/mangoes1/600/400.jpg",
-        "https://picsum.photos/seed/mangoes2/600/400.jpg",
-        "https://picsum.photos/seed/mangoes3/600/400.jpg"
+        "./images/mangoes.webp",
+       "./images/mangoes.webp",
+"./images/mangoes.webp"
       ],
       farmer: {
         name: "Grace Osagie",
@@ -454,9 +462,9 @@
       quantity: "1pc",
       description: "Our fresh pineapples are sweet and juicy with a distinctive tropical flavor. They are rich in vitamin C and manganese, making them a healthy snack option. Our pineapples are grown using sustainable farming practices and are harvested at their peak ripeness.",
       images: [
-        "https://picsum.photos/seed/pineapple1/600/400.jpg",
-        "https://picsum.photos/seed/pineapple2/600/400.jpg",
-        "https://picsum.photos/seed/pineapple3/600/400.jpg"
+        "./images/pineapple.webp",
+       "./images/pineapple.webp",
+       "./images/pineapple.webp"
       ],
       farmer: {
         name: "Samuel Anyanwu",
@@ -471,9 +479,9 @@
       quantity: "1pc",
       description: "Our ripe avocados are perfect for guacamole, salads, or as a nutritious spread. They are rich in healthy fats, fiber, and various vitamins. Our avocados are grown using organic methods and are harvested at their peak ripeness for maximum flavor.",
       images: [
-        "https://picsum.photos/seed/avocado1/600/400.jpg",
-        "https://picsum.photos/seed/avocado2/600/400.jpg",
-        "https://picsum.photos/seed/avocado3/600/400.jpg"
+        "./images/avocado.webp",
+        "./images/avocado.webp",
+        "./images/avocado.webp"
       ],
       farmer: {
         name: "Chinyere Okoro",
@@ -488,9 +496,9 @@
       quantity: "1pc",
       description: "Our ripe pawpaws are sweet, juicy, and packed with nutrients. They are rich in vitamins A and C and make a delicious snack or addition to any meal. Our pawpaws are grown using organic methods and are harvested at their peak ripeness.",
       images: [
-        "https://picsum.photos/seed/pawpaw1/600/400.jpg",
-        "https://picsum.photos/seed/pawpaw2/600/400.jpg",
-        "https://picsum.photos/seed/pawpaw3/600/400.jpg"
+        "./images/pawpaw 2.jpg",
+       "./images/pawpaw 2.jpg",
+        "./images/pawpaw 2.jpg"
       ],
       farmer: {
         name: "Joseph Eze",
@@ -505,9 +513,9 @@
       quantity: "3kg",
       description: "Our fresh catfish is farmed using sustainable methods and is free from harmful chemicals. It's rich in protein and omega-3 fatty acids, making it a healthy protein source. Perfect for frying, steaming, or preparing in traditional Nigerian dishes.",
       images: [
-        "https://picsum.photos/seed/catfish1/600/400.jpg",
-        "https://picsum.photos/seed/catfish2/600/400.jpg",
-        "https://picsum.photos/seed/catfish3/600/400.jpg"
+        "./images/Catfish.jpg",
+        "./images/Catfish.jpg",
+"./images/Catfish.jpg"
       ],
       farmer: {
         name: "Blessing Okoro",
@@ -522,9 +530,9 @@
       quantity: "1kg",
       description: "Our frozen fish is carefully selected and processed to maintain its quality. It's a convenient option for those who want to enjoy fish regularly. The fish is rich in protein and omega-3 fatty acids, making it a healthy protein source.",
       images: [
-        "https://picsum.photos/seed/frozenfish1/600/400.jpg",
-        "https://picsum.photos/seed/frozenfish2/600/400.jpg",
-        "https://picsum.photos/seed/frozenfish3/600/400.jpg"
+        "./images/Frozen fish.jpg",
+         "./images/Frozen fish.jpg",
+         "./images/Frozen fish.jpg"
       ],
       farmer: {
         name: "Chinedu Eze",
@@ -539,9 +547,9 @@
       quantity: "1 crate",
       description: "Our fresh eggs come from well-cared-for hens that are fed a balanced diet. They are rich in protein and essential nutrients. Our eggs are collected daily and packed in hygienic conditions to ensure freshness and quality.",
       images: [
-        "https://picsum.photos/seed/eggs1/600/400.jpg",
-        "https://picsum.photos/seed/eggs2/600/400.jpg",
-        "https://picsum.photos/seed/eggs3/600/400.jpg"
+        "./images/eggs.jpg",
+        "./images/eggs.jpg",
+       "./images/eggs.jpg"
       ],
       farmer: {
         name: "Oliver Anyanwu",
@@ -556,9 +564,9 @@
       quantity: "8kg",
       description: "Our live chickens are raised in natural conditions and are free from harmful antibiotics. They are a healthy source of protein and make excellent meat for various dishes. Each chicken is carefully selected for quality and health.",
       images: [
-        "https://picsum.photos/seed/chicken1/600/400.jpg",
-        "https://picsum.photos/seed/chicken2/600/400.jpg",
-        "https://picsum.photos/seed/chicken3/600/400.jpg"
+        "./images/Live Chicken.webp",
+"./images/Live Chicken.webp",
+"./images/Live Chicken.webp"
       ],
       farmer: {
         name: "Patricia Eze",
@@ -573,9 +581,9 @@
       quantity: "1kg",
       description: "Our frozen chicken is carefully selected and processed to maintain its quality. It's a convenient option for those who want to enjoy chicken regularly. The chicken is rich in protein and essential nutrients, making it a healthy protein source.",
       images: [
-        "https://picsum.photos/seed/frozenchicken1/600/400.jpg",
-        "https://picsum.photos/seed/frozenchicken2/600/400.jpg",
-        "https://picsum.photos/seed/frozenchicken3/600/400.jpg"
+        "./images/Frozen Chicken.webp",
+       "./images/Frozen Chicken.webp",
+        "./images/Frozen Chicken.webp"
       ],
       farmer: {
         name: "Chinedu Nwachukwu",
@@ -590,9 +598,9 @@
       quantity: "20kg",
       description: "Our goats are raised in natural conditions and are free from harmful antibiotics. They a healthy source of meat and make excellent meat for various dishes. Each goat is carefully selected for quality and health.",
       images: [
-        "https://picsum.photos/seed/goat1/600/400.jpg",
-        "https://picsum.photos/seed/goat2/600/400.jpg",
-        "https://picsum.photos/seed/goat3/600/400.jpg"
+        "./images/goat.jpg",
+        "./images/goat.jpg",
+ "./images/goat.jpg"
       ],
       farmer: {
         name: "Fatima Mohammed",
@@ -607,9 +615,9 @@
       quantity: "50kg",
       description: "Our sheep are raised in natural conditions and are free from harmful antibiotics. They are a healthy source of meat and wool. Each sheep is carefully selected for quality and health.",
       images: [
-        "https://picsum.photos/seed/sheep1/600/400.jpg",
-        "https://picsum.photos/seed/sheep2/600/400.jpg",
-        "https://picsum.photos/seed/sheep3/600/400.jpg"
+        "./images/sheep.jpg",
+         "./images/sheep.jpg",
+       "./images/sheep.jpg"
       ],
       farmer: {
         name: "Bala Mohammed",
@@ -624,9 +632,9 @@
       quantity: "100kg",
       description: "Our rams are raised in natural conditions and are free from harmful antibiotics. They are a healthy source of meat and are perfect for special occasions. Each ram is carefully selected for quality and health.",
       images: [
-        "https://picsum.photos/seed/ram1/600/400.jpg",
-        "https://picsum.photos/seed/ram2/600/400.jpg",
-        "https://picsum.photos/seed/ram3/600/400.jpg"
+        "./images/ram.jpg",
+        "./images/ram.jpg",
+"./images/ram.jpg"
       ],
       farmer: {
         name: "Usman Bello",
@@ -658,9 +666,9 @@
       quantity: "1 tuber",
       description: "Our yams are grown in fertile soil and are harvested at the perfect time to ensure optimal sweetness and texture. They are a staple food in many Nigerian households and can be prepared in various ways. Our yams are grown using sustainable farming practices.",
       images: [
-        "https://picsum.photos/seed/yam1/600/400.jpg",
-        "https://picsum.photos/seed/yam2/600/400.jpg",
-        "https://picsum.photos/seed/yam3/600/400.jpg"
+        "./images/Yam tuber.webp",
+         "./images/Yam tuber.webp",
+          "./images/Yam tuber.webp"
       ],
       farmer: {
         name: "Joseph Eze",
@@ -675,9 +683,9 @@
       quantity: "100kg",
       description: "Our beans are grown in fertile soil and are harvested at the perfect time to ensure optimal quality. They are a staple food in many Nigerian households and are rich in protein and fiber. Our beans are grown using sustainable farming practices.",
       images: [
-        "https://picsum.photos/seed/beans1/600/400.jpg",
-        "https://picsum.photos/seed/beans2/600/400.jpg",
-        "https://picsum.photos/seed/beans3/600/400.jpg"
+        "./images/bag of beans.jpeg",
+"./images/bag of beans.jpeg",
+"./images/bag of beans.jpeg"
       ],
       farmer: {
         name: "Patricia Anyanwu",
@@ -692,9 +700,9 @@
       quantity: "80kg",
       description: "Our groundnuts are grown in fertile soil and are harvested at the perfect time to ensure optimal quality. They are a nutritious snack and can be used in various dishes. Our groundnuts are grown using sustainable farming practices.",
       images: [
-        "https://picsum.photos/seed/groundnuts1/600/400.jpg",
-        "https://picsum.photos/seed/groundnuts2/600/400.jpg",
-        "https://picsum.photos/seed/groundnuts3/600/400.jpg"
+        "./images/groundnut.jpg",
+        "./images/groundnut.jpg",
+        "./images/groundnut.jpg"
       ],
       farmer: {
         name: "Oliver Eze",
@@ -709,9 +717,9 @@
       quantity: "50kg",
       description: "Our maize is grown in fertile soil and is harvested at the perfect time to ensure optimal quality. It's a staple food in many Nigerian households and can be prepared in various ways. Our maize is grown using sustainable farming practices.",
       images: [
-        "https://picsum.photos/seed/maize1/600/400.jpg",
-        "https://picsum.photos/seed/maize2/600/400.jpg",
-        "https://picsum.photos/seed/maize3/600/400.jpg"
+        "./images/maize.jpg",
+         "./images/maize.jpg",
+ "./images/maize.jpg"
       ],
       farmer: {
         name: "Chinedu Nwachukwu",
@@ -726,9 +734,9 @@
       quantity: "1kg",
       description: "Our cocoa is grown in fertile soil and is harvested at the perfect time to ensure optimal quality. It's rich in antioxidants and can be used to make various products like chocolate, cocoa powder, and beverages. Our cocoa is grown using sustainable farming practices.",
       images: [
-        "https://picsum.photos/seed/cocoa1/600/400.jpg",
-        "https://picsum.photos/seed/cocoa2/600/400.jpg",
-        "https://picsum.photos/seed/cocoa3/600/400.jpg"
+        "./images/cocoa.jpg",
+       "./images/cocoa.jpg",
+        "./images/cocoa.jpg"
       ],
       farmer: {
         name: "Fatima Mohammed",

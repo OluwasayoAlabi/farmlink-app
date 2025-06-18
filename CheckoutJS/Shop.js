@@ -1,141 +1,4 @@
-// Cart toggle/display actions
-const toggleCartBtn = document.getElementById("toggle-cart-btn");
-const closeCartBtn = document.getElementById("close-cart-btn");
-const cartSection = document.getElementById("cart-section");
-const placeOrderBtn = document.getElementsByClassName("btn-purchase")[0];
-
-toggleCartBtn.addEventListener("click", () => {
-  cartSection.classList.remove("hidden");
-});
-closeCartBtn.addEventListener("click", () => {
-  cartSection.classList.add("hidden");
-  toggleCartBtn.textContent = "View Cart";
-});
-
-// Cart event delegation: add & remove
 const productList = document.getElementById("product-list");
-productList.addEventListener("click", (event) => {
-  if (event.target.classList.contains("add-to-cart")) {
-    addToCartClicked(event);
-  }
-});
-const cartItemsContainer = document.querySelector(".cart-items");
-cartItemsContainer.addEventListener("click", (event) => {
-  if (event.target.classList.contains("remove-btn")) removeCartItem(event);
-});
-cartItemsContainer.addEventListener("change", (event) => {
-  if (event.target.classList.contains("cart-gty")) quantityChanged(event);
-});
-placeOrderBtn.addEventListener("click", placeOrderClicked);
-
-// Save / load cart
-function saveCart() {
-  const items = [];
-  document.querySelectorAll(".cart-row").forEach((row) => {
-    items.push({
-      title: row.querySelector(".cart-title").innerText,
-      price: row.querySelector(".cart-price").innerText,
-      image: row.querySelector("img").src,
-      quantity: row.querySelector(".cart-gty").value,
-    });
-  });
-  localStorage.setItem("cartItems", JSON.stringify(items));
-}
-function loadCart() {
-  JSON.parse(localStorage.getItem("cartItems") || "[]").forEach((item) =>
-    addItemToCart(item.title, item.price, item.image, item.quantity)
-  );
-  updateTotal();
-}
-window.addEventListener("DOMContentLoaded", loadCart);
-
-// Cart operations
-function addToCartClicked(e) {
-  const shopItem = e.target.closest(".shop-item");
-  const title = shopItem.querySelector(".title").innerText;
-  const price = shopItem.querySelector(".price").innerText;
-  const img = shopItem.querySelector("img").src;
-  addItemToCart(title, price, img);
-  updateTotal();
-  showAddToCartMessage(e.target);
-}
-function addItemToCart(title, price, image, qty = 1) {
-  if (
-    [...cartItemsContainer.querySelectorAll(".cart-title")].some(
-      (el) => el.innerText === title
-    )
-  ) {
-    alert("Item already added to cart");
-    return;
-  }
-  const row = document.createElement("div");
-  row.className = "cart-row flex items-center border-b py-4";
-
-  row.innerHTML = `
-    <div class="cart-item w-1/2 flex items-center gap-3">
-      <img src="${image}" alt="${title}" class="w-16 h-16 object-cover rounded-md" />
-      <span class="cart-title font-semibold">${title}</span>
-    </div>
-    <span class="cart-price w-1/4 text-green-700 font-semibold">${price}</span>
-    <div class="cart-quantity w-1/4">
-      <input class="cart-gty w-16 border border-gray-300 rounded text-center" type="number" value="${qty}" min="1" />
-      <button class="remove-btn ml-3 bg-red-500 hover:bg-red-600 text-white rounded px-2 py-1 text-sm">Remove</button>
-    </div>
-  `;
-  cartItemsContainer.appendChild(row);
-  saveCart();
-}
-
-function removeCartItem(e) {
-  e.target.closest(".cart-row").remove();
-  updateTotal();
-  saveCart();
-}
-function quantityChanged(e) {
-  if (isNaN(e.target.value) || e.target.value <= 0) e.target.value = 1;
-  updateTotal();
-  saveCart();
-}
-function updateTotal() {
-  let total = 0;
-  document.querySelectorAll(".cart-row").forEach((row) => {
-    const price = parseFloat(
-      row.querySelector(".cart-price").innerText.replace("₦", "")
-    );
-    const qty = parseInt(row.querySelector(".cart-gty").value);
-    total += price * qty;
-  });
-  document.querySelector(".total").innerText = `₦${total.toFixed(2)}`;
-}
-function placeOrderClicked() {
-  if (!cartItemsContainer.children.length) return alert("Your cart is empty!");
-  alert("Thank you for your order!");
-  cartItemsContainer.innerHTML = "";
-  updateTotal();
-  saveCart();
-  cartSection.classList.add("hidden");
-  toggleCartBtn.textContent = "View Cart";
-}
-function showAddToCartMessage(btn) {
-  const origText = btn.innerHTML;
-  const origClass = btn.className;
-
-  btn.innerHTML = "✓ Added to cart";
-  btn.className =
-    "add-to-cart bg-green-400 text-white font-semibold px-4 py-2 rounded";
-
-  setTimeout(() => {
-    btn.innerHTML = origText;
-    btn.className = origClass;
-  }, 2000);
-}
-
-
-// Pagination logic
-const paginationEl = document.getElementById("pagination");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const pageIndicator = document.getElementById("page-indicator");
 
 const categories = [
   {
@@ -446,7 +309,6 @@ const categories = [
 
 let currentPage = 0;
 
-// Renders products for current category
 function renderCategory(page) {
   currentPage = page;
   const cat = categories[page];
@@ -458,21 +320,58 @@ function renderCategory(page) {
     card.className =
       "shop-item bg-white rounded-lg shadow-md p-4 flex flex-col";
     card.innerHTML = `
-      <img src="${prod.image}" alt="${prod.name}" class="image h-40 object-cover rounded-md mb-4" />
-      <h3 class="title font-semibold text-lg mb-1">${prod.name}</h3>
-      <p class="price text-green-700 font-bold mb-4">₦${prod.price} / ${prod.unit}</p>
-      <button class="add-to-cart mt-auto bg-green-700 hover:bg-green-600 text-white font-semibold py-2 rounded shadow transition">
-        Add to Cart
-      </button>`;
+                <img src="${prod.image}" alt="${prod.name}" class="image h-40 object-cover rounded-md mb-4" />
+                <h3 class="title font-semibold text-lg mb-1">${prod.name}</h3>
+                <p class="price text-green-700 font-bold mb-4">₦${prod.price} / ${prod.unit}</p>
+                <button class="add-to-cart mt-auto bg-green-700 hover:bg-green-600 text-white font-semibold py-2 rounded shadow transition">
+                    Add to Cart
+                </button>`;
     productList.appendChild(card);
   });
+}
 
-  renderPagination();
-  updatePagerControls();
-  scrollToCategory();
+productList.addEventListener("click", (event) => {
+  if (event.target.classList.contains("add-to-cart")) {
+    const shopItem = event.target.closest(".shop-item");
+    const title = shopItem.querySelector(".title").innerText;
+    const price = shopItem.querySelector(".price").innerText;
+    const img = shopItem.querySelector("img").src;
+    addItemToCart(title, price, img);
+    showAddToCartMessage(event.target);
+  }
+});
+
+function showAddToCartMessage(btn) {
+  const origText = btn.innerHTML;
+  const origClass = btn.className;
+
+  btn.innerHTML = "✓ Added to cart";
+  btn.className =
+    "add-to-cart bg-green-400 text-white font-semibold px-4 py-2 rounded";
+
+  setTimeout(() => {
+    btn.innerHTML = origText;
+    btn.className = origClass;
+  }, 2000);
+}
+
+function addItemToCart(title, price, image, qty = 1) {
+  const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const existingItemIndex = existingItems.findIndex(
+    (item) => item.title === title
+  );
+
+  if (existingItemIndex > -1) {
+    alert("Item already added to cart!");
+    return;
+  } else {
+    existingItems.push({ title, price, image, quantity: qty });
+    localStorage.setItem("cartItems", JSON.stringify(existingItems));
+  }
 }
 
 function renderPagination() {
+  const paginationEl = document.getElementById("pagination");
   paginationEl.innerHTML = "";
   categories.forEach((_, i) => {
     const btn = document.createElement("button");
@@ -483,27 +382,5 @@ function renderPagination() {
   });
 }
 
-
-function updatePagerControls() {
-  prevBtn.disabled = currentPage === 0;
-  nextBtn.disabled = currentPage === categories.length - 1;
-  pageIndicator.innerText = `Page ${currentPage + 1} of ${categories.length}`;
-}
-prevBtn.addEventListener(
-  "click",
-  () => currentPage > 0 && renderCategory(currentPage - 1)
-);
-nextBtn.addEventListener(
-  "click",
-  () => currentPage < categories.length - 1 && renderCategory(currentPage + 1)
-);
-
-function scrollToCategory() {
-  window.scrollTo({
-    top: document.getElementById("category-title").offsetTop - 20,
-    behavior: "smooth",
-  });
-}
-
-// Initial load
 renderCategory(0);
+renderPagination();
