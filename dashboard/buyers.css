@@ -1,0 +1,194 @@
+/* Additional styles to complement Tailwind */
+/* Add these styles to your existing CSS */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+  
+  /* Optional: Add a shadow effect when scrolling
+  .sticky-header.scrolled {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  } */
+  
+  .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Adjust the main content to account for sticky header */
+  main {
+    padding-top: 1rem; /* Adds space below the sticky header */
+  }
+
+#category-dropdown {
+    max-height: 300px;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+  }
+  
+  .category-option.active {
+    background-color: #f0fdf4;
+    color: #166534;
+    font-weight: 600;
+  }
+  
+  /* Product hover effects */
+  .product {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .product:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Bottom navigation active state */
+  .bottom-nav button.active {
+    color: #166534;
+  }
+  
+  .bottom-nav button.active svg {
+    stroke: #166534;
+  }
+  
+  /* Loading animation */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loading-spinner {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Sidebar Styles */
+#sidebar {
+    height: calc(100vh - 4rem); /* Account for top nav bar */
+    top: 4rem; /* Height of top nav */
+    left: 0;
+  }
+  
+  /* Main content adjustment */
+  main {
+    transition: margin-left 0.3s ease;
+    padding-top: 1rem;
+  }
+  
+  /* When sidebar is open on mobile */
+  .sidebar-open main {
+    margin-left: 16rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (min-width: 768px) {
+    /* Fixed sidebar on desktop */
+    #sidebar {
+      transform: translateX(0);
+    }
+    
+    /* Adjust main content margin for desktop */
+    .md\:ml-64 {
+      margin-left: 16rem;
+    }
+    
+    /* Hide mobile nav on desktop */
+    .mobile-nav {
+      display: none;
+    }
+    
+    /* Ensure content doesn't get hidden under fixed elements */
+    .pt-16 {
+      padding-top: 4rem;
+    }
+  }
+  
+  /* Active state for sidebar buttons */
+  .sidebar-button.active {
+    background-color: #f0fdf4;
+    color: #166534;
+    font-weight: 500;
+  }
+  
+  /* Top navigation bar */
+  .top-nav {
+    height: 4rem;
+    z-index: 50;
+  }
+  
+  /* Make sure header appears below top nav but above content */
+  .header {
+    top: 4rem;
+    z-index: 30;
+  }
+
+  /* Chat Styles */
+#chat-messages {
+    scrollbar-width: thin;
+    scrollbar-color: #d1fae5 transparent;
+  }
+  
+  #chat-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  #chat-messages::-webkit-scrollbar-thumb {
+    background-color: #d1fae5;
+    border-radius: 3px;
+  }
+  
+  #chat-modal, #farmer-list-modal {
+    z-index: 9999;
+  }
+
+  .chat-message {
+    max-width: 80%;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+  }
+  
+  .message-sent {
+    background-color: #d1fae5;
+    margin-left: auto;
+    border-bottom-right-radius: 0.25rem;
+  }
+  
+  .message-received {
+    background-color: #f3f4f6;
+    margin-right: auto;
+    border-bottom-left-radius: 0.25rem;
+  }
+  
+  .message-time {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    text-align: right;
+  }
+  
+  .farmer-item.active {
+    background-color: #f0fdf4;
+    border-left: 3px solid #10b981;
+  }
