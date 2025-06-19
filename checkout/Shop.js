@@ -329,13 +329,53 @@ function renderCategory(page) {
     productList.appendChild(card);
   });
 
+  const addToCartButtons = document.querySelectorAll(".add-to-cart");
+  addToCartButtons.forEach((button) => {
+    button.addEventListener("click", addToCartClicked);
+  });
+
   renderPagination();
+}
+
+function addToCartClicked(e) {
+  const shopItem = e.target.closest(".shop-item");
+  const title = shopItem.querySelector(".title").innerText;
+  const price = shopItem.querySelector(".price").innerText;
+  const img = shopItem.querySelector("img").src;
+  addItemToCart(title, price, img);
+  showAddToCartMessage(e.target);
+}
+
+function addItemToCart(title, price, image, qty = 1) {
+  const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const existingItemIndex = existingItems.findIndex(
+    (item) => item.title === title
+  );
+  if (existingItemIndex > -1) {
+    alert("Item already added to cart");
+    return; 
+  }
+  existingItems.push({ title, price, image, quantity: qty });
+  localStorage.setItem("cartItems", JSON.stringify(existingItems));
+}
+
+function showAddToCartMessage(btn) {
+  const origText = btn.innerHTML;
+  const origClass = btn.className;
+
+  btn.innerHTML = "✓ Added to cart";
+  btn.className =
+    "add-to-cart bg-green-400 text-white font-semibold px-4 py-2 rounded";
+
+  setTimeout(() => {
+    btn.innerHTML = origText;
+    btn.className = origClass;
+  }, 2000);
 }
 
 function renderPagination() {
   const paginationEl = document.getElementById("pagination");
   paginationEl.innerHTML = "";
-
 
   const prevBtn = document.createElement("button");
   prevBtn.textContent = "Previous";
@@ -347,7 +387,6 @@ function renderPagination() {
     }
   });
   paginationEl.appendChild(prevBtn);
-
 
   categories.forEach((_, i) => {
     const btn = document.createElement("button");
@@ -372,6 +411,5 @@ function renderPagination() {
   });
   paginationEl.appendChild(nextBtn);
 }
-
 
 renderCategory(0);
