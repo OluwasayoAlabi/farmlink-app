@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Role</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex flex-col justify-between min-h-screen bg-white">
+
+  <!-- ✅ FarmLink Navbar -->
+  <header class="bg-green-700 text-white">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold">FarmLink</h1>
+          <p class="mt-1 text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-4 ml-6 text-sm font-medium">
+            <li><a href="Select role.html" class="px-4 py-2 hover:bg-green-600 rounded">Sign In</a></li>
+            <li><a href="products.html" class="px-4 py-2 hover:bg-green-600 rounded">Products</a></li>
+            <li><a href="upload-product.html" class="px-4 py-2 hover:bg-green-600 rounded">Upload</a></li>
+            <li><a href="search.html" class="px-4 py-2 hover:bg-green-600 rounded">Search</a></li>
+            <li><a href="shop.html" class="px-4 py-2 hover:bg-green-600 rounded">Cart</a></li>
+          </ul>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuButton" class="md:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobileMenu" class="md:hidden hidden px-4 pt-2 pb-4">
+        <ul class="space-y-2 mt-2">
+          <li><a href="Select role.html" class="block text-white hover:text-yellow-300">Sign In</a></li>
+          <li><a href="products.html" class="block text-white hover:text-yellow-300">Products</a></li>
+          <li><a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a></li>
+          <li><a href="search.html" class="block text-white hover:text-yellow-300">Search</a></li>
+          <li><a href="shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="flex-grow flex items-center justify-center px-4">
+    <div class="text-center w-full max-w-md">
+      <!-- Title -->
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">Select Role</h1>
+
+      <!-- Subtitle -->
+      <p class="text-gray-700 mb-8 flex items-center justify-center text-sm md:text-base space-x-1">
+        <span>How will you be interacting with our app</span>
+        <span class="text-yellow-500 text-lg font-bold">?</span>
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex justify-center items-center space-x-4">
+        <a href="Farmerselect-country.html" class="border-2 border-black text-black px-6 py-2 rounded hover:bg-gray-100 transition duration-200">
+          Farmer
+        </a>
+        <a href="Buyerselect-country.html" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition duration-200">
+          Buyer
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Swipe Bar -->
+  <footer class="flex justify-center py-4">
+    <div class="w-24 h-1 bg-black rounded-full"></div>
+  </footer>
+
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    mobileMenuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+</body>
+</html>
