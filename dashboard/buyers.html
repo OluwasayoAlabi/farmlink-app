@@ -35,28 +35,33 @@
   <!-- Sidebar -->
   <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 pt-16">
     <div class="p-4 space-y-2">
-      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
-        <i class="uil uil-estate text-xl"></i>
-        <span>Home</span>
+      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
+        <i class="uil uil-estate text-xl text-green-600"></i>
+       <span class="text-gray-800 group-hover:text-gray-900">Home</span>
       </button>
-      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
-        <i class="uil uil-search text-xl"></i>
-        <span>Explore</span>
+
+      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
+        <i class="uil uil-search text-xl text-green-600"></i>
+        <span class="text-gray-800 group-hover:text-gray-900">Explore</span>
       </button>
-      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
-        <i class="uil uil-comment-alt-dots text-xl"></i>
-        <span>Chat</span>
+
+      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
+        <i class="uil uil-comment-alt-dots text-xl text-green-600"></i>
+        <span class="text-gray-800 group-hover:text-gray-900">Chat</span>
       </button>
-      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
-        <i class="uil uil-user text-xl"></i>
-        <span>Profile</span>
-      </button>
-      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
-        <i class="uil uil-setting text-xl"></i>
-        <span>Settings</span>
-      </button>
-    </div>
-  </aside>
+
+     
+      <button onclick="window.location.href='buyer profile.html'" class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
+        <i class="uil uil-user text-xl text-green-600"></i>
+        <span class="text-gray-800 group-hover:text-gray-900">Profile</span>
+     </button>
+
+     <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
+        <i class="uil uil-setting text-xl text-green-600"></i>
+        <span class="text-gray-800 group-hover:text-gray-900">Settings</span>
+     </button>
+      </div>
+     </aside>
 
   <!-- Overlay -->
   <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
@@ -66,7 +71,7 @@
   <!-- Header Section -->
   <header class="sticky top-0 flex items-center justify-between px-4 py-3 text-black z-50 bg-white shadow-md">
     <div>
-      <h2 class="text-lg font-semibold">Hello, Emily!</h2> 
+      <h2 class="text-lg font-semibold">Hello, Michael!</h2> 
     </div>
   
     <!-- Cart Icon -->
