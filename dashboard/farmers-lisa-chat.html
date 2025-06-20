@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with Farmer Lisa</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.css" rel="stylesheet">
+  <style>
+    .chat-message {
+      max-width: 80%;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      margin-bottom: 0.5rem;
+      word-wrap: break-word;
+    }
+    .message-sent {
+      background-color: #d1fae5;
+      margin-left: auto;
+      border-bottom-right-radius: 0.25rem;
+    }
+    .message-received {
+      background-color: #f3f4f6;
+      margin-right: auto;
+      border-bottom-left-radius: 0.25rem;
+    }
+    .message-time {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 0.25rem;
+      text-align: right;
+    }
+  </style>
+
+</head>
+<body class="bg-gray-100">
+  <!-- Chat Header -->
+  <header class="bg-green-600 text-white p-4 sticky top-0 z-10 flex items-center gap-4">
+  <a href="/dashboard/buyers.html" class="text-white">
+    <i class="uil uil-arrow-left text-xl"></i>
+  </a>
+  
+  <!-- Profile Picture (choose one option above) -->
+  <img src="/images/farmer lisa.jpg" alt="Farmer Lisa" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-md">
+  <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></span>
+  
+  <div class="flex-1">
+    <h1 class="font-semibold">Farmer Lisa</h1>
+    <p class="text-xs opacity-80">Sunny Valley Farm</p>
+  </div>
+  </header>
+
+  <!-- Chat Messages -->
+  <div id="chat-messages" class="p-4 space-y-3 overflow-y-auto h-[calc(100vh-8rem)]">
+    <!-- Messages will appear here -->
+  </div>
+
+  <!-- Chat Input -->
+  <div class="bg-white p-4 border-t fixed bottom-0 left-0 right-0">
+    <div class="flex gap-2">
+      <input id="chat-input" type="text" placeholder="Type your message..." 
+             class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+      <button id="send-message" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+        <i class="uil uil-message"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const chatMessages = document.getElementById('chat-messages');
+      const chatInput = document.getElementById('chat-input');
+      const sendMessageBtn = document.getElementById('send-message');
+
+      // Farmer Lisa's chat history
+      let chatHistory = [
+        { sender: 'farmer', text: "Hello dear! This is Farmer Lisa from Sunny Valley Farm.", time: '8:30 AM' },
+        { sender: 'farmer', text: "Our organic eggs are on special this week!", time: '8:31 AM' }
+      ];
+
+      // Render messages
+      function renderMessages() {
+        chatMessages.innerHTML = chatHistory.map(msg => `
+          <div class="chat-message ${msg.sender === 'buyer' ? 'message-sent' : 'message-received'}">
+            <div>${msg.text}</div>
+            <div class="message-time">${msg.time}</div>
+          </div>
+        `).join('');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // Send message
+      function sendMessage() {
+        const message = chatInput.value.trim();
+        if (message) {
+          const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          
+          // Add user message
+          chatHistory.push({
+            sender: 'buyer',
+            text: message,
+            time: now
+          });
+          
+          chatInput.value = '';
+          renderMessages();
+          
+          // Farmer Lisa's reply
+          setTimeout(() => {
+            const replies = [
+              "Wonderful! Would you like to add anything else to your order?",
+              "I can have that ready for pickup tomorrow!",
+              "Our farm is open from 8AM to 5PM for pickups.",
+              "Would you like to schedule a farm visit?"
+            ];
+            const reply = replies[Math.floor(Math.random() * replies.length)];
+            
+            chatHistory.push({
+              sender: 'farmer',
+              text: reply,
+              time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            });
+            
+            renderMessages();
+          }, 1000 + Math.random() * 2000);
+        }
+      }
+
+      // Event listeners
+      sendMessageBtn.addEventListener('click', sendMessage);
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+      });
+
+      // Initial render
+      renderMessages();
+    });
+  </script>
+</body>
+</html>

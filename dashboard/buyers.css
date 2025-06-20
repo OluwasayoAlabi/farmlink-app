@@ -17,11 +17,13 @@
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
-  /* Adjust the main content to account for sticky header */
-  main {
+/* Adjust the main content to account for sticky header */
+  
+main {
     padding-top: 1rem; /* Adds space below the sticky header */
   }
 
+  
 #category-dropdown {
     max-height: 300px;
     overflow-y: auto;
@@ -188,7 +190,22 @@
     text-align: right;
   }
   
+  .farmer-item {
+    transition: background-color 0.2s ease;
+  }
+
   .farmer-item.active {
     background-color: #f0fdf4;
     border-left: 3px solid #10b981;
+  }
+
+  .farmer-item:hover {
+    background-color: #f3f4f6;
+  }
+
+  /* Ensure links look like other items */
+  a.farmer-item {
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }

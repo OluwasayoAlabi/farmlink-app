@@ -134,109 +134,217 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ===== CHAT FUNCTIONALITY =====
-  const chatButton = document.querySelector('.bottom-nav button:nth-child(3)'); // More reliable selector
-  const chatModal = document.getElementById('chat-modal');
-  const farmerListModal = document.getElementById('farmer-list-modal');
-  const closeChat = document.getElementById('close-chat');
-  const closeFarmerList = document.getElementById('close-farmer-list');
-  const chatMessages = document.getElementById('chat-messages');
-  const chatInput = document.getElementById('chat-input');
-  const sendMessageBtn = document.getElementById('send-message');
-  const farmerItems = document.querySelectorAll('.farmer-item');
+// Get chat buttons from both sidebar and bottom nav
+const sidebarChatButton = document.querySelector('#sidebar button:nth-child(3)');
+const bottomNavChatButton = document.querySelector('.bottom-nav button:nth-child(3)');
+const chatModal = document.getElementById('chat-modal');
+const farmerListModal = document.getElementById('farmer-list-modal');
+const closeChat = document.getElementById('close-chat');
+const closeFarmerList = document.getElementById('close-farmer-list');
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const sendMessageBtn = document.getElementById('send-message');
+const farmerList = document.getElementById('farmer-list');
 
-  if (chatButton && chatModal && farmerListModal) {
-    // Chat state
-    let currentFarmer = null;
-    const chatHistory = {
-      'farmer1': [
-        { sender: 'farmer', text: 'Hello! How can I help you with your order?', time: '10:30 AM' }
-      ]
-    };
+// Chat state
+let currentFarmer = null;
+const chatHistory = {
+  'organic-farm': [
+    { sender: 'farmer', text: 'Hello! How can I help you with your order?', time: '10:30 AM' }
+  ],
+  'joe': [
+    { sender: 'farmer', text: "Hi there! Joe here from Joe's Fresh Produce.", time: '9:15 AM' },
+    { sender: 'farmer', text: "We have fresh tomatoes and peppers available today!", time: '9:16 AM' }
+  ],
+  'john-henry': [
+    { sender: 'farmer', text: "I am John Henry, how can I assist you today?", time: '11:45 AM' }
+  ],
+  
+};
 
-    // Initialize chat
-    function renderChatMessages() {
-      if (!currentFarmer || !chatMessages) return;
-      
-      chatMessages.innerHTML = chatHistory[currentFarmer].map(msg => `
-        <div class="chat-message ${msg.sender === 'buyer' ? 'message-sent' : 'message-received'}">
-          <div>${msg.text}</div>
-          <div class="message-time">${msg.time}</div>
+// Farmer data
+const farmers = [
+  {
+    id: 'organic-farm',
+    name: 'Organic Farm Co.',
+    lastOnline: '5 min ago'
+  },
+  {
+    id: 'joe',
+    name: "Joe's Fresh Produce",
+    lastOnline: '15 min ago'
+  },
+  {
+    id: 'john-henry',
+    name: 'John Henry Ranch',
+    lastOnline: '1 hour ago'
+  },
+  {
+    id: 'farmer-lisa',
+    name: 'Farmer Lisa',
+    lastOnline: '30 min ago',
+    separatePage: true
+  }
+];
+
+// Initialize farmer list
+function renderFarmerList() {
+  if (!farmerList) return;
+  
+  farmerList.innerHTML = farmers.map(farmer => {
+    // Special case for Farmer Lisa - link to separate page
+    if (farmer.id === 'farmer-lisa') {
+      return `
+        <a href="farmers-lisa-chat.html" class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+            <i class="uil uil-user text-gray-600"></i>
+          </div>
+          <div>
+            <h4 class="font-medium">${farmer.name}</h4>
+            <p class="text-xs text-gray-500">Last online: ${farmer.lastOnline}</p>
+          </div>
+        </a>
+      `;
+    }
+    
+    // Regular farmers use the modal
+    return `
+      <div class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3" data-farmer-id="${farmer.id}">
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+          <i class="uil uil-user text-gray-600"></i>
         </div>
-      `).join('');
+        <div>
+          <h4 class="font-medium">${farmer.name}</h4>
+          <p class="text-xs text-gray-500">Last online: ${farmer.lastOnline}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Add event listeners to farmer items
+  document.querySelectorAll('.farmer-item').forEach(farmer => {
+    // Skip if it's an anchor tag (Farmer Lisa)
+    if (farmer.tagName === 'A') return;
+    
+    farmer.addEventListener('click', () => {
+      if (farmer.classList.contains('active')) return;
       
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function sendMessage() {
-      const message = chatInput?.value.trim();
-      if (message && currentFarmer) {
-        chatHistory[currentFarmer].push({
-          sender: 'buyer',
-          text: message,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      // Show loading state
+      loader.classList.remove('hidden');
+      
+      setTimeout(() => {
+        currentFarmer = farmer.getAttribute('data-farmer-id');
+        document.querySelectorAll('.farmer-item').forEach(f => {
+          if (f.tagName !== 'A') f.classList.remove('active');
         });
-        
-        if (chatInput) chatInput.value = '';
-        renderChatMessages();
-        
-        setTimeout(() => {
-          const replies = [
-            "Thanks for your message!",
-            "We'll check on that for you.",
-            "The items are available in stock.",
-            "When would you like to collect your order?"
-          ];
-          const randomReply = replies[Math.floor(Math.random() * replies.length)];
-          
-          chatHistory[currentFarmer].push({
-            sender: 'farmer',
-            text: randomReply,
-            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-          });
-          
-          renderChatMessages();
-        }, 1000 + Math.random() * 2000);
-      }
-    }
-
-    // Event Listeners
-    chatButton.addEventListener('click', () => {
-      farmerListModal.classList.remove('hidden');
-    });
-
-    if (closeChat) {
-      closeChat.addEventListener('click', () => {
-        chatModal.classList.add('hidden');
-      });
-    }
-
-    if (closeFarmerList) {
-      closeFarmerList.addEventListener('click', () => {
-        farmerListModal.classList.add('hidden');
-      });
-    }
-
-    if (sendMessageBtn) {
-      sendMessageBtn.addEventListener('click', sendMessage);
-    }
-
-    if (chatInput) {
-      chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-      });
-    }
-
-    farmerItems.forEach(farmer => {
-      farmer.addEventListener('click', () => {
-        currentFarmer = 'farmer1';
-        farmerItems.forEach(f => f.classList.remove('active'));
         farmer.classList.add('active');
         farmerListModal.classList.add('hidden');
         chatModal.classList.remove('hidden');
         renderChatMessages();
-      });
+        
+        // Hide loader
+        loader.classList.add('hidden');
+      }, 300);
     });
+  });
+}
+
+
+// Initialize chat messages
+function renderChatMessages() {
+  if (!currentFarmer || !chatMessages) return;
+  
+  chatMessages.innerHTML = chatHistory[currentFarmer].map(msg => `
+    <div class="chat-message ${msg.sender === 'buyer' ? 'message-sent' : 'message-received'}">
+      <div>${msg.text}</div>
+      <div class="message-time">${msg.time}</div>
+    </div>
+  `).join('');
+  
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function sendMessage() {
+  const message = chatInput?.value.trim();
+  if (message && currentFarmer) {
+    // Add user message
+    chatHistory[currentFarmer].push({
+      sender: 'buyer',
+      text: message,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    });
+    
+    if (chatInput) chatInput.value = '';
+    renderChatMessages();
+    
+    // Farmer replies differently based on who they are
+    setTimeout(() => {
+      let reply;
+      const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      switch(currentFarmer) {
+        case 'joe':
+          reply = "Thanks! We'll have your order ready by tomorrow.";
+          break;
+        case 'john-henry':
+          reply = "I'll check the availability and get back to you shortly.";
+          break;
+        case 'farmer-lisa':
+          reply = "Wonderful! Would you like to add anything else to your order?";
+          break;
+        default:
+          reply = "Thanks for your message! We'll get back to you soon.";
+      }
+      
+      chatHistory[currentFarmer].push({
+        sender: 'farmer',
+        text: reply,
+        time: now
+      });
+      
+      renderChatMessages();
+    }, 1000 + Math.random() * 2000);
   }
+}
+
+// Initialize chat when page loads
+renderFarmerList();
+renderChatMessages();
+
+// Event Listeners for both chat buttons
+if (sidebarChatButton) {
+  sidebarChatButton.addEventListener('click', () => {
+    farmerListModal.classList.remove('hidden');
+  });
+}
+
+if (bottomNavChatButton) {
+  bottomNavChatButton.addEventListener('click', () => {
+    farmerListModal.classList.remove('hidden');
+  });
+}
+
+if (closeChat) {
+  closeChat.addEventListener('click', () => {
+    chatModal.classList.add('hidden');
+  });
+}
+
+if (closeFarmerList) {
+  closeFarmerList.addEventListener('click', () => {
+    farmerListModal.classList.add('hidden');
+  });
+}
+
+if (sendMessageBtn) {
+  sendMessageBtn.addEventListener('click', sendMessage);
+}
+
+if (chatInput) {
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+}
 
   // Sidebar functionality
   const sidebar = document.getElementById('sidebar');
@@ -289,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-
-  // Initialize - show all products
-  filterProducts('all');
+ 
+  // Initialize this - show all products
+  renderFarmerList();
 });

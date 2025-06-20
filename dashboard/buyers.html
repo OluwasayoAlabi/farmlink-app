@@ -17,14 +17,16 @@
         <button id="sidebar-toggle" class="mr-4 md:hidden">
           <i class="uil uil-bars text-xl"></i>
         </button>
-        <h1 class="text-xl font-bold">FarmLink</h1>
       </div>
-      <div class="hidden md:flex space-x-4">
-        <a href="#" class="px-3 py-2 rounded hover:bg-green-600">Home</a>
+      <div>
+        <h1 class="text-2xl font-bold">FarmLink</h1>
+        <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+      </div>
+      <div class="hidden md:flex space-x-4 ml-6 text-sm font-medium">
+        <a href="/dashboard/buyers.html" class="px-3 py-2 rounded hover:bg-green-600">Home</a>
         <a href="/index.html" class="px-3 py-2 rounded hover:bg-green-600">Products</a>
-        <a href="/upload-product.html" class="px-3 py-2 rounded hover:bg-green-600">Upload</a>
-        <a href="/search and filter.html" class="px-3 py-2 rounded hover:bg-green-600">Search</a>
-        <a href="/cart.html" class="px-3 py-2 rounded hover:bg-green-600">Cart</a>
+        <a href="/search.html" class="px-3 py-2 rounded hover:bg-green-600">Search</a>
+        <a href="/upload-product.html" class="px-3 py-2 rounded hover:bg-green-600">Profile</a>
       </div>
     </div>
   </nav>
@@ -69,7 +71,7 @@
   
     <!-- Cart Icon -->
     <div class="flex items-center gap-4">
-      <button class="border-gray-200 text-green-700 bg-white hover:text-green-500 transition">
+      <button class="border-gray-200 text-green-700 bg-white hover:text-yellow-600 transition">
         <i class="uil uil-shopping-cart text-2xl"></i>
       </button>
 
@@ -295,8 +297,8 @@
       </button>
     </div>
     <div id="farmer-list" class="p-4 overflow-y-auto">
-      <!-- Farmers will appear here -->
-      <div class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3">
+      <!-- Regular farmers (modal chats) -->
+      <div class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3" data-farmer-id="organic-farm">
         <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
           <i class="uil uil-user text-gray-600"></i>
         </div>
@@ -305,7 +307,37 @@
           <p class="text-xs text-gray-500">Last online: 5 min ago</p>
         </div>
       </div>
-      <!-- More farmers can be added here -->
+      
+      <div class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3" data-farmer-id="joe">
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+          <i class="uil uil-user text-gray-600"></i>
+        </div>
+        <div>
+          <h4 class="font-medium">Joe's Fresh Produce</h4>
+          <p class="text-xs text-gray-500">Last online: 15 min ago</p>
+        </div>
+      </div>
+      
+      <div class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3" data-farmer-id="john-henry">
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+          <i class="uil uil-user text-gray-600"></i>
+        </div>
+        <div>
+          <h4 class="font-medium">John Henry Ranch</h4>
+          <p class="text-xs text-gray-500">Last online: 1 hour ago</p>
+        </div>
+      </div>
+      
+      <!-- Farmer Lisa (link to separate page) -->
+      <a href="/dashboard/farmers-lisa-chat.html" class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3" target="_blank">
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+          <i class="uil uil-user text-gray-600"></i>
+        </div>
+        <div>
+          <h4 class="font-medium">Farmer Lisa</h4>
+          <p class="text-xs text-gray-500">Last online: 30 min ago</p>
+        </div>
+      </a>
     </div>
   </div>
 </div>
