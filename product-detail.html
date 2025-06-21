@@ -2,13 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FarmLink - Product Details</title>
-  <script defer src="script.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
-  <link rel="stylesheet" href="styles.css">
   <style>
     .animate-fadeIn {
       animation: fadeIn 0.5s ease-in-out;
@@ -17,866 +14,443 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    .product-image-container {
-      height: 300px;
-      overflow: hidden;
-    }
-    .product-image-container img {
-      object-fit: cover;
-      height: 100%;
-      width: 100%;
-    }
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.3s ease-in-out;
-    }
   </style>
 </head>
-<body class="bg-gray-100">
-  
-  <nav class="bg-green-700 text-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      
-      <div>
-        <h1 class="text-2xl font-bold">FarmLink</h1>
-        <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
-      </div>
-  
-      <button id="menuToggle" class="block md:hidden ml-4 text-white focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
+<body class="bg-white text-gray-800 animate-fadeIn">
 
-      <button title="Toggle Favorite" ... >
 
-      <ul class="hidden md:flex space-x-4 ml-6 text-sm font-medium">
-        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
-        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
-        <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
-        <li><a href="search.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
-        <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
-      
-      </ul>
-    </div>
-  
-    
-    <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
-      <ul class="space-y-2 mt-2">
-        <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
-        <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
-        <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
-        <li><a href="search.html" class="block hover:text-yellow-300">Search</a></li>
-        <li><a href="cart.html" class="block hover:text-yellow-300">Cart</a></li>
-    
-      </ul>
-    </div>
-  </nav>
-
-<div class="max-w-7xl mx-auto p-6 animate-fadeIn">
-  <div class="flex items-center mb-6">
-    <a href="index.html" class="flex items-center text-green-700 hover:text-green-800">
-      <i class="fi fi-rr-arrow-left mr-2"></i> Back to Products
+<div class="max-w-lg mx-auto p-4">
+  <!-- Back Button -->
+  <div class="flex items-center mb-4">
+    <a href="index.html" class="text-black text-xl">
+      <i class="fi fi-rr-arrow-left">Product Details</i>
     </a>
+    <h1 class="ml-3 text-lg font-semibold"></h1>
   </div>
 
-  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-    <div class="md:flex">
-      <!-- Product Images -->
-      <div class="md:w-1/2 p-4">
-        <div class="product-image-container rounded-lg mb-4">
-          <img id="mainProductImage" src="" alt="Product" class="w-full rounded-lg">
-        </div>
-        <div class="flex space-x-2 overflow-x-auto pb-2">
-          <div class="image-thumbnail w-20 h-20 rounded-md overflow-hidden cursor-pointer border-2 border-green-500">
-            <img id="thumbnail1" src="" alt="Thumbnail 1" class="w-full h-full object-cover">
-          </div>
-          <div class="image-thumbnail w-20 h-20 rounded-md overflow-hidden cursor-pointer">
-            <img id="thumbnail2" src="" alt="Thumbnail 2" class="w-full h-full object-cover">
-          </div>
-          <div class="image-thumbnail w-20 h-20 rounded-md overflow-hidden cursor-pointer">
-            <img id="thumbnail3" src="" alt="Thumbnail 3" class="w-full h-full object-cover">
-          </div>
-        </div>
-      </div>
-
-      <!-- Product Details -->
-      <div class="md:w-1/2 p-6">
-        <div class="flex justify-between items-start">
-          <h1 id="productName" class="text-2xl font-bold text-gray-800 mb-2"></h1>
-          <button class="fav-btn p-2 rounded-full text-white hover:text-yellow-400 transition-colors duration-300">
-            <i class="fi fi-rr-heart text-xl"></i>
-          </button>
-        </div>
-        
-        <div class="flex items-center mb-4">
-          <div class="flex text-yellow-400">
-            <i class="fi fi-rr-star"></i>
-            <i class="fi fi-rr-star"></i>
-            <i class="fi fi-rr-star"></i>
-            <i class="fi fi-rr-star"></i>
-            <i class="fi fi-rr-star-half"></i>
-          </div>
-          <span class="text-gray-600 ml-2">(4.5/5 from 24 reviews)</span>
-        </div>
-        
-        <div class="mb-4">
-          <span id="productPrice" class="text-3xl font-bold text-green-700"></span>
-        </div>
-        
-        <div class="mb-4">
-          <span class="text-gray-600">Quantity:</span>
-          <span id="productQuantity" class="ml-2 font-medium"></span>
-        </div>
-        
-        <div class="mb-6">
-          <label for="quantity" class="block text-gray-700 mb-2">Select Quantity:</label>
-          <div class="flex items-center">
-            <button id="decreaseQuantity" class="bg-gray-200 px-3 py-1 rounded-l-md">-</button>
-            <input type="number" id="quantity" value="1" min="1" class="w-16 text-center border-t border-b border-gray-300 py-1">
-            <button id="increaseQuantity" class="bg-gray-200 px-3 py-1 rounded-r-md">+</button>
-          </div>
-        </div>
-        
-        <div class="flex space-x-4 mb-6">
-          <a href="./cart.html">
-          <button id="addToCartBtn" class="flex-1 bg-green-600 text-white py-3 px-6 rounded-md hover:bg-green-700 transition flex items-center justify-center">
-            <i class="fi fi-rr-shopping-cart mr-2"></i> Add to Cart
-          </button>
-          </a>
-          <button class="flex-1 bg-yellow-500 text-white py-3 px-6 rounded-md hover:bg-yellow-600 transition">
-            Buy Now
-          </button>
-        </div>
-        
-        <div class="border-t border-gray-200 pt-4">
-          <div class="flex space-x-4 mb-4">
-            <button class="tab-button text-green-700 border-b-2 border-green-700 pb-2 px-2 font-medium" data-tab="product-details">Product Details</button>
-            <button class="tab-button text-gray-500 hover:text-green-700 pb-2 px-2" data-tab="farmer-info">Farmer Profile</button>
-            <button class="tab-button text-gray-500 hover:text-green-700 pb-2 px-2" data-tab="shipping-info">Shipping Info</button>
-          </div>
-          
-          <div id="product-details" class="tab-content active">
-            <p id="productDescription" class="text-gray-700 leading-relaxed"></p>
-          </div>
-          
-          <div id="farmer-info" class="tab-content">
-            <div class="flex items-center mb-4">
-              <img id="farmerAvatar" src="" alt="Farmer" class="w-16 h-16 rounded-full object-cover mr-4">
-              <div>
-                <h3 id="farmerName" class="font-bold text-lg"></h3>
-                <p id="farmerLocation" class="text-gray-600"></p>
-              </div>
-            </div>
-            <p id="farmerBio" class="text-gray-700 mb-4"></p>
-            <div class="flex space-x-3">
-              <button class="flex items-center text-green-700 hover:text-green-800">
-                <i class="fi fi-rr-user mr-1"></i> Message
-              </button>
-              <button class="flex items-center text-green-700 hover:text-green-800">
-                <i class="fi fi-rr-building mr-1"></i> Visit Farm
-              </button>
-              <button class="flex items-center text-green-700 hover:text-green-800">
-                <i class="fi fi-rr-star mr-1"></i> Review
-              </button>
-            </div>
-          </div>
-          
-          <div id="shipping-info" class="tab-content">
-            <div class="mb-4">
-              <h3 class="font-bold text-lg mb-2">Delivery Options</h3>
-              <div class="flex items-center mb-2">
-                <input type="radio" id="express" name="shipping" class="mr-2">
-                <label for="express" class="text-gray-700">Express Delivery (1-2 days) - ₦500</label>
-              </div>
-              <div class="flex items-center">
-                <input type="radio" id="standard" name="shipping" class="mr-2" checked>
-                <label for="standard" class="text-gray-700">Standard Delivery (3-5 days) - ₦250</label>
-              </div>
-            </div>
-            <div>
-              <h3 class="font-bold text-lg mb-2">Return Policy</h3>
-              <p class="text-gray-700">All products are covered by our 7-day return policy. If you receive a damaged or incorrect product, please contact our customer service within 7 days of delivery.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Product Image Carousel -->
+  <div class="relative mb-4">
+    <img id="productImage" src="" alt="Product Image" class="rounded w-full h-56 object-cover" />
+    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+      <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+      <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+      <div class="w-2 h-2 rounded-full bg-gray-300"></div>
     </div>
+  </div>
+
+  <!-- Product Info -->
+  <h2 id="productName" class="text-xl font-bold mb-2"></h2>
+
+  <h3 class="text-gray-500 font-semibold mb-1">Description</h3>
+  <p id="productDescription" class="text-sm mb-4 leading-relaxed"></p>
+  <ul id="productFeatures" class="list-disc pl-5 mt-2 text-sm">
+    <li>No Preservatives</li>
+    <li>Naturally Ripened</li>
+    <li>Hand-harvested and farm-direct</li>
+  </ul>
+
+  <!-- Colour Info -->
+  <p class="text-sm font-medium mb-3">Colour: <span id="productColor" class="text-gray-700"></span></p>
+
+  <!-- Measurement -->
+  <p class="text-sm font-medium mb-2">Measure:</p>
+  <div class="flex gap-2 mb-4" id="measureButtons">
+    <button class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm measure-btn" data-measure="cup">Cup</button>
+    <button class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm measure-btn" data-measure="drum">Drum</button>
+    <button class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm measure-btn" data-measure="barrel">Barrel</button>
+  </div>
+
+  <!-- Quantity Selector -->
+  <p class="text-sm font-medium mb-2">Quantity</p>
+  <div class="flex items-center mb-4">
+    <button id="decreaseQty" class="bg-gray-200 w-8 h-8 rounded text-lg">-</button>
+    <span id="quantityDisplay" class="mx-4">1</span>
+    <button id="increaseQty" class="bg-gray-200 w-8 h-8 rounded text-lg">+</button>
+  </div>
+
+  <!-- Links -->
+  <div class="flex justify-between mb-4 text-sm text-blue-600">
+    <a href="#" id="farmerLink">Chat Distributor</a>
+    <a href="#">See reviews</a>
+  </div>
+
+  <!-- Price & Buy Button -->
+  <div class="flex justify-between items-center">
+    <p class="text-lg font-semibold">Price <br><span id="productPrice" class="text-black text-xl font-bold"></span></p>
+    <button id="buyNowBtn" class="bg-yellow-500 text-white px-6 py-3 rounded text-sm font-bold">Buy Now</button>
   </div>
 </div>
 
 <!-- Toast Notification -->
-<div id="toast" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-md shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center">
+<div id="toast" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-md shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center hidden">
   <i class="fi fi-rr-check-circle mr-2"></i>
   <span id="toastMessage">Product added to cart!</span>
 </div>
 
 <script>
-  const productData = {
+  const products = {
     "fresh-tomatoes": {
       name: "Fresh Tomatoes",
       price: 2000,
-      quantity: "20pcs",
-      description: "Our fresh tomatoes are grown using organic farming methods. They are rich in vitamins and antioxidants, perfect for salads, sauces, and cooking. These tomatoes are harvested at peak ripeness to ensure maximum flavor and nutritional value.",
-      images: [
-        "./images/Tomatoes 1.webp",
-        "./images/Tomatoes 1.webp",
-        "./images/Tomatoes 1.webp"
-      ],
-      farmer: {
-        name: "Chinedu Okonkwo",
-        location: "Owerri, Imo State",
-        avatar: "https://picsum.photos/seed/farmer1/200/200.jpg",
-        bio: "I'm a third-generation farmer with over 15 years of experience in tomato cultivation. My farm spans 5 acres with a focus on sustainable and organic farming practices. I'm passionate about providing fresh, healthy produce to my community."
-      }
+      description: "Freshly harvested tomatoes ideal for sauces and stews. Hand-picked from local farms with no preservatives.",
+      image: "images/Tomatoes 1.webp",
+      color: "Bright Red",
+      farmer: "Green Farm"
     },
     "fresh-vegetables": {
       name: "Fresh Vegetables",
       price: 2500,
-      quantity: "5kg",
-      description: "A mix of fresh, organic vegetables including spinach, lettuce, carrots, and bell peppers. These vegetables are carefully selected and harvested to ensure the best quality and nutritional value. Perfect for healthy meals and salads.",
-      images: [
-        "images/leafy-vegetables.webp",
-        "images/leafy-vegetables.webp",
-"images/leafy-vegetables.webp"
-      ],
-      farmer: {
-        name: "Esther Adebayo",
-        location: "Ibadan, Oyo State",
-        avatar: "https://picsum.photos/seed/farmer2/200/200.jpg",
-        bio: "I run a 10-acre farm specializing in organic vegetable production. With over 20 years of experience, I focus on sustainable farming methods that protect the environment while producing nutritious vegetables for my customers."
-      }
+      description: "A mix of leafy and nutritious vegetables. Grown without synthetic fertilizers and great for daily meals.",
+      image: "images/leafy-vegetables.webp",
+      color: "Green Mix",
+      farmer: "Sunshine Farms"
     },
     "onions": {
       name: "Onions",
       price: 5000,
-      quantity: "50 pcs",
-      description: "Our onions are grown in rich soil and harvested at the perfect time to ensure optimal sweetness and flavor. They are versatile and can be used in various dishes, from soups and stews to grilled and roasted recipes.",
-      images: [
-        "images/Onions 2.webp",
-               "images/Onions 2.webp",
-        "images/Onions 2.webp",
-      ],
-      farmer: {
-        name: "James Okafor",
-        location: "Jos, Plateau State",
-        avatar: "https://picsum.photos/seed/farmer3/200/200.jpg",
-        bio: "I've been farming onions for over 25 years. My farm is located in the highlands where the climate is perfect for growing high-quality onions. I use traditional farming methods combined with modern techniques to produce the best onions in the region."
-      }
+      description: "Pungent and fresh onions harvested for flavor-rich dishes. Suitable for stews, fries, and raw use.",
+      image: "images/Onions 2.webp",
+      color: "Golden Brown",
+      farmer: "Hausa Fields"
     },
     "okra": {
       name: "Okra",
       price: 2000,
-      quantity: "20 pcs",
-      description: "Fresh, tender okra pods perfect for soups, stews, and frying. Our okra is grown without harmful pesticides and harvested daily to ensure maximum freshness. It's rich in fiber and vitamins that are essential for a healthy diet.",
-      images: [
-        "images/okra 2.jpg",
-        "images/okra 2.jpg",
-        "images/okra 2.jpg"
-      ],
-      farmer: {
-        name: "Fatima Bello",
-        location: "Kano, Kano State",
-        avatar: "https://picsum.photos/seed/farmer4/200/200.jpg",
-        bio: "I'm a small-scale farmer specializing in okra cultivation. My farm uses traditional irrigation methods combined with modern farming techniques to produce high-quality okra throughout the year. I'm committed to sustainable farming practices."
-      }
+      description: "Slimy and green okra ideal for soups and stews. Freshly handpicked with high nutrient content.",
+      image: "images/okra 2.jpg",
+      color: "Green",
+      farmer: "Organic Valley"
     },
     "garden-eggs": {
       name: "Garden Eggs",
       price: 3000,
-      quantity: "1 dozen",
-      description: "Delicious garden eggs, also known as eggplants, perfect for various dishes. These are grown using organic methods and are rich in antioxidants. They have a mild, slightly sweet flavor that works well in both savory and spicy dishes.",
-      images: [
-        "images/garden eggs.jpg",
-        "images/garden eggs.jpg",
-        "images/garden eggs.jpg"
-      ],
-      farmer: {
-        name: "Kehinde Adeyemi",
-        location: "Osogbo, Osun State",
-        avatar: "https://picsum.photos/seed/farmer5/200/200.jpg",
-        bio: "I've been farming garden eggs for over 15 years. My farm is known for producing some of the best garden eggs in the region. I use natural fertilizers and organic methods to ensure the highest quality produce."
-      }
+      description: "Tasty garden eggs excellent for traditional recipes or eaten raw. No pesticides used.",
+      image: "images/garden eggs.jpg",
+      color: "White & Green",
+      farmer: "Ebony Greens"
     },
     "peppers": {
       name: "Peppers",
       price: 2000,
-      quantity: "30 pcs",
-      description: "Our fresh bell peppers come in a variety of colors - red, yellow, and green. They are rich in vitamins A and C, and make a great addition to salads, stir-fries, and stuffed dishes. Grown using sustainable farming practices.",
-      images: [
-          "./images/pepper.jpg",
-          "./images/pepper.jpg",
-          "./images/pepper.jpg"
-      ],
-      farmer: {
-        name: "Paul Eze",
-        location: "Enugu, Enugu State",
-        avatar: "https://picsum.photos/seed/farmer6/200/200.jpg",
-        bio: "I specialize in growing high-quality peppers on my 7-acre farm. I've been in the agricultural business for 12 years and focus on providing the freshest produce to my customers. My peppers are known for their excellent flavor and texture."
-      }
+      description: "Spicy and flavorful peppers. Adds heat and taste to your meals. Farm-fresh and sun-ripened.",
+      image: "images/pepper.jpg",
+      color: "Red & Green",
+      farmer: "Heat Roots"
     },
     "plaintains": {
       name: "Plaintains",
       price: 2000,
-      quantity: "1 bunch",
-      description: "Our ripe plantains are perfect for frying, boiling, or baking. They are rich in potassium and dietary fiber, making them a healthy carbohydrate source. Our plantains are harvested at peak ripeness to ensure maximum sweetness.",
-      images: [
-          "./images/plaintains.webp",
-          "./images/plaintains.webp",
-          "./images/plaintains.webp"
-      ],
-      farmer: {
-        name: "Amina Mohammed",
-        location: "Kaduna, Kaduna State",
-        avatar: "https://picsum.photos/seed/farmer7/200/200.jpg",
-        bio: "I'm a plantain farmer with over 20 years of experience. My farm spans 15 acres and produces high-quality plantains throughout the year. I use traditional farming methods combined with modern techniques to ensure the best yield and quality."
-      }
+      description: "Rich and ripe plantains perfect for frying, boiling, or roasting. Fresh from the local farm.",
+      image: "images/plaintains.webp",
+      color: "Golden Yellow",
+      farmer: "Tropical Acres"
     },
     "cucumbers": {
       name: "Cucumbers",
       price: 1500,
-      quantity: "1pc",
-      description: "Our crisp, refreshing cucumbers are perfect for salads, sandwiches, and snacking. They are hydrating and packed with vitamins K and C. Our cucumbers are grown using organic methods and harvested at their peak freshness.",
-      images: [
-        "./images/cucumber 2.webp",
-        "./images/cucumber 2.webp",
-        "./images/cucumber 2.webp"
-      ],
-      farmer: {
-        name: "Chukwuemeka Nwachukwu",
-        location: "Abia, Abia State",
-        avatar: "https://picsum.photos/seed/farmer8/200/200.jpg",
-        bio: "I've been farming cucumbers for 10 years on my 5-acre farm. I focus on sustainable farming practices and use natural methods to control pests and diseases. My cucumbers are known for their exceptional crunch and flavor."
-      }
+      description: "Cool, crunchy cucumbers for salads and snacks. Hydrating and grown pesticide-free.",
+      image: "images/cucumber 2.webp",
+      color: "Fresh Green",
+      farmer: "Aqua Growers"
     },
     "apples": {
       name: "Apples",
       price: 200,
-      quantity: "1pc",
-      description: "Our fresh apples are imported from high-altitude regions to ensure optimal sweetness and crispness. They are rich in fiber and antioxidants, making them a healthy snack option. Available in multiple varieties including red and green apples.",
-      images: [
-           "./images/Apples.webp",
-           "./images/Apples.webp",
-           "./images/Apples.webp"
-      ],
-      farmer: {
-        name: "David Ogunleye",
-        location: "Lagos, Lagos State",
-        avatar: "https://picsum.photos/seed/farmer9/200/200.jpg",
-        bio: "I run a fruit import and distribution business, specializing in high-quality apples from reputable farms. I ensure all our produce meets strict quality standards before reaching the market. I'm passionate about bringing the best fruits to Nigerian consumers."
-      }
+      description: "Sourced from our trusted farmers, this Apples is fresh and carefully handled to ensure maximum quality. Ideal for a variety of traditional and modern dishes. Naturally grown, with no preservatives. Rich in flavor and nutrients.",
+      image: "images/Apples.webp",
+      color: "Red or Green",
+      farmer: "Hilltop Orchards"
     },
     "bananas": {
       name: "Bananas",
       price: 600,
-      quantity: "1 bunch",
-      description: "Our ripe bananas are perfect for snacking, smoothies, and baking. They are rich in potassium, vitamins, and natural sugars. Our bananas are harvested at the optimal ripeness and carefully transported to maintain their quality.",
-      images: [
-        "./images/Bananas 2.webp",
-        "./images/Bananas 2.webp",
-         "./images/Bananas 2.webp"
-      ],
-      farmer: {
-        name: "Olivia Anyanwu",
-        location: "Cross River, Cross River State",
-        avatar: "https://picsum.photos/seed/farmer10/200/200.jpg",
-        bio: "I'm a banana farmer with over 15 years of experience. My farm spans 20 acres and produces high-quality bananas throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality."
-      }
+      description: "Sweet and ripe bananas perfect as a snack or for baking. Farm-harvested and naturally ripened.",
+      image: "images/Bananas 3.webp",
+      color: "Yellow",
+      farmer: "Golden Peel Farms"
     },
-"cherry-agbalumo": {
-  name: "Cherry-Agbalumo",
-  price: 100,
-  quantity: "1pc",
-  description: "Our fresh agbalumo fruits are in season and ready to be enjoyed...",
-  images: [
-    "images/Agbalumo.webp",
-    "images/Agbalumo.webp",
-    "images/Agbalumo.webp"
-  ],
-  farmer: {  
-      name: "Adebisi Folorunso",
-      location: "Ondo, Ondo State",
-      avatar: "https://picsum.photos/seed/farmer11/200/200.jpg",
-      bio: "I'm a small-scale farmer specializing in seasonal fruits like agbalumo..."
-    
-  }
-},
+    "cherry-agbalumo": {
+      name: "Cherry/Agbalumo",
+      price: 100,
+      description: "Seasonal cherry (Agbalumo) rich in vitamin C. A nostalgic fruit with tangy sweetness.",
+      image: "images/Agbalumo.webp",
+      color: "Orange",
+      farmer: "Tradition Roots"
+    },
     "oranges": {
       name: "Oranges",
       price: 500,
-      quantity: "2pcs",
-      description: "Our fresh oranges are bursting with juice and flavor. They are rich in vitamin C and make a refreshing snack or addition to any meal. Our oranges are grown without harmful pesticides and are harvested at their peak ripeness.",
-      images: [
-        "./images/oranges.jpg",
-        "./images/oranges.jpg",
-       "./images/oranges.jpg",
-      ],
-      farmer: {
-        name: "Emmanuel Nwachukwu",
-        location: "Ogun, Ogun State",
-        avatar: "https://picsum.photos/seed/farmer12/200/200.jpg",
-        bio: "I've been growing oranges for over 18 years on my 12-acre farm. I focus on organic farming methods and have perfected the art of growing sweet, juicy oranges. I'm passionate about providing high-quality citrus fruits to my customers."
-      }
+      description: "Juicy, sun-grown oranges perfect for juicing or snacking. Packed with vitamin C.",
+      image: "images/oranges.jpg",
+      color: "Orange",
+      farmer: "Sun Grove"
     },
     "watermelons": {
       name: "Watermelons",
       price: 2000,
-      quantity: "1pc",
-      description: "Our sweet watermelons are perfect for hot summer days. They are refreshing, hydrating, and packed with nutrients. Our watermelons are grown using sustainable farming practices and are harvested at their peak ripeness for maximum sweetness.",
-      images: [
-        "./images/watermelons.jpg",
-        "./images/watermelons.jpg",
-        "./images/watermelons.jpg"
-      ],
-      farmer: {
-        name: "Abdulrahman Mohammed",
-        location: "Kebbi, Kebbi State",
-        avatar: "https://picsum.photos/seed/farmer13/200/200.jpg",
-        bio: "I'm a watermelon farmer with over 20 years of experience. My farm spans 25 acres and produces high-quality watermelons throughout the season. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality."
-      }
+      description: "Large and juicy watermelon grown on rich Nigerian soil. Naturally sweet and hydrating.",
+      image: "images/watermelons.jpg",
+      color: "Green outside, Red inside",
+      farmer: "Cool Farm"
     },
     "mangoes": {
       name: "Mangoes",
       price: 800,
-      quantity: "1pc",
-      description: "Our ripe mangoes are bursting with sweet flavor. They are rich in vitamins A and C, making them a healthy and delicious treat. Our mangoes are grown using organic methods and are harvested at their peak ripeness for maximum sweetness.",
-      images: [
-        "./images/mangoes.webp",
-       "./images/mangoes.webp",
-"./images/mangoes.webp"
-      ],
-      farmer: {
-        name: "Grace Osagie",
-        location: "Edo, Edo State",
-        avatar: "https://picsum.photos/seed/farmer14/200/200.jpg",
-        bio: "I'm a mango farmer with over 15 years of experience. My farm specializes in growing high-quality mangoes with various varieties. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality. I'm passionate about bringing the best mangoes to Nigerian consumers."
-      }
+      description: "Sweet and ripe mangoes for smoothies, eating raw, or desserts. Seasonal and rich in flavor.",
+      image: "images/mangoes.webp",
+      color: "Yellow-Orange",
+      farmer: "Savannah Farms"
     },
     "pineapples": {
       name: "Pineapples",
       price: 1500,
-      quantity: "1pc",
-      description: "Our fresh pineapples are sweet and juicy with a distinctive tropical flavor. They are rich in vitamin C and manganese, making them a healthy snack option. Our pineapples are grown using sustainable farming practices and are harvested at their peak ripeness.",
-      images: [
-        "./images/pineapple.webp",
-       "./images/pineapple.webp",
-       "./images/pineapple.webp"
-      ],
-      farmer: {
-        name: "Samuel Anyanwu",
-        location: "Imo, Imo State",
-        avatar: "https://picsum.photos/seed/farmer15/200/200.jpg",
-        bio: "I'm a pineapple farmer with over 10 years of experience. My farm spans 15 acres and produces high-quality pineapples throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality."
-      }
+      description: "Tangy and sweet pineapples, hand-picked and well-trimmed. Perfect for juice or raw use.",
+      image: "images/pineapple.webp",
+      color: "Yellow inside, Green outside",
+      farmer: "Island Produce"
     },
     "avocados": {
       name: "Avocados",
       price: 2000,
-      quantity: "1pc",
-      description: "Our ripe avocados are perfect for guacamole, salads, or as a nutritious spread. They are rich in healthy fats, fiber, and various vitamins. Our avocados are grown using organic methods and are harvested at their peak ripeness for maximum flavor.",
-      images: [
-        "./images/avocado.webp",
-        "./images/avocado.webp",
-        "./images/avocado.webp"
-      ],
-      farmer: {
-        name: "Chinyere Okoro",
-        location: "Enugu, Enugu State",
-        avatar: "https://picsum.photos/seed/farmer16/200/200.jpg",
-        bio: "I'm an avocado farmer with over 12 years of experience. My farm specializes in growing high-quality avocados throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality. I'm passionate about providing nutritious produce to my customers."
-      }
+      description: "Creamy and healthy avocados. A great source of healthy fats, perfect for salads and spreads.",
+      image: "images/avocado 2.jpg",
+      color: "Green",
+      farmer: "Nature's Basket"
     },
     "pawpaw": {
       name: "Pawpaw",
       price: 2550,
-      quantity: "1pc",
-      description: "Our ripe pawpaws are sweet, juicy, and packed with nutrients. They are rich in vitamins A and C and make a delicious snack or addition to any meal. Our pawpaws are grown using organic methods and are harvested at their peak ripeness.",
-      images: [
-        "./images/pawpaw 2.jpg",
-       "./images/pawpaw 2.jpg",
-        "./images/pawpaw 2.jpg"
-      ],
-      farmer: {
-        name: "Joseph Eze",
-        location: "Anambra, Anambra State",
-        avatar: "https://picsum.photos/seed/farmer17/200/200.jpg",
-        bio: "I've been farming pawpaws for over 15 years. My farm spans 8 acres and produces high-quality pawpaws throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality. I'm passionate about providing fresh, nutritious produce to my customers."
-      }
+      description: "Large ripe pawpaw ideal for desserts or smoothies. Naturally ripened on tree.",
+      image: "images/pawpaw 2.jpg",
+      color: "Yellow",
+      farmer: "Sweet Tropics"
     },
     "fresh-catfish": {
       name: "Fresh Catfish",
       price: 3000,
-      quantity: "3kg",
-      description: "Our fresh catfish is farmed using sustainable methods and is free from harmful chemicals. It's rich in protein and omega-3 fatty acids, making it a healthy protein source. Perfect for frying, steaming, or preparing in traditional Nigerian dishes.",
-      images: [
-        "./images/Catfish.jpg",
-        "./images/Catfish.jpg",
-"./images/Catfish.jpg"
-      ],
-      farmer: {
-        name: "Blessing Okoro",
-        location: "Delta, Delta State",
-        avatar: "https://picsum.photos/seed/farmer18/200/200.jpg",
-        bio: "I'm a catfish farmer with over 10 years of experience. My farm spans 5 acres with modern fish farming facilities. I focus on sustainable aquaculture practices and use natural methods to ensure the best quality fish. I'm passionate about providing healthy fish to my customers."
-      }
-    },
-    "frozen-fish": {
-      name: "Frozen Fish",
-      price: 2000,
-      quantity: "1kg",
-      description: "Our frozen fish is carefully selected and processed to maintain its quality. It's a convenient option for those who want to enjoy fish regularly. The fish is rich in protein and omega-3 fatty acids, making it a healthy protein source.",
-      images: [
-        "./images/Frozen fish.jpg",
-         "./images/Frozen fish.jpg",
-         "./images/Frozen fish.jpg"
-      ],
-      farmer: {
-        name: "Chinedu Eze",
-        location: "Lagos, Lagos State",
-        avatar: "https://picsum.photos/seed/farmer19/200/200.jpg",
-        bio: "I run a fish processing and distribution business. I source high-quality fish from reputable suppliers and process them using modern techniques to ensure maximum freshness and quality. I'm committed to providing safe and nutritious fish to Nigerian consumers."
-      }
-    },
-    "eggs": {
-      name: "Eggs",
-      price: 5500,
-      quantity: "1 crate",
-      description: "Our fresh eggs come from well-cared-for hens that are fed a balanced diet. They are rich in protein and essential nutrients. Our eggs are collected daily and packed in hygienic conditions to ensure freshness and quality.",
-      images: [
-        "./images/eggs.jpg",
-        "./images/eggs.jpg",
-       "./images/eggs.jpg"
-      ],
-      farmer: {
-        name: "Oliver Anyanwu",
-        location: "Abia, Abia State",
-        avatar: "https://picsum.photos/seed/farmer20/200/200.jpg",
-        bio: "I'm an egg farmer with over 8 years of experience. My farm follows humane practices and provides a balanced diet to ensure high-quality eggs. I focus on maintaining clean and comfortable conditions for my hens to produce the best eggs. I'm passionate about providing nutritious eggs to my customers."
-      }
+      description: "Locally raised catfish, cleaned and ready for preparation. Fresh, firm, and flavorful.",
+      image: "images/Catfish.jpg",
+      color: "Dark Grey",
+      farmer: "River Catch"
     },
     "live-chicken": {
       name: "Live Chicken",
       price: 10000,
-      quantity: "8kg",
-      description: "Our live chickens are raised in natural conditions and are free from harmful antibiotics. They are a healthy source of protein and make excellent meat for various dishes. Each chicken is carefully selected for quality and health.",
-      images: [
-        "./images/Live Chicken.webp",
-"./images/Live Chicken.webp",
-"./images/Live Chicken.webp"
-      ],
-      farmer: {
-        name: "Patricia Eze",
-        location: "Enugu, Enugu State",
-        avatar: "https://picsum.photos/seed/farmer21/200/200.jpg",
-        bio: "I'm a poultry farmer with over 12 years of experience. My farm follows humane practices and provides a balanced diet to ensure high-quality chickens. I focus on maintaining clean and comfortable conditions for my birds to ensure the best health. I'm passionate about providing healthy poultry products to my customers."
-      }
-    },
-    "frozen-chicken": {
-      name: "Frozen Chicken",
-      price: 6500,
-      quantity: "1kg",
-      description: "Our frozen chicken is carefully selected and processed to maintain its quality. It's a convenient option for those who want to enjoy chicken regularly. The chicken is rich in protein and essential nutrients, making it a healthy protein source.",
-      images: [
-        "./images/Frozen Chicken.webp",
-       "./images/Frozen Chicken.webp",
-        "./images/Frozen Chicken.webp"
-      ],
-      farmer: {
-        name: "Chinedu Nwachukwu",
-        location: "Lagos, Lagos State",
-        avatar: "https://picsum.photos/seed/farmer22/200/200.jpg",
-        bio: "I run a poultry processing and distribution business. I source high-quality chickens from reputable suppliers and process them using modern techniques to ensure maximum freshness and quality. I'm committed to providing safe and nutritious poultry products to Nigerian consumers."
-      }
+      description: "Healthy, free-range chicken. Delivered alive and fresh, suitable for traditional dishes.",
+      image: "images/Live Chicken.webp",
+      color: "White Feathers",
+      farmer: "Feather Farm"
     },
     "goat": {
       name: "Goat",
       price: 50000,
-      quantity: "20kg",
-      description: "Our goats are raised in natural conditions and are free from harmful antibiotics. They a healthy source of meat and make excellent meat for various dishes. Each goat is carefully selected for quality and health.",
-      images: [
-        "./images/goat.jpg",
-        "./images/goat.jpg",
- "./images/goat.jpg"
-      ],
-      farmer: {
-        name: "Fatima Mohammed",
-        location: "Kano, Kano State",
-        avatar: "https://picsum.photos/seed/farmer23/200/200.jpg",
-        bio: "I'm a livestock farmer with over 15 years of experience. My farm follows humane practices and provides a balanced diet to ensure high-quality goats. I focus on maintaining clean and comfortable conditions for my animals to ensure the best health. I'm passionate about providing healthy livestock products to my customers."
-      }
+      description: "Mature goat for meat, carefully raised and delivered clean. Flavorful and tender.",
+      image: "images/goat.jpg",
+      color: "Brown",
+      farmer: "Meatland"
     },
     "sheep": {
       name: "Sheep",
       price: 300000,
-      quantity: "50kg",
-      description: "Our sheep are raised in natural conditions and are free from harmful antibiotics. They are a healthy source of meat and wool. Each sheep is carefully selected for quality and health.",
-      images: [
-        "./images/sheep.jpg",
-         "./images/sheep.jpg",
-       "./images/sheep.jpg"
-      ],
-      farmer: {
-        name: "Bala Mohammed",
-        location: "Kaduna, Kaduna State",
-        avatar: "https://picsum.photos/seed/farmer24/200/200.jpg",
-        bio: "I'm a livestock farmer with over 20 years of experience. My farm follows humane practices and provides a balanced diet to ensure high-quality sheep. I focus on maintaining clean and comfortable conditions for my animals to ensure the best health. I'm passionate about providing healthy livestock products to my customers."
-      }
+      description: "Well-fed sheep perfect for meat lovers. Processed to the buyer's request.",
+      image: "images/sheep.jpg",
+      color: "White Wool",
+      farmer: "Northern Plains"
     },
     "ram": {
       name: "Ram",
       price: 420000,
-      quantity: "100kg",
-      description: "Our rams are raised in natural conditions and are free from harmful antibiotics. They are a healthy source of meat and are perfect for special occasions. Each ram is carefully selected for quality and health.",
-      images: [
-        "./images/ram.jpg",
-        "./images/ram.jpg",
-"./images/ram.jpg"
-      ],
-      farmer: {
-        name: "Usman Bello",
-        location: "Kebbi, Kebbi State",
-        avatar: "https://picsum.photos/seed/farmer25/200/200.jpg",
-        bio: "I'm a livestock farmer with over 25 years of experience. My farm follows humane practices and provides a balanced diet to ensure high-quality rams. I focus on maintaining clean and comfortable conditions for my animals to ensure the best health. I'm passionate about providing healthy livestock products to my customers."
-      }
+      description: "Ram for Eid or festive occasions. Big and healthy from traditional breeders.",
+      image: "images/ram.jpg",
+      color: "Mixed Brown",
+      farmer: "Ram Ranch"
     },
     "cattle": {
       name: "Cattle",
       price: 600000,
-      quantity: "400kg",
-      description: "Our cattle are raised in natural conditions and are free from harmful antibiotics. They are a healthy source of meat and dairy products. Each cattle is carefully selected for quality and health.",
-      images: [
-        "./images/cows.jpg",
-       "./images/cows.jpg",
-"./images/cows.jpg"
-      ],
-      farmer: {
-        name: "Adeyemi Adebayo",
-        location: "Oyo, Oyo State",
-        avatar: "https://picsum.photos/seed/farmer26/200/200.jpg",
-        bio: "I'm a livestock farmer with over 30 years of experience. My farm follows humane practices and provides a balanced diet to ensure high-quality cattle. I focus on maintaining clean and comfortable conditions for my animals to ensure the best health. I'm passionate about providing healthy livestock products to my customers."
-      }
+      description: "Large bull raised on open pasture. Ideal for ceremonies and bulk meat.",
+      image: "images/cows.jpg",
+      color: "Black & White",
+      farmer: "Zamfara Pastures"
+    },
+    "frozen-fish": {
+      name: "Frozen Fish",
+      price: 2000,
+      description: "Well-preserved frozen fish, cleaned and ready to cook. Great for soups and stews.",
+      image: "images/Frozen fish.jpg",
+      color: "Silver",
+      farmer: "Frozen Bay"
+    },
+    "frozen-chicken": {
+      name: "Frozen Chicken",
+      price: 6500,
+      description: "Cut and frozen chicken pieces. Farm-raised and well packed for long shelf life.",
+      image: "images/Frozen Chicken.webp",
+      color: "White",
+      farmer: "FarmCool"
+    },
+    "eggs": {
+      name: "Eggs",
+      price: 6500,
+      description: "Full crate of fresh eggs. Rich yolks, clean shells, no cracks. Daily delivery available.",
+      image: "images/eggs.jpg",
+      color: "White/Brown",
+      farmer: "Layer House"
     },
     "yam": {
       name: "Yam",
       price: 1500,
-      quantity: "1 tuber",
-      description: "Our yams are grown in fertile soil and are harvested at the perfect time to ensure optimal sweetness and texture. They are a staple food in many Nigerian households and can be prepared in various ways. Our yams are grown using sustainable farming practices.",
-      images: [
-        "./images/Yam tuber.webp",
-         "./images/Yam tuber.webp",
-          "./images/Yam tuber.webp"
-      ],
-      farmer: {
-        name: "Joseph Eze",
-        location: "Cross River, Cross River State",
-        avatar: "https://picsum.photos/seed/farmer27/200/200.jpg",
-        bio: "I'm a yam farmer with over 20 years of experience. My farm spans 15 acres and produces high-quality yams throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality. I'm passionate about providing nutritious produce to my customers."
-      }
+      description: "Big tubers of yam for pounding or boiling. No rot, hand-picked.",
+      image: "images/Yam tuber.webp",
+      color: "Brown skin",
+      farmer: "Yam Town"
     },
     "beans": {
       name: "Beans",
-      price: 150000,
-      quantity: "100kg",
-      description: "Our beans are grown in fertile soil and are harvested at the perfect time to ensure optimal quality. They are a staple food in many Nigerian households and are rich in protein and fiber. Our beans are grown using sustainable farming practices.",
-      images: [
-        "./images/bag of beans.jpeg",
-"./images/bag of beans.jpeg",
-"./images/bag of beans.jpeg"
-      ],
-      farmer: {
-        name: "Patricia Anyanwu",
-        location: "Benue, Benue State",
-        avatar: "https://picsum.photos/seed/farmer28/200/200.jpg",
-        bio: "I'm a beans farmer with over 25 years of experience. My farm spans 20 acres and produces high-quality beans throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality. I'm passionate about providing nutritious produce to my customers."
-      }
+      price: 60000,
+      description: "Clean bag of beans with no weevils. Sorted and packaged in 50kg bags.",
+      image: "images/bag of beans.jpeg",
+      color: "Light Brown",
+      farmer: "Grain Co-op"
     },
     "groundnuts": {
       name: "Groundnuts",
-      price: 90000,
-      quantity: "80kg",
-      description: "Our groundnuts are grown in fertile soil and are harvested at the perfect time to ensure optimal quality. They are a nutritious snack and can be used in various dishes. Our groundnuts are grown using sustainable farming practices.",
-      images: [
-        "./images/groundnut.jpg",
-        "./images/groundnut.jpg",
-        "./images/groundnut.jpg"
-      ],
-      farmer: {
-        name: "Oliver Eze",
-        location: "Kano, Kano State",
-        avatar: "https://picsum.photos/seed/farmer29/200/200.jpg",
-        bio: "I'm a groundnut farmer with over 20 years of experience. My farm spans 25 acres and produces high-quality groundnuts throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality. I'm passionate about providing nutritious produce to my customers."
-      }
+      price: 4500,
+      description: "Roasted and raw groundnuts available. Great snack or ingredient.",
+      image: "images/groundnut.jpg",
+      color: "Brown",
+      farmer: "Crunchy Fields"
     },
     "maize": {
       name: "Maize",
       price: 13000,
-      quantity: "50kg",
-      description: "Our maize is grown in fertile soil and is harvested at the perfect time to ensure optimal quality. It's a staple food in many Nigerian households and can be prepared in various ways. Our maize is grown using sustainable farming practices.",
-      images: [
-        "./images/maize.jpg",
-         "./images/maize.jpg",
- "./images/maize.jpg"
-      ],
-      farmer: {
-        name: "Chinedu Nwachukwu",
-        location: "Anambra, Anambra State",
-        avatar: "https://picsum.photos/seed/farmer30/200/200.jpg",
-        bio: "I'm a maize farmer with over 15 years of experience. My farm spans 30 acres and produces high-quality maize throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality. I'm passionate about providing nutritious produce to my customers."
-      }
+      description: "High-yield maize, dry and well packaged. Suitable for meals and feeds.",
+      image: "images/maize.jpg",
+      color: "Yellow",
+      farmer: "Golden Corn"
     },
     "cocoa": {
       name: "Cocoa",
       price: 17500,
-      quantity: "1kg",
-      description: "Our cocoa is grown in fertile soil and is harvested at the perfect time to ensure optimal quality. It's rich in antioxidants and can be used to make various products like chocolate, cocoa powder, and beverages. Our cocoa is grown using sustainable farming practices.",
-      images: [
-        "./images/cocoa.jpg",
-       "./images/cocoa.jpg",
-        "./images/cocoa.jpg"
-      ],
-      farmer: {
-        name: "Fatima Mohammed",
-        location: "Ondo, Ondo State",
-        avatar: "https://picsum.photos/seed/farmer31/200/200.jpg",
-        bio: "I'm a cocoa farmer with over 20 years of experience. My farm spans 15 acres and produces high-quality cocoa throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality. I'm passionate about providing nutritious produce to my customers."
-      }
+      description: "Processed cocoa beans ready for export or local use. Rich in flavor.",
+      image: "images/cocoa.jpg",
+      color: "Dark Brown",
+      farmer: "Cocoa Connect"
     },
     "rice": {
       name: "Rice",
       price: 84000,
-      quantity: "50kg",
-      description: "Our rice is grown in fertile soil and is harvested at the perfect time to ensure optimal quality. It's a staple food in many Nigerian households and can be prepared in various ways. Our rice is grown using sustainable farming practices.",
-      images: [
-        "./images/bag of rice.jpg",
-"./images/bag of rice.jpg",
-"./images/bag of rice.jpg"
-      ],
-      farmer: {
-        name: "Joseph Eze",
-        location: "Delta, Delta State",
-        avatar: "https://picsum.photos/seed/farmer32/200/200.jpg",
-        bio: "I'm a rice farmer with over 25 years of experience. My farm spans 40 acres and produces high-quality rice throughout the year. I focus on sustainable farming practices and use natural methods to ensure the best yield and quality. I'm passionate about providing nutritious produce to my customers."
-      }
+      description: "50kg bag of stone-free rice. Locally processed and neatly packed.",
+      image: "images/bag of rice.jpg",
+      color: "White",
+      farmer: "Rice Mill NG"
     }
+  
   };
 
-  // Default product if none is specified
-   // Get the product from URL parameter
+  // Get product from URL parameter
   const urlParams = new URLSearchParams(window.location.search);
-  const productSlug = urlParams.get('product') || 'fresh-tomatoes'; // default to first product if none specified
+  const productSlug = urlParams.get('product');
   
-  // Get product data
-  const product = productData[productSlug] || defaultProduct;
+  // Load product data
+  const product = products[productSlug];
   
-  // Populate product details
-  document.getElementById('productName').textContent = product.name;
-  document.getElementById('productPrice').textContent = `₦${product.price.toLocaleString()}`;
-  document.getElementById('productQuantity').textContent = product.quantity;
-  document.getElementById('productDescription').textContent = product.description;
-  
-  // Set farmer information
-  document.getElementById('farmerName').textContent = product.farmer.name;
-  document.getElementById('farmerLocation').textContent = product.farmer.location;
-  document.getElementById('farmerBio').textContent = product.farmer.bio;
-  document.getElementById('farmerAvatar').src = product.farmer.avatar;
-  
-  // Set product images
-  document.getElementById('mainProductImage').src = product.images[0];
-  document.getElementById('thumbnail1').src = product.images[0];
-  document.getElementById('thumbnail2').src = product.images[1] || product.images[0];
-  document.getElementById('thumbnail3').src = product.images[2] || product.images[0];
-  
-  // Tab functionality
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
-  
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Remove active class from all buttons and contents
-      tabButtons.forEach(btn => {
-        btn.classList.remove('text-green-700', 'border-b-2', 'border-green-700');
-        btn.classList.add('text-gray-500');
-      });
-      tabContents.forEach(content => {
-        content.classList.remove('active');
-      });
-      
-      // Add active class to clicked button and corresponding content
-      button.classList.add('text-green-700', 'border-b-2', 'border-green-700');
-      button.classList.remove('text-gray-500');
-      const tabId = button.getAttribute('data-tab');
-      document.getElementById(tabId).classList.add('active');
-    });
-  });
-  
-  // Image thumbnail functionality
-  const thumbnails = document.querySelectorAll('.image-thumbnail');
-  const mainImage = document.getElementById('mainProductImage');
-  
-  thumbnails.forEach(thumbnail => {
-    thumbnail.addEventListener('click', () => {
-      // Update main image
-      mainImage.src = thumbnail.querySelector('img').src;
-      
-      // Update active thumbnail
-      thumbnails.forEach(thumb => {
-        thumb.classList.remove('border-2', 'border-green-500');
-      });
-      thumbnail.classList.add('border-2', 'border-green-500');
-    });
-  });
-  
+  if (product) {
+    // Populate product details
+    document.getElementById('productName').textContent = product.name;
+    document.getElementById('productDescription').textContent = product.description;
+    document.getElementById('productColor').textContent = product.color;
+    document.getElementById('farmerLink').textContent = `Chat ${product.farmer}`;
+    document.getElementById('productPrice').textContent = `₦ ${product.price.toLocaleString()}`;
+    document.getElementById('productImage').src = product.image;
+  } else {
+    // Product not found, redirect or show error
+    window.location.href = 'index.html';
+  }
+
   // Quantity functionality
-  const quantityInput = document.getElementById('quantity');
-  const decreaseBtn = document.getElementById('decreaseQuantity');
-  const increaseBtn = document.getElementById('increaseQuantity');
-  
+  let quantity = 1;
+  const quantityDisplay = document.getElementById('quantityDisplay');
+  const priceDisplay = document.getElementById('productPrice');
+  const decreaseBtn = document.getElementById('decreaseQty');
+  const increaseBtn = document.getElementById('increaseQty');
+
+  function updateQuantity() {
+    quantityDisplay.textContent = quantity;
+    if (product) {
+      const totalPrice = quantity * product.price;
+      priceDisplay.textContent = `₦ ${totalPrice.toLocaleString()}`;
+    }
+  }
+
   decreaseBtn.addEventListener('click', () => {
-    const currentValue = parseInt(quantityInput.value);
-    if (currentValue > 1) {
-      quantityInput.value = currentValue - 1;
+    if (quantity > 1) {
+      quantity--;
+      updateQuantity();
     }
   });
-  
+
   increaseBtn.addEventListener('click', () => {
-    const currentValue = parseInt(quantityInput.value);
-    quantityInput.value = currentValue + 1;
+    quantity++;
+    updateQuantity();
   });
-  
-  // Add to cart functionality
-  const addToCartBtn = document.getElementById('addToCartBtn');
+
+  // Measure buttons functionality
+  const measureButtons = document.querySelectorAll('.measure-btn');
+  let selectedMeasure = 'drum'; // Default selection
+
+  measureButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      measureButtons.forEach(btn => {
+        btn.classList.remove('bg-green-700', 'text-white');
+        btn.classList.add('bg-gray-200', 'text-gray-800');
+      });
+      button.classList.remove('bg-gray-200', 'text-gray-800');
+      button.classList.add('bg-green-700', 'text-white');
+      selectedMeasure = button.dataset.measure;
+    });
+  });
+
+  // Initialize with Drum selected
+  document.querySelector('.measure-btn[data-measure="drum"]').classList.add('bg-green-700', 'text-white');
+
+  // Buy Now functionality
+  const buyNowBtn = document.getElementById('buyNowBtn');
   const toast = document.getElementById('toast');
   const toastMessage = document.getElementById('toastMessage');
-  
-  addToCartBtn.addEventListener('click', () => {
-    const quantity = parseInt(quantityInput.value);
-    toastMessage.textContent = `Added ${quantity} ${product.name} to cart!`;
+
+  buyNowBtn.addEventListener('click', () => {
+    if (!product) return;
     
-    // Show toast
-    toast.classList.remove('translate-y-20', 'opacity-0');
+    // Create a form to submit the data
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'checkout/shop.html';
     
-    // Hide toast after 3 seconds
-    setTimeout(() => {
-      toast.classList.add('translate-y-20', 'opacity-0');
-    }, 3000);
-  });
-  
-  // Favorite button functionality
-  const favBtn = document.querySelector('.fav-btn');
-  const favIcon = favBtn.querySelector('i');
-  
-  favBtn.addEventListener('click', () => {
-    if (favIcon.classList.contains('fi-rr-heart')) {
-      favIcon.classList.remove('fi-rr-heart');
-      favIcon.classList.add('fi-sr-heart');
-    } else {
-      favIcon.classList.remove('fi-sr-heart');
-      favIcon.classList.add('fi-rr-heart');
-    }
+    // Add product data as hidden inputs
+    const addHiddenInput = (name, value) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      input.value = value;
+      form.appendChild(input);
+    };
+    
+    addHiddenInput('productName', product.name);
+    addHiddenInput('productPrice', product.price);
+    addHiddenInput('quantity', quantity);
+    addHiddenInput('measure', selectedMeasure);
+    addHiddenInput('totalPrice', quantity * product.price);
+    addHiddenInput('productImage', product.image);
+    
+    // Add the form to the body and submit it
+    document.body.appendChild(form);
+    form.submit();
+    
+    // Optional: Show toast notification before redirect
+    toastMessage.textContent = `Processing your order...`;
+    toast.classList.remove('hidden', 'translate-y-20', 'opacity-0');
+    toast.classList.add('flex');
   });
 </script>
 </body>
