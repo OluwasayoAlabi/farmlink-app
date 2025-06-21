@@ -418,39 +418,29 @@
   const buyNowBtn = document.getElementById('buyNowBtn');
   const toast = document.getElementById('toast');
   const toastMessage = document.getElementById('toastMessage');
-
-  buyNowBtn.addEventListener('click', () => {
-    if (!product) return;
-    
-    // Create a form to submit the data
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = './checkout/shop.html';
-    
-    // Add product data as hidden inputs
-    const addHiddenInput = (name, value) => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = name;
-      input.value = value;
-      form.appendChild(input);
-    };
-    
-    addHiddenInput('productName', product.name);
-    addHiddenInput('productPrice', product.price);
-    addHiddenInput('quantity', quantity);
-    addHiddenInput('measure', selectedMeasure);
-    addHiddenInput('totalPrice', quantity * product.price);
-    addHiddenInput('productImage', product.image);
-    
-    // Add the form to the body and submit it
-    document.body.appendChild(form);
-    form.submit();
-    
-    // Optional: Show toast notification before redirect
-    toastMessage.textContent = `Processing your order...`;
-    toast.classList.remove('hidden', 'translate-y-20', 'opacity-0');
-    toast.classList.add('flex');
+buyNowBtn.addEventListener('click', (e) => {
+  e.preventDefault(); // Prevent default behavior
+  
+  if (!product) return;
+  
+  // Create URL parameters
+  const params = new URLSearchParams();
+  params.append('productName', product.name);
+  params.append('productPrice', product.price);
+  params.append('quantity', quantity);
+  params.append('measure', selectedMeasure);
+  params.append('totalPrice', quantity * product.price);
+  params.append('productImage', product.image);
+  
+  // Show processing message
+  toastMessage.textContent = 'Redirecting to checkout...';
+  toast.classList.remove('hidden', 'translate-y-20', 'opacity-0');
+  toast.classList.add('flex');
+  
+  // Redirect after a brief delay to show the toast
+  setTimeout(() => {
+    window.location.href = `checkout/shop.html?${params.toString()}`;
+  }, 1000);
   });
 </script>
 </body>
