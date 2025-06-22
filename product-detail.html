@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <style>
+    .animate-fadeIn {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 animate-fadeIn">
+
+
+<div class="max-w-lg mx-auto p-4">
+  <!-- Back Button -->
+  <div class="flex items-center mb-4">
+    <a href="index.html" class="text-black text-xl">
+      <i class="fi fi-rr-arrow-left">Product Details</i>
+    </a>
+    <h1 class="ml-3 text-lg font-semibold"></h1>
+  </div>
+
+  <!-- Product Image Carousel -->
+  <div class="relative mb-4">
+    <img id="productImage" src="" alt="Product Image" class="rounded w-full h-56 object-cover" />
+    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+      <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+      <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+      <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+    </div>
+  </div>
+
+  <!-- Product Info -->
+  <h2 id="productName" class="text-xl font-bold mb-2"></h2>
+
+  <h3 class="text-gray-500 font-semibold mb-1">Description</h3>
+  <p id="productDescription" class="text-sm mb-4 leading-relaxed"></p>
+  <ul id="productFeatures" class="list-disc pl-5 mt-2 text-sm">
+    <li>No Preservatives</li>
+    <li>Naturally Ripened</li>
+    <li>Hand-harvested and farm-direct</li>
+  </ul>
+
+  <!-- Colour Info -->
+  <p class="text-sm font-medium mb-3">Colour: <span id="productColor" class="text-gray-700"></span></p>
+
+  <!-- Measurement -->
+  <p class="text-sm font-medium mb-2">Measure:</p>
+  <div class="flex gap-2 mb-4" id="measureButtons">
+    <button class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm measure-btn" data-measure="cup">Cup</button>
+    <button class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm measure-btn" data-measure="drum">Drum</button>
+    <button class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm measure-btn" data-measure="barrel">Barrel</button>
+  </div>
+
+  <!-- Quantity Selector -->
+  <p class="text-sm font-medium mb-2">Quantity</p>
+  <div class="flex items-center mb-4">
+    <button id="decreaseQty" class="bg-gray-200 w-8 h-8 rounded text-lg">-</button>
+    <span id="quantityDisplay" class="mx-4">1</span>
+    <button id="increaseQty" class="bg-gray-200 w-8 h-8 rounded text-lg">+</button>
+  </div>
+
+  <!-- Links -->
+  <div class="flex justify-between mb-4 text-sm text-blue-600">
+    <a href="#" id="farmerLink">Chat Distributor</a>
+    <a href="#">See reviews</a>
+  </div>
+
+  <!-- Price & Buy Button -->
+  <div class="flex justify-between items-center">
+    <p class="text-lg font-semibold">Price <br><span id="productPrice" class="text-black text-xl font-bold"></span></p>
+    <button id="buyNowBtn" class="bg-yellow-500 text-white px-6 py-3 rounded text-sm font-bold">Buy Now</button>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-md shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center hidden">
+  <i class="fi fi-rr-check-circle mr-2"></i>
+  <span id="toastMessage">Product added to cart!</span>
+</div>
+
+<script>
+  const products = {
+    "fresh-tomatoes": {
+      name: "Fresh Tomatoes",
+      price: 2000,
+      description: "Freshly harvested tomatoes ideal for sauces and stews. Hand-picked from local farms with no preservatives.",
+      image: "images/Tomatoes 1.webp",
+      color: "Bright Red",
+      farmer: "Green Farm"
+    },
+    "fresh-vegetables": {
+      name: "Fresh Vegetables",
+      price: 2500,
+      description: "A mix of leafy and nutritious vegetables. Grown without synthetic fertilizers and great for daily meals.",
+      image: "images/leafy-vegetables.webp",
+      color: "Green Mix",
+      farmer: "Sunshine Farms"
+    },
+    "onions": {
+      name: "Onions",
+      price: 5000,
+      description: "Pungent and fresh onions harvested for flavor-rich dishes. Suitable for stews, fries, and raw use.",
+      image: "images/Onions 2.webp",
+      color: "Golden Brown",
+      farmer: "Hausa Fields"
+    },
+    "okra": {
+      name: "Okra",
+      price: 2000,
+      description: "Slimy and green okra ideal for soups and stews. Freshly handpicked with high nutrient content.",
+      image: "images/okra 2.jpg",
+      color: "Green",
+      farmer: "Organic Valley"
+    },
+    "garden-eggs": {
+      name: "Garden Eggs",
+      price: 3000,
+      description: "Tasty garden eggs excellent for traditional recipes or eaten raw. No pesticides used.",
+      image: "images/garden eggs.jpg",
+      color: "White & Green",
+      farmer: "Ebony Greens"
+    },
+    "peppers": {
+      name: "Peppers",
+      price: 2000,
+      description: "Spicy and flavorful peppers. Adds heat and taste to your meals. Farm-fresh and sun-ripened.",
+      image: "images/pepper.jpg",
+      color: "Red & Green",
+      farmer: "Heat Roots"
+    },
+    "plaintains": {
+      name: "Plaintains",
+      price: 2000,
+      description: "Rich and ripe plantains perfect for frying, boiling, or roasting. Fresh from the local farm.",
+      image: "images/plaintains.webp",
+      color: "Golden Yellow",
+      farmer: "Tropical Acres"
+    },
+    "cucumbers": {
+      name: "Cucumbers",
+      price: 1500,
+      description: "Cool, crunchy cucumbers for salads and snacks. Hydrating and grown pesticide-free.",
+      image: "images/cucumber 2.webp",
+      color: "Fresh Green",
+      farmer: "Aqua Growers"
+    },
+    "apples": {
+      name: "Apples",
+      price: 200,
+      description: "Sourced from our trusted farmers, this Apples is fresh and carefully handled to ensure maximum quality. Ideal for a variety of traditional and modern dishes. Naturally grown, with no preservatives. Rich in flavor and nutrients.",
+      image: "images/Apples.webp",
+      color: "Red or Green",
+      farmer: "Hilltop Orchards"
+    },
+    "bananas": {
+      name: "Bananas",
+      price: 600,
+      description: "Sweet and ripe bananas perfect as a snack or for baking. Farm-harvested and naturally ripened.",
+      image: "images/Bananas 3.webp",
+      color: "Yellow",
+      farmer: "Golden Peel Farms"
+    },
+    "cherry-agbalumo": {
+      name: "Cherry/Agbalumo",
+      price: 100,
+      description: "Seasonal cherry (Agbalumo) rich in vitamin C. A nostalgic fruit with tangy sweetness.",
+      image: "images/Agbalumo.webp",
+      color: "Orange",
+      farmer: "Tradition Roots"
+    },
+    "oranges": {
+      name: "Oranges",
+      price: 500,
+      description: "Juicy, sun-grown oranges perfect for juicing or snacking. Packed with vitamin C.",
+      image: "images/oranges.jpg",
+      color: "Orange",
+      farmer: "Sun Grove"
+    },
+    "watermelons": {
+      name: "Watermelons",
+      price: 2000,
+      description: "Large and juicy watermelon grown on rich Nigerian soil. Naturally sweet and hydrating.",
+      image: "images/watermelons.jpg",
+      color: "Green outside, Red inside",
+      farmer: "Cool Farm"
+    },
+    "mangoes": {
+      name: "Mangoes",
+      price: 800,
+      description: "Sweet and ripe mangoes for smoothies, eating raw, or desserts. Seasonal and rich in flavor.",
+      image: "images/mangoes.webp",
+      color: "Yellow-Orange",
+      farmer: "Savannah Farms"
+    },
+    "pineapples": {
+      name: "Pineapples",
+      price: 1500,
+      description: "Tangy and sweet pineapples, hand-picked and well-trimmed. Perfect for juice or raw use.",
+      image: "images/pineapple.webp",
+      color: "Yellow inside, Green outside",
+      farmer: "Island Produce"
+    },
+    "avocados": {
+      name: "Avocados",
+      price: 2000,
+      description: "Creamy and healthy avocados. A great source of healthy fats, perfect for salads and spreads.",
+      image: "images/avocado 2.jpg",
+      color: "Green",
+      farmer: "Nature's Basket"
+    },
+    "pawpaw": {
+      name: "Pawpaw",
+      price: 2550,
+      description: "Large ripe pawpaw ideal for desserts or smoothies. Naturally ripened on tree.",
+      image: "images/pawpaw 2.jpg",
+      color: "Yellow",
+      farmer: "Sweet Tropics"
+    },
+    "fresh-catfish": {
+      name: "Fresh Catfish",
+      price: 3000,
+      description: "Locally raised catfish, cleaned and ready for preparation. Fresh, firm, and flavorful.",
+      image: "images/Catfish.jpg",
+      color: "Dark Grey",
+      farmer: "River Catch"
+    },
+    "live-chicken": {
+      name: "Live Chicken",
+      price: 10000,
+      description: "Healthy, free-range chicken. Delivered alive and fresh, suitable for traditional dishes.",
+      image: "images/Live Chicken.webp",
+      color: "White Feathers",
+      farmer: "Feather Farm"
+    },
+    "goat": {
+      name: "Goat",
+      price: 50000,
+      description: "Mature goat for meat, carefully raised and delivered clean. Flavorful and tender.",
+      image: "images/goat.jpg",
+      color: "Brown",
+      farmer: "Meatland"
+    },
+    "sheep": {
+      name: "Sheep",
+      price: 300000,
+      description: "Well-fed sheep perfect for meat lovers. Processed to the buyer's request.",
+      image: "images/sheep.jpg",
+      color: "White Wool",
+      farmer: "Northern Plains"
+    },
+    "ram": {
+      name: "Ram",
+      price: 420000,
+      description: "Ram for Eid or festive occasions. Big and healthy from traditional breeders.",
+      image: "images/ram.jpg",
+      color: "Mixed Brown",
+      farmer: "Ram Ranch"
+    },
+    "cattle": {
+      name: "Cattle",
+      price: 600000,
+      description: "Large bull raised on open pasture. Ideal for ceremonies and bulk meat.",
+      image: "images/cows.jpg",
+      color: "Black & White",
+      farmer: "Zamfara Pastures"
+    },
+    "frozen-fish": {
+      name: "Frozen Fish",
+      price: 2000,
+      description: "Well-preserved frozen fish, cleaned and ready to cook. Great for soups and stews.",
+      image: "images/Frozen fish.jpg",
+      color: "Silver",
+      farmer: "Frozen Bay"
+    },
+    "frozen-chicken": {
+      name: "Frozen Chicken",
+      price: 6500,
+      description: "Cut and frozen chicken pieces. Farm-raised and well packed for long shelf life.",
+      image: "images/Frozen Chicken.webp",
+      color: "White",
+      farmer: "FarmCool"
+    },
+    "eggs": {
+      name: "Eggs",
+      price: 6500,
+      description: "Full crate of fresh eggs. Rich yolks, clean shells, no cracks. Daily delivery available.",
+      image: "images/eggs.jpg",
+      color: "White/Brown",
+      farmer: "Layer House"
+    },
+    "yam": {
+      name: "Yam",
+      price: 1500,
+      description: "Big tubers of yam for pounding or boiling. No rot, hand-picked.",
+      image: "images/Yam tuber.webp",
+      color: "Brown skin",
+      farmer: "Yam Town"
+    },
+    "beans": {
+      name: "Beans",
+      price: 60000,
+      description: "Clean bag of beans with no weevils. Sorted and packaged in 50kg bags.",
+      image: "images/bag of beans.jpeg",
+      color: "Light Brown",
+      farmer: "Grain Co-op"
+    },
+    "groundnuts": {
+      name: "Groundnuts",
+      price: 4500,
+      description: "Roasted and raw groundnuts available. Great snack or ingredient.",
+      image: "images/groundnut.jpg",
+      color: "Brown",
+      farmer: "Crunchy Fields"
+    },
+    "maize": {
+      name: "Maize",
+      price: 13000,
+      description: "High-yield maize, dry and well packaged. Suitable for meals and feeds.",
+      image: "images/maize.jpg",
+      color: "Yellow",
+      farmer: "Golden Corn"
+    },
+    "cocoa": {
+      name: "Cocoa",
+      price: 17500,
+      description: "Processed cocoa beans ready for export or local use. Rich in flavor.",
+      image: "images/cocoa.jpg",
+      color: "Dark Brown",
+      farmer: "Cocoa Connect"
+    },
+    "rice": {
+      name: "Rice",
+      price: 84000,
+      description: "50kg bag of stone-free rice. Locally processed and neatly packed.",
+      image: "images/bag of rice.jpg",
+      color: "White",
+      farmer: "Rice Mill NG"
+    }
+  
+  };
+
+  // Get product from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const productSlug = urlParams.get('product');
+  
+  // Load product data
+  const product = products[productSlug];
+  
+  if (product) {
+    // Populate product details
+    document.getElementById('productName').textContent = product.name;
+    document.getElementById('productDescription').textContent = product.description;
+    document.getElementById('productColor').textContent = product.color;
+    document.getElementById('farmerLink').textContent = `Chat ${product.farmer}`;
+    document.getElementById('productPrice').textContent = `₦ ${product.price.toLocaleString()}`;
+    document.getElementById('productImage').src = product.image;
+  } else {
+    // Product not found, redirect or show error
+    window.location.href = 'index.html';
+  }
+
+  // Quantity functionality
+  let quantity = 1;
+  const quantityDisplay = document.getElementById('quantityDisplay');
+  const priceDisplay = document.getElementById('productPrice');
+  const decreaseBtn = document.getElementById('decreaseQty');
+  const increaseBtn = document.getElementById('increaseQty');
+
+  function updateQuantity() {
+    quantityDisplay.textContent = quantity;
+    if (product) {
+      const totalPrice = quantity * product.price;
+      priceDisplay.textContent = `₦ ${totalPrice.toLocaleString()}`;
+    }
+  }
+
+  decreaseBtn.addEventListener('click', () => {
+    if (quantity > 1) {
+      quantity--;
+      updateQuantity();
+    }
+  });
+
+  increaseBtn.addEventListener('click', () => {
+    quantity++;
+    updateQuantity();
+  });
+
+  // Measure buttons functionality
+  const measureButtons = document.querySelectorAll('.measure-btn');
+  let selectedMeasure = 'drum'; // Default selection
+
+  measureButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      measureButtons.forEach(btn => {
+        btn.classList.remove('bg-green-700', 'text-white');
+        btn.classList.add('bg-gray-200', 'text-gray-800');
+      });
+      button.classList.remove('bg-gray-200', 'text-gray-800');
+      button.classList.add('bg-green-700', 'text-white');
+      selectedMeasure = button.dataset.measure;
+    });
+  });
+
+  // Initialize with Drum selected
+  document.querySelector('.measure-btn[data-measure="drum"]').classList.add('bg-green-700', 'text-white');
+
+  // Buy Now functionality
+  const buyNowBtn = document.getElementById('buyNowBtn');
+  const toast = document.getElementById('toast');
+  const toastMessage = document.getElementById('toastMessage');
+buyNowBtn.addEventListener('click', (e) => {
+  e.preventDefault(); // Prevent default behavior
+  
+  if (!product) return;
+  
+  // Create URL parameters
+  const params = new URLSearchParams();
+  params.append('productName', product.name);
+  params.append('productPrice', product.price);
+  params.append('quantity', quantity);
+  params.append('measure', selectedMeasure);
+  params.append('totalPrice', quantity * product.price);
+  params.append('productImage', product.image);
+  
+  // Show processing message
+  toastMessage.textContent = 'Redirecting to checkout...';
+  toast.classList.remove('hidden', 'translate-y-20', 'opacity-0');
+  toast.classList.add('flex');
+  
+  // Redirect after a brief delay to show the toast
+  setTimeout(() => {
+    window.location.href = `checkout/shop.html?${params.toString()}`;
+  }, 1000);
+  });
+</script>
+</body>
+</html>

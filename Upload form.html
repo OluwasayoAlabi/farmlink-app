@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white min-h-screen flex flex-col">
+
+  <!-- ✅ Navbar -->
+  <header class="bg-green-700 text-white px-4 py-4">
+    <div class="flex justify-between items-center max-w-6xl mx-auto">
+      <h1 class="text-xl font-bold">FarmLink</h1>
+      <nav class="hidden md:flex space-x-4 font-medium">
+        <a href="Select role.html" class="hover:text-yellow-300">Sign In</a>
+        <a href="products.html" class="hover:text-yellow-300">Products</a>
+        <a href="upload-product.html" class="hover:text-yellow-300">Upload</a>
+        <a href="search.html" class="hover:text-yellow-300">Search</a>
+        <a href="shop.html" class="hover:text-yellow-300">Cart</a>
+      </nav>
+      <button id="mobileMenuBtn" class="md:hidden">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden mt-2 space-y-2 px-4">
+      <a href="Select role.html" class="block text-white hover:text-yellow-300">Sign In</a>
+      <a href="products.html" class="block text-white hover:text-yellow-300">Products</a>
+      <a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a>
+      <a href="search.html" class="block text-white hover:text-yellow-300">Search</a>
+      <a href="shop.html" class="block text-white hover:text-yellow-300">Cart</a>
+    </div>
+  </header>
+
+  <!-- ✅ Upload Form -->
+  <main class="flex-grow px-4 py-8 max-w-lg mx-auto">
+    <!-- Back Button -->
+    <button onclick="history.back()" class="mb-6 p-2 hover:bg-gray-50 rounded-full transition">
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19l-7-7 7-7" />
+        <path d="M19 12H5" />
+      </svg>
+    </button>
+
+    <!-- Heading -->
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Upload Profile</h2>
+
+    <!-- Profile Upload Circle -->
+    <div class="mb-6 text-center">
+      <div class="relative w-32 h-32 mx-auto mb-4">
+        <div class="bg-pink-100 w-full h-full rounded-full flex items-center justify-center overflow-hidden relative">
+          <img id="profileImage" class="hidden w-full h-full object-cover" />
+          <div id="defaultIcon" class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+        </div>
+        <input type="file" id="imageUpload" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" />
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form id="uploadForm" class="space-y-5">
+      <input type="text" id="fullName" required placeholder="Full Name" class="w-full px-4 py-3 bg-pink-100 rounded-xl text-gray-800 placeholder-gray-500 font-semibold focus:outline-none focus:ring-2 focus:ring-green-600"/>
+
+      <input type="tel" id="phoneNumber" required placeholder="Phone Number" class="w-full px-4 py-3 bg-pink-100 rounded-xl text-gray-800 placeholder-gray-500 font-semibold focus:outline-none focus:ring-2 focus:ring-green-600"/>
+
+      <input type="text" id="location" required placeholder="Location" class="w-full px-4 py-3 bg-pink-100 rounded-xl text-gray-800 placeholder-gray-500 font-semibold focus:outline-none focus:ring-2 focus:ring-green-600"/>
+
+      <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl text-lg font-semibold transition shadow-lg">
+        Next
+      </button>
+    </form>
+  </main>
+
+  <!-- ✅ Footer -->
+  <footer class="text-center py-4">
+    <div class="w-20 h-1 bg-gray-800 rounded-full mx-auto"></div>
+  </footer>
+
+  <!-- ✅ JavaScript -->
+  <script>
+    document.getElementById("mobileMenuBtn").addEventListener("click", function () {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    });
+
+    document.getElementById("imageUpload").addEventListener("change", function (e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          document.getElementById("profileImage").src = event.target.result;
+          document.getElementById("profileImage").classList.remove("hidden");
+          document.getElementById("defaultIcon").classList.add("hidden");
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById("uploadForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+<<<<<<< HEAD
+      window.location.href = 'buyersdashboard.html';
+=======
+      window.location.href = 'dashboard/buyers.html';
+>>>>>>> 500609828e421f6617acc967ea779830222835d7
+    });
+  </script>
+</body>
+</html>

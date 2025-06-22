@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buyer's Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.css" rel="stylesheet">
+  <script defer src="buyers.js"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Top Navigation Bar -->
+  <nav class="bg-green-700 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center">
+        <button id="sidebar-toggle" class="mr-4 md:hidden">
+          <i class="uil uil-bars text-xl"></i>
+        </button>
+        <h1 class="text-xl font-bold">FarmLink</h1>
+      </div>
+      <div class="hidden md:flex space-x-4">
+        <a href="#" class="px-3 py-2 rounded hover:bg-green-600">Home</a>
+        <a href="/index.html" class="px-3 py-2 rounded hover:bg-green-600">Products</a>
+        <a href="/upload-product.html" class="px-3 py-2 rounded hover:bg-green-600">Upload</a>
+        <a href="/search and filter.html" class="px-3 py-2 rounded hover:bg-green-600">Search</a>
+        <a href="/cart.html" class="px-3 py-2 rounded hover:bg-green-600">Cart</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 pt-16">
+    <div class="p-4 space-y-2">
+      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
+        <i class="uil uil-estate text-xl"></i>
+        <span>Home</span>
+      </button>
+      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
+        <i class="uil uil-search text-xl"></i>
+        <span>Explore</span>
+      </button>
+      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
+        <i class="uil uil-comment-alt-dots text-xl"></i>
+        <span>Chat</span>
+      </button>
+      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
+        <i class="uil uil-user text-xl"></i>
+        <span>Profile</span>
+      </button>
+      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 text-green-700">
+        <i class="uil uil-setting text-xl"></i>
+        <span>Settings</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
+
+<!-- Main Content -->
+<div class="md:ml-64 transition-all duration-300 pt-16">
+  <!-- Header Section -->
+  <header class="sticky top-0 flex items-center justify-between px-4 py-3 text-black z-50 bg-white shadow-md">
+    <div>
+      <h2 class="text-lg font-semibold">Hello, Emily!</h2> 
+    </div>
+  
+    <!-- Cart Icon -->
+    <div class="flex items-center gap-4">
+      <button class="border-gray-200 text-green-700 bg-white hover:text-green-500 transition">
+        <i class="uil uil-shopping-cart text-2xl"></i>
+      </button>
+
+      <!-- Bell Icon -->
+      <button class="text-yellow-600 bg-white hover:text-green-600 transition">
+        <i class="uil uil-bell text-2xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Search Section -->
+  <div class="flex items-center gap-3 px-4 py-3">
+    <div class="relative w-full max-w-md mx-auto">
+      <input
+        type="text" id="product-search" placeholder="Search for products or categories..." 
+        class="w-full pl-10 pr-8 py-2 border border-black rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500"
+      />
+
+      <!-- Category Dropdown -->
+      <div id="category-dropdown" class="absolute top-full left-0 right-0 bg-white shadow-lg rounded mt-1 border hidden z-10">
+        <div class="category-option px-4 py-2 hover:bg-gray-100 cursor-pointer" data-category="all">All</div>
+        <div class="category-option px-4 py-2 hover:bg-gray-100 cursor-pointer" data-category="fruits">Fruits</div>
+        <div class="category-option px-4 py-2 hover:bg-gray-100 cursor-pointer" data-category="vegetables">Vegetables</div>
+        <div class="category-option px-4 py-2 hover:bg-gray-100 cursor-pointer" data-category="crops">Crops</div>
+        <div class="category-option px-4 py-2 hover:bg-gray-100 cursor-pointer" data-category="animal-products">Animal Products</div>
+        <div class="category-option px-4 py-2 hover:bg-gray-100 cursor-pointer" data-category="livestock">Livestock</div>
+        <div class="category-option px-4 py-2 hover:bg-gray-100 cursor-pointer" data-category="bags">Bags / Bigger Quantities</div>
+      </div>
+      
+      <!-- Search Icon (now using Unicons) -->
+      <div class="absolute right-3.5 top-2.5 text-gray-500">
+        <i class="uil uil-search text-lg"></i>
+      </div>
+    </div>
+  
+    <!-- Filter Icon (now using Unicons) -->
+    <div class="p-2 bg-gray-100 border text-black border-black rounded-md cursor-pointer hover:bg-gray-300">
+      <i class="uil uil-bars text-lg"></i>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 py-4 container">
+    <div class="overflow-x-auto whitespace-nowrap px-4 py-2 space-x-3 flex">
+      <button class="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm">Fruits</button>
+      <button class="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm">Vegetables</button>
+      <button class="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm">Animal Products</button>
+      <button class="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm">Livestock</button>
+      <button class="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm">Crops</button>
+      <button class="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm">Bags/Bigger Quantities</button>
+    </div>
+
+    <section>
+      <h3 class="text-lg font-semibold my-8">Recommended for you</h3>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="bg-white shadow rounded overflow-hidden product hover:shadow-lg transition" data-category="vegetables" data-name="Tomatoes">
+          <img src="/images/Tomatoes 1.webp" class="h-32 w-full object-cover" alt="Tomatoes" />
+          <div class="p-2">
+            <h4 class="font-semibold text-sm">Fresh Ripe Organic Tomatoes</h4>
+            <p class="text-green-700 font-bold text-sm">₦2,000</p>
+            <p class="text-xs font-bold text-black">20pcs</p>
+            <button class="mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded overflow-hidden product" data-category="fruits" data-name="Oranges">
+          <img src="/images/oranges.jpg" class="h-32 w-full object-cover" alt="Oranges" />
+          <div class="p-2">
+            <h4 class="font-semibold text-sm">Fresh Ripe Organic Oranges</h4>
+            <p class="text-green-700 font-bold text-sm">₦500</p>
+            <p class="text-xs font-bold text-black">2pcs</p>
+            <button class="mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded overflow-hidden product" data-category="vegetables" data-name="Okra">
+          <img src="/images/okra 2.jpg" class="h-32 w-full object-cover" alt="Okra"/>
+          <div class="p-2">
+            <h4 class="font-semibold text-sm">Fresh Ripe Okra</h4>
+            <p class="text-green-700 font-bold text-sm">₦2,000</p>
+            <p class="text-xs font-bold text-black">20pcs</p>
+            <button class="mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded overflow-hidden product" data-category="livestock" data-name="Live Chicken">
+          <img src="/images/Live Chicken.webp" class="h-32 w-full object-cover" alt="Live Chicken" />
+          <div class="p-2">
+            <h4 class="font-semibold text-sm">Live Adult Chicken</h4>
+            <p class="text-green-700 font-bold text-sm">₦10,000</p>
+            <p class="text-xs font-bold text-black">8kg</p>
+            <button class="mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded overflow-hidden product" data-category="fruits" data-name="Fresh Vegetables">
+          <img src="/images/leafy-vegetables.webp" class="h-32 w-full object-cover" alt="Fresh Vegetables" />
+          <div class="p-2">
+            <h4 class="font-semibold text-sm">Fresh Vegetables</h4>
+            <p class="text-green-700 font-bold text-sm">₦2,500</p>
+            <p class="text-xs font-bold text-black">8kg</p>
+            <button class="mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded overflow-hidden product" data-category="vegetables" data-name="Onions">
+          <img src="/images/Onions 2.webp" class="h-32 w-full object-cover" alt="Onions" />
+          <div class="p-2">
+            <h4 class="font-semibold text-sm">Onions</h4>
+            <p class="text-green-700 font-bold text-sm">₦5,000</p>
+            <p class="text-xs font-bold text-black">8kg</p>
+            <button class="mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded overflow-hidden product" data-category="fruits" data-name="Apples">
+          <img src="/images/Apples.webp" class="h-32 w-full object-cover" alt="Apples" />
+          <div class="p-2">
+            <h4 class="font-semibold text-sm">Apples</h4>
+            <p class="text-green-700 font-bold text-sm">₦200</p>
+            <p class="text-xs font-bold text-black">1pc</p>
+            <button class="mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700">Add to Cart</button>
+          </div>
+        </div>
+
+        <div class="bg-white shadow rounded overflow-hidden product" data-category="livestock" data-name="Cattle">
+          <img src="/images/cows.jpg" class="h-32 w-full object-cover" alt="Cattle" />
+          <div class="p-2">
+            <h4 class="font-semibold text-sm">Cattle</h4>
+            <p class="text-green-700 font-bold text-sm">₦600,000</p>
+            <p class="text-xs font-bold text-black">400kg</p>
+            <button class="mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700">Add to Cart</button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <div id="loader" class="hidden text-center text-gray-500 mt-4">
+      Loading Products...
+    </div>
+
+    <div id="noProducts" class="hidden text-center text-red-500 mt-4">
+      Product unavailable.
+    </div>
+  </main>
+
+  <!-- Bottom Navigation (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around items-center py-2 shadow-md z-40 md:hidden">
+    <!-- Home -->
+    <button class="flex flex-col items-center text-green-700 hover:text-green-600 transition">
+      <i class="uil uil-estate text-xl mb-1"></i>
+      <span class="text-xs text-black">Home</span>
+    </button>
+
+    <!-- Explore -->
+    <button class="flex flex-col items-center text-green-700 hover:text-green-600 transition">
+      <i class="uil uil-search text-xl mb-1"></i>
+      <span class="text-xs  text-black">Explore</span>
+    </button>
+
+    <!-- Chat -->
+    <button class="flex flex-col items-center text-green-700 hover:text-green-600 transition">
+      <i class="uil uil-comment-alt-dots text-xl mb-1"></i>
+      <span class="text-xs  text-black">Chat</span>
+    </button>
+
+    <!-- Profile -->
+    <button class="flex flex-col items-center text-green-700 hover:text-green-600 transition">
+      <i class="uil uil-user text-xl mb-1"></i>
+      <span class="text-xs  text-black">Profile</span>
+    </button>
+
+    <!-- Settings -->
+    <button class="flex flex-col items-center text-green-700 hover:text-green-600 transition">
+      <i class="uil uil-setting text-xl mb-1"></i>
+      <span class="text-xs  text-black">Settings</span>
+    </button>
+  </nav>
+
+
+  <!-- Chat Modal -->
+<div id="chat-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-lg w-full max-w-md h-[80vh] flex flex-col">
+    <!-- Chat Header -->
+    <div class="p-4 border-b flex justify-between items-center bg-green-600 text-white rounded-t-lg">
+      <div>
+        <h3 class="font-semibold">Chat with Farmers</h3>
+        <p class="text-xs">Online now</p>
+      </div>
+      <button id="close-chat" class="text-white hover:text-gray-200">
+        <i class="uil uil-times text-xl"></i>
+      </button>
+    </div>
+    
+    <!-- Chat Messages -->
+    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3">
+      <!-- Messages will appear here -->
+    </div>
+    
+    <!-- Chat Input -->
+    <div class="p-4 border-t">
+      <div class="flex gap-2">
+        <input id="chat-input" type="text" placeholder="Type your message..." 
+               class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+        <button id="send-message" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+          <i class="uil uil-message"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Farmer List Modal -->
+<div id="farmer-list-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-lg w-full max-w-md max-h-[80vh] flex flex-col">
+    <div class="p-4 border-b flex justify-between items-center">
+      <h3 class="font-semibold">Select Farmer to Chat</h3>
+      <button id="close-farmer-list" class="text-gray-500 hover:text-gray-700">
+        <i class="uil uil-times text-xl"></i>
+      </button>
+    </div>
+    <div id="farmer-list" class="p-4 overflow-y-auto">
+      <!-- Farmers will appear here -->
+      <div class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+          <i class="uil uil-user text-gray-600"></i>
+        </div>
+        <div>
+          <h4 class="font-medium">Organic Farm Co.</h4>
+          <p class="text-xs text-gray-500">Last online: 5 min ago</p>
+        </div>
+      </div>
+      <!-- More farmers can be added here -->
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back" />
+
+  
+</head>
+<body>
+
+  <div class="bg-green-700 text-white sticky top-0 pl-2">
+  <nav class="flex justify-between items-center">
+    <div class="header">
+      <h1>FarmLink</h1>
+      <p class="text-xs mb-2">Empowering Farmers. Reducing Wastes. Connecting Markets.</p>
+    </div>
+    <button data-collapse-toggle="navbar-search" type="button" class="md:hidden flex items-center p-2 w-10 h-10 text-sm rounded-lg  focus:outline-none">
+      <span class="sr-only">Open main menu</span>
+      <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+    <div class="hidden md:flex">
+      <ul class="flex space-x-4 ml-6 text-sm font-medium">
+        <li><a href="index.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+         <li><a href="upload-product.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+        <li><a href="search.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+        <li><a href="shop.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+    <ul class="space-y-2 mt-2">
+      <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
+       <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
+      <li><a href="search.html" class="block hover:text-yellow-300">Search</a></li>
+      <li><a href="shop.html" class="block hover:text-yellow-300">Cart</a></li>
+    </ul>
+  </div>
+</div>
+
+  <div class="max-w-4xl mx-auto">
+    <div class=" left-3 z-50 flex mt-3">
+        <button type="button" id="closeModalBtn" class="focus:outline-none hover:text-green-700 transition">
+          <span class="material-symbols-outlined">
+          arrow_back
+          </span>
+      </button>
+      <h3 class="font-medium ml-1">Farmer Profile</h3>
+     </div>
+  <!-- Header -->
+   <div class="flex flex-col items-center mb-9 mt-5">
+    <div class="w-14 h-14 bg-gray-300 rounded-full"></div>   
+
+    <h2 class="text-xl font-bold text-gray-800 mt-2">John Henry</h2>
+    <p class="text-sm text-gray-500">Nigeria, Abuja</p>
+  </div>
+  <!-- Tabs -->
+  <div class="flex justify-around border-b border-gray-300 mb-4">
+    <button class="tab-button py-2 px-4 text-gray-600 hover:text-green-600" data-tab="categories">Categories</button>
+    <button class="tab-button py-2 px-4 text-green-600 border-b-2 border-green-600" data-tab="about">About</button>
+    <button class="tab-button py-2 px-4 text-gray-600 hover:text-green-600" data-tab="gallery">Gallery</button>
+  </div>
+  <!-- Tabs Content -->
+  <div id="categories" class="tab-content hidden max-w-auto">
+    <div class="bg-white shadow-lg m-2">
+      <div class="text-center">
+        <h2 class="text-white bg-green-700 text-center py-2  px-6 font-semibold inline">Added Listed Produces</h2>
+
+      </div>
+    
+    <table class="table-auto border-collapse mt-2 w-full">
+      <thead>
+        <tr class="bg-green-500 text-white">
+          <th class="px-4 py-2">Vegetables</th>
+          <th class="px- py-2">Fruits</th>
+          <th class="px-4 py-2">Root & Tubers</th>
+          <th class="px-4 py-2">Grains</th>
+        </tr>
+      </thead>
+      <tbody class="text-center text-gray-800">
+        <tr>
+          <td class="border px-4 py-2">Tomatoes</td>
+          <td class="border px-4 py-2">Mangoes</td>
+          <td class="border px-4 py-2">Mangoes</td>
+          <td class="border px-4 py-2">Maize</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Onions</td>
+          <td class="border px-4 py-2">Banana</td>
+          <td class="border px-4 py-2">Banana</td>
+          <td class="border px-4 py-2">Millet</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Pappers</td>
+          <td class="border px-4 py-2">Grape</td>
+          <td class="border px-4 py-2">Grape</td>
+          <td class="border px-4 py-2">Rice</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Spinach</td>
+          <td class="border px-4 py-2">Apple</td>
+          <td class="border px-4 py-2">Apple</td>
+          <td class="border px-4 py-2">Wheat</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Cabbage</td>
+          <td class="border px-4 py-2">Orange</td>
+          <td class="border px-4 py-2">Orange</td>
+          <td class="border px-4 py-2">Sorghum</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Carrots</td>
+          <td class="border px-4 py-2">Cucumber</td>
+          <td class="border px-4 py-2">Cucumber</td>
+          <td class="border px-4 py-2">Barley</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Lettuce</td>
+          <td class="border px-4 py-2">Lime</td>
+          <td class="border px-4 py-2">Lime</td>
+          <td class="border px-4 py-2">Lime</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Lettuce</td>
+          <td class="border px-4 py-2">Lime</td>
+          <td class="border px-4 py-2">Lime</td>
+          <td class="border px-4 py-2">Lime</td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Lettuce</td>
+          <td class="border px-4 py-2">Lime</td>
+          <td class="border px-4 py-2">Lime</td>
+          <td class="border px-4 py-2">Lime</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div id="about" class="tab-content m-2">
+    <h3 class="font-semibold text-lg mb-2">About Farmer</h3>
+    <p class="text-gray-600 mb-4">Musa Adewale is a 45-year-old commercial farmer based in Oyo State, Nigeria. With over 35 hectares of farmland, Musa is one of the region's leading producers of cassava, maize, tomatoes, and watermelon. Over the years, he has transitioned from traditional open-market selling to embracing digital tools that connect him directly to urban buyers and wholesalers.</p>
+
+     <div class="border-t border-gray-700 mt-6"></div>
+
+  <div class="flex items-center justify-between py-4 border-b border-gray-700">
+    <div class="items-center space-x-4 ml-2">
+      <div>
+        <div class="text-gray-700 font-semibold">Farmer Contact</div>
+        <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+        <div class="font-medium">John Henry</div>
+      </div>
+    </div>
+    <div>
+        <div class="flex items-center text-sm text-gray-600 mt-1 mb-4">
+          <img src="./Assets/email.png" alt="email" class="w-4 mr-2">
+          <span class="hover:text-green-700"><a href="mailto:johnny@gmail.com">johnny@gmail.com</a></span>
+        </div>
+        <div class="flex items-center text-sm text-gray-600 mt-1">
+          <img src="./Assets/phone-receiver-silhouette.png" alt="phone" class="w-4 mr-1">
+          <span class="hover:text-green-700"><a href="tel:+2347032025341">+234-7032025341</a></span>
+        </div>
+    </div>
+   
+  </div>
+
+  <div class="max-w-md mx-auto mt-6">
+  <div class="flex items-start justify-between gap-4">
+    <!-- Chart with heading aligned to top -->
+    <div class="flex flex-col items-start">
+      <h3 class="font-semibold mb-2">Highest-Lowest Sold weekly</h3>
+      <div class="w-32 h-32">
+        <canvas id="salesChart" class="w-full h-full"></canvas>
+      </div>
+    </div>
+
+    <!-- Text details -->
+    <div class="text-left space-y-1 mt-10">
+      <p><span class="font-semibold">NAME</span></p>
+      <p><span class="font-semibold">Price</span></p>
+      <p><span class="font-semibold">Rate</span></p>
+    </div>
+  </div>
+</div>
+  </div>
+<!-- Gallery Section -->
+<div id="gallery" class="tab-content m-2">
+  <div class="flex justify-between items-center mb-4 ">
+    <h2 class="text-sm font-medium text-gray-700 ml-2">Gallery(200)</h2>
+    <a href="#" class="text-sm text-green-700 hover:underline mr-3">See All</a>
+  </div>
+  <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 m-2"></div>
+</div>
+
+<!-- Gallery Modal -->
+<div id="galleryModal" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center p-4">
+  <div class="bg-white rounded-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto relative">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center p-4 border-b">
+      <h2 class="text-lg font-semibold text-gray-800">Gallery</h2>
+      <button id="closeGalleryModal" class="text-gray-500 hover:text-gray-800 text-xl font-bold">&times;</button>
+    </div>
+
+    <!-- Modal Body -->
+    <div id="modalGalleryGrid" class="p-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <!-- Full gallery images go here -->
+    </div>
+  </div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="./farmer.js"></script>
+  
+</body>
+</html>
