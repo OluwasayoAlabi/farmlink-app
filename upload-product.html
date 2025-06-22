@@ -1,18 +1,19 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="./input.css" rel="stylesheet">
   <title>Upload Product</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <link href="./upload-product.css" rel="stylesheet">
 </head>
 <body>
-  <div class="bg-green-700 text-white sticky top-0 pl-2">
-  <nav class="flex justify-between items-center">
+    <div class="bg-green-700 text-white sticky top-0 pl-3">
+  <nav class="flex justify-between items-center p-4">
     <div class="header">
-      <h1>FarmLink</h1>
-      <p class="text-xs mb-2">Empowering Farmers. Reducing Wastes. Connecting Markets.</p>
+      <h1 class="text-3xl font-bold">FarmLink</h1>
+      <p class="mt-2">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
     </div>
     <button data-collapse-toggle="navbar-search" type="button" class="md:hidden flex items-center p-2 w-10 h-10 text-sm rounded-lg  focus:outline-none">
       <span class="sr-only">Open main menu</span>
@@ -23,23 +24,19 @@
     </button>
     <div class="hidden md:flex">
       <ul class="flex space-x-4 ml-6 text-sm font-medium">
-        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
-        <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
-        <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bh-green-600 transition">Upload</a></li>
-        <li><a href="search.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
-        <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
-        <li><a href="contact.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+        <li><a href="index.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+         <li><a href="upload-product.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+        <li><a href="search.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+        <li><a href="shop.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
       </ul>
     </div>
   </nav>
   <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
     <ul class="space-y-2 mt-2">
-      <li><a href="index.html" class="block hover:text-yellow-300">Home</a></li>
       <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
-      <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
+       <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
       <li><a href="search.html" class="block hover:text-yellow-300">Search</a></li>
-      <li><a href="cart.html" class="block hover:text-yellow-300">Cart</a></li>
-      <li><a href="contact.html" class="block hover:text-yellow-300">Contact</a></li>
+      <li><a href="shop.html" class="block hover:text-yellow-300">Cart</a></li>
     </ul>
   </div>
 </div>
@@ -48,6 +45,7 @@
   <div class=" mt-2">
     <form id="product-form" class="max-w-md mx-auto p-4 md:p-6 lg:p-8 rounded shadow-md md:max-w-lg lg:max-w-2xl">
         <h2 class="text-lg md:text-xl lg:text-2xl font-bold mb-4">Upload Product</h2>
+  
 
       <div class="mb-4">
     <label for="product-name" class="block text-sm font-medium mb-2">Product Name:</label>
@@ -75,18 +73,13 @@
      </div>
 
       <div class="mb-4">
-    <label for="product-price" class="block text-sm font-medium mb-2">Product Price:</label>
-       <input type="number" id="product-price" name="product-price" placeholder="Enter price &#x20A6" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
-     </div>
-
-      <div class="mb-4">
-    <label for="product-image" class="block text-sm font-medium mb-2">Product Images:</label>
-      <input type="file" accept="image/*" required="" id="file-input">
+    <label for="product-price-per-unit" class="block text-sm font-medium mb-2">Price Per Unit:</label>
+       <input type="number" id="price-per-unit" name="product-price" placeholder="Enter price &#x20A6" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
      </div>
 
      <div class="mb-4">
-    <label for="quantity" class="block text-sm font-medium mb-2">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
+    <label for="quantity" class="block text-sm font-medium mb-2" >Quantity:</label>
+    <input id="quantity-available" type="number" id="quantity" name="quantity" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
      </div>
      
       <div class="mb-4">
@@ -107,14 +100,24 @@
       <option value="lb">lb</option>
     </select>
      </div>
-    <div>
-      
-    </div>
-        <button type="submit" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring duration-150">Submit</button>
-   
-  </form>
-</div>
+     
+    <!--<div>
+      <div  class="mb-2 text-center">
+         <p>Total: <span id="total-value" class="text-xl p-1"></span></p>
 
-<script src="./upload-product.js"></script>
+      </div>
+      !-->
+
+      
+      <div class="mb-4">
+    <label for="product-image" class="block text-sm font-medium mb-2">Product Images:</label>
+      <input type="file" accept="image/*" required="" id="file-input" multiple>
+      <div id="image-preview"></div>
+     </div>
+      <button type="submit" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring duration-150">Submit</button>
+      
+  </div>
+  </form>
+  <script src="./upload-product.js"></script>
 </body>
 </html>

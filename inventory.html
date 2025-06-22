@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Update Inventory - Farm Link</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="bg-white font-sans">
+    <nav class="bg-green-700 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold">FarmLink</h1>
+            <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+        </div>
+        <ul class="hidden md:flex space-x-4 ml-6 text-sm font-medium">
+            <li><a href="../index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+            <li><a href="../index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+            <li><a href="../upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+            <li><a href="../search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+            <li><a href="shop.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+            
+            <li><a href="../Farmer-signin.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign Up/Register</a></li>
+           
+        </ul>
+    </div>
+</nav>
+  <div class="max-w-lg mx-auto p-6">
+    
+    <!-- Back Arrow and Title -->
+    <div class="flex items-center space-x-2 mb-6">
+<button onclick="window.history.back()" class="text-xl text-gray-700">&larr;</button>
+      <h1 class="text-2xl font-bold">Update Inventory</h1>
+    </div>
+
+    <!-- Add Inventory Button -->
+    <button class="w-full border border-green-600 text-green-600 font-semibold py-2 rounded-lg mb-6 hover:bg-green-50 transition">
+      + Add Inventory
+    </button>
+
+    <!-- Search Box -->
+    <div class="flex items-center border rounded-lg overflow-hidden mb-6">
+      <input type="text" placeholder="Search for products or categories..." class="flex-1 px-4 py-2 focus:outline-none"/>
+      <span class="material-icons text-gray-500 px-2">search</span>
+      <span class="material-icons text-gray-500 px-2">tune</span>
+    </div>
+
+    <!-- Product Card -->
+    <div class="flex gap-4 mb-6">
+      <img src="https://via.placeholder.com/120" alt="product" class="w-32 h-28 rounded-lg object-cover"/>
+
+      <div class="flex-1 text-sm text-gray-800">
+        <p><span class="font-semibold">Product Name:</span> Arish Potatoes</p>
+        <p><span class="font-semibold">Quality:</span> 500kg</p>
+        <p><span class="font-semibold">Shelf life:</span> December 8, 2025</p>
+        <p><span class="font-semibold">Product location:</span> Lagos</p>
+      </div>
+    </div>
+
+    <!-- Description Field -->
+    <div class="mb-6">
+      <label for="description" class="block font-semibold mb-1">Description</label>
+      <textarea id="description" rows="4" class="w-full border border-green-600 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
+    </div>
+
+    <!-- Save Button -->
+    <button id="saveBtn" class="w-full bg-green-700 text-white font-semibold py-2 rounded-lg hover:bg-green-800 transition">
+      Save Inventory
+    </button>
+  </div>
+
+  <!-- Optional JS -->
+  <script>
+    document.getElementById("saveBtn").addEventListener("click", function () {
+      const description = document.getElementById("description").value;
+      if (!description.trim()) {
+        alert("Please enter a description before saving.");
+        return;
+      }
+      alert("Inventory updated successfully!");
+      // Here you can make an API call to save the data
+    });
+  </script>
+</body>
+</html>

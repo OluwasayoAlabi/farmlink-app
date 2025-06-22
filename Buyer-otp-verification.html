@@ -108,6 +108,7 @@
 
   <!-- Scripts -->
   <script>
+<<<<<<< HEAD
     let seconds = 60;
     const countdownEl = document.getElementById('countdown');
     const timer = setInterval(() => {
@@ -138,5 +139,54 @@
       menu.classList.toggle('hidden');
     });
   </script>
+=======
+  let seconds = 60;
+  const countdownEl = document.getElementById('countdown');
+  const timer = setInterval(() => {
+    countdownEl.textContent = (seconds < 10 ? '0' + seconds : seconds) + ' s';
+    seconds--;
+    if (seconds < 0) clearInterval(timer);
+  }, 1000);
+
+  function verifyOTP(event) {
+    event.preventDefault();
+    const otp = document.querySelector('input').value;
+
+    // Call the API with the OTP
+    fetch("https://farmlink-api.onrender.com/api/v1/users/verify-account/6f9385d35e1d2bb46c103848db7cc1bbe2ddb698", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ otp: otp }) // send OTP as payload
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert("OTP Verified!");
+        window.location.href = "Buyer-signin.html";
+      } else {
+        alert(data.message || "Invalid OTP. Please try again.");
+      }
+    })
+    .catch(error => {
+      console.error("Verification Error:", error);
+      alert("Something went wrong. Please try again later.");
+    });
+  }
+
+  function resendOTP() {
+    alert("OTP has been resent to your email!");
+    seconds = 60;
+  }
+
+  // Toggle mobile menu
+  document.getElementById('mobileMenuButton').addEventListener('click', () => {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('hidden');
+  });
+</script>
+
+>>>>>>> 500609828e421f6617acc967ea779830222835d7
 </body>
 </html>
