@@ -14,7 +14,192 @@
       font-family: 'Inter', sans-serif;
     }
     input::placeholder {
+      color: #6B7280;<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buyer Sign In</title>
+
+  <!-- Tailwind CSS + Inter Font -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    input::placeholder {
       color: #6B7280;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col">
+
+  <!-- ✅ FarmLink Navbar -->
+  <header class="bg-green-700 text-white">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold">FarmLink</h1>
+          <p class="mt-1 text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-4 ml-6 text-sm font-medium">
+            <li><a href="products.html" class="px-4 py-2 hover:bg-green-600 rounded">Products</a></li>
+            <li><a href="upload-product.html" class="px-4 py-2 hover:bg-green-600 rounded">Upload</a></li>
+            <li><a href="search.html" class="px-4 py-2 hover:bg-green-600 rounded">Search</a></li>
+            <li><a href="shop.html" class="px-4 py-2 hover:bg-green-600 rounded">Cart</a></li>
+          </ul>
+        </nav>
+
+        <!-- Mobile menu toggle -->
+        <button id="mobileMenuButton" class="md:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+        <ul class="space-y-2 mt-2">
+          <li><a href="products.html" class="block text-white hover:text-yellow-300">Products</a></li>
+          <li><a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a></li>
+          <li><a href="search.html" class="block text-white hover:text-yellow-300">Search</a></li>
+          <li><a href="shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Back Button -->
+  <div class="px-4 mt-4">
+    <button onclick="history.back()" class="text-2xl font-bold">&#8592;</button>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex flex-col items-center justify-start flex-grow space-y-6 max-w-md mx-auto w-full px-4 mt-4">
+    <h1 class="text-2xl font-bold text-black w-full text-left">Sign in</h1>
+
+    <form id="loginForm" class="w-full space-y-4">
+      <input type="email" required placeholder="farmer@gmail.com" id="email"
+             class="w-full rounded-xl px-4 py-3 bg-pink-100 text-gray-800 text-base outline-none" />
+
+      <div class="relative">
+        <input type="password" required id="password" placeholder=""
+               class="w-full rounded-xl px-4 py-3 bg-pink-100 text-gray-800 text-base pr-10 outline-none" />
+        <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-3 flex items-center text-gray-500">
+          👁️
+        </button>
+      </div>
+
+      <div class="flex justify-between text-sm">
+        <a href="Farmer-signup.html" class="text-red-600 font-semibold">Create Account</a>
+        <a href="Farmer-Reset password.html" class="text-black font-medium">Forgot Password?</a>
+      </div>
+
+      <button type="submit"
+              id="loginBtn"
+              class="w-full py-3 text-lg font-semibold rounded-full text-white bg-green-700 opacity-50 cursor-not-allowed"
+              disabled>
+        Login
+      </button>
+    </form>
+
+    <div class="w-full flex items-center justify-center space-x-2 text-gray-500 my-4">
+      <div class="flex-grow border-t border-black"></div>
+      <span class="text-sm px-2">or</span>
+      <div class="flex-grow border-t border-black"></div>
+    </div>
+
+    <div class="flex space-x-6">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="h-6 w-6"/>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Facebook-icon-1.png" alt="Facebook" class="h-6 w-6"/>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="flex justify-center mt-10 mb-6">
+    <div class="w-24 h-1 bg-black rounded-full"></div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+ 
+ var email = document.getElementById("email");
+ var password = document.getElementById("password");
+ var loginBtn = document.getElementById("loginBtn");
+ var form = document.getElementById("loginForm");
+
+  function togglePassword() {
+   var input = document.getElementById("password");
+    input.type = input.type === "password" ? "text" : "password";
+  }
+
+  function validateInputs() {
+    if (email.value.trim() && password.value.trim()) {
+      loginBtn.disabled = false;
+      loginBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      loginBtn.classList.add("opacity-100", "cursor-pointer");
+    } else {
+      loginBtn.disabled = true;
+      loginBtn.classList.add("opacity-50", "cursor-not-allowed");
+      loginBtn.classList.remove("opacity-100", "cursor-pointer");
+    }
+  }
+
+  email.addEventListener("input", validateInputs);
+  password.addEventListener("input", validateInputs);
+
+  form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  loginBtn.innerText = "Logging in...";
+  loginBtn.disabled = true;
+
+  try {
+    var response = await fetch("https://farmlink-api.onrender.com/api/v1/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email.value.trim(),
+        password: password.value.trim()
+      })
+    });
+
+   var result = await response.json();
+
+    if (response.ok) {
+      // Save token or user info if needed
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("user", JSON.stringify(result.user));
+
+      // Redirect to the farmer dashboard
+      window.location.href = "farmer.html";
+    } else {
+      alert(result.message || "Login failed");
+      loginBtn.innerText = "Login";
+      loginBtn.disabled = false;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Network error. Please try again.");
+    loginBtn.innerText = "Login";
+    loginBtn.disabled = false;
+  }
+});
+
+  </script>
+</body>
+</html>
+
       font-weight: 600;
     }
   </style>
