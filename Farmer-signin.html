@@ -114,6 +114,44 @@
 
   <!-- Scripts -->
   <script>
+    Onboarding-form
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const loginBtn = document.getElementById("loginBtn");
+    const form = document.getElementById("loginForm");
+
+    function togglePassword() {
+      const input = document.getElementById("password");
+      input.type = input.type === "password" ? "text" : "password";
+    }
+
+    function validateInputs() {
+      if (email.value.trim() && password.value.trim()) {
+        loginBtn.disabled = false;
+        loginBtn.classList.remove("opacity-50", "cursor-not-allowed");
+        loginBtn.classList.add("opacity-100", "cursor-pointer");
+      } else {
+        loginBtn.disabled = true;
+        loginBtn.classList.add("opacity-50", "cursor-not-allowed");
+        loginBtn.classList.remove("opacity-100", "cursor-pointer");
+      }
+    }
+
+    email.addEventListener("input", validateInputs);
+    password.addEventListener("input", validateInputs);
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      window.location.href = "Farmerbusiness-info.html";
+    });
+
+    // Mobile nav toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("hidden");
+    }
+    document.getElementById('mobileMenuButton').addEventListener('click', toggleMobileMenu);
+=======
  
  var email = document.getElementById("email");
  var password = document.getElementById("password");
@@ -180,6 +218,7 @@
   }
 });
 
+ main
   </script>
 </body>
 </html>

@@ -4,8 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buyer Business Info</title>
+ Onboarding-form
+
+  <!-- Tailwind CSS & Google Font -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+ main
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -15,9 +23,12 @@
     input, select {
       background-color: #FFECEC;
     }
+ Onboarding-form
+
     .loading {
       display: none;
     }
+ main
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -69,6 +80,13 @@
   <main class="px-4 py-6 flex flex-col justify-start flex-grow space-y-5 max-w-md mx-auto w-full">
     <h1 class="text-xl md:text-2xl font-bold text-[#1E1E1E] leading-snug">Business Information</h1>
 
+ Onboarding-form
+    <form onsubmit="handleSubmit(event)" class="space-y-5">
+      <input type="text" required placeholder="Name:"
+             class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
+
+      <select required class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none">
+
     <div id="loading" class="loading fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div class="bg-white p-6 rounded-lg">
         <p class="text-lg font-semibold">Processing your request...</p>
@@ -80,6 +98,7 @@
              class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
 
       <select id="businessType" required class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none">
+ main
         <option value="" disabled selected>Select Business Type</option>
         <option value="Retail">Retail</option>
         <option value="Wholesale">Wholesale</option>
@@ -87,10 +106,17 @@
         <option value="Processor">Processor</option>
       </select>
 
+ Onboarding-form
+      <input type="text" required placeholder="Location"
+             class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
+
+      <input type="text" required placeholder="Products Interested In eg Tomatoes, Fish"
+
       <input type="text" id="location" required placeholder="Location"
              class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
 
       <input type="text" id="productsInterested" required placeholder="Products Interested In eg Tomatoes, Fish"
+ main
              class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
 
       <div class="flex items-start space-x-2">
@@ -102,7 +128,11 @@
         </label>
       </div>
 
+ Onboarding-form
+      <button type="submit"
+
       <button type="submit" id="submitBtn"
+ main
               class="w-full bg-green-700 text-white py-3 text-lg font-semibold rounded-full">
         Sign up
       </button>
@@ -115,6 +145,13 @@
   </footer>
 
   <!-- JS -->
+ Onboarding-form
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      window.location.href = "Farmerupload-photo.html";
+    }
+
  
    <script>
     document.getElementById('businessInfoForm').addEventListener('submit', async function(event) {
@@ -153,12 +190,17 @@
         window.location.href = "Farmerupload-photo.html";
       }
     });
+ main
 
     // Mobile menu toggle
     document.getElementById('mobileMenuButton').addEventListener('click', () => {
       document.getElementById('mobileMenu').classList.toggle('hidden');
     });
+ Onboarding-form
+  </script>
+
 
 </script>
+ main
 </body>
 </html>
