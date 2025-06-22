@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Link Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-green-700 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold">FarmLink</h1>
+            <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+        </div>
+        <ul class="hidden md:flex space-x-4 ml-6 text-sm font-medium">
+            <li><a href="../index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+            <li><a href="../index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+            <li><a href="../upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+            <li><a href="../search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+            <li><a href="shop.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+            
+            <li><a href="../Farmer-signin.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign in</a></li>
+           
+        </ul>
+    </div>
+</nav>
+  <div class="max-w-5xl mx-auto p-4 pb-24">
+
+    <!-- Header -->
+    <header class="bg-green-700 text-white p-6 rounded-t-lg relative">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-2xl font-bold">Welcome Back, <span class="font-semibold">Joe!</span></h1>
+        </div>
+        <img src="/images/farmer2.jpeg" alt="Profile" class="w-10 h-10 rounded-full">
+      </div>
+<div class="p-4">
+      <div class="flex items-center bg-white border rounded-md px-3 py-2 shadow-sm">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search for products or categories..."
+          class="flex-grow outline-none"
+          oninput="filterProducts()"
+        />
+        <button class="ml-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-white shadow rounded-b-lg">
+      <div class="text-center p-4 bg-green-200 rounded-lg">
+        <p class="text-sm">Total Listing</p>
+        <p class="text-xl font-bold">100</p>
+      </div>
+      <div class="text-center p-4 border border-green-500 rounded-lg">
+        <p class="text-sm">Successful Orders</p>
+        <p class="text-xl font-bold">72</p>
+      </div>
+      <div class="text-center p-4 border border-yellow-500 rounded-lg">
+        <p class="text-sm">Pending Orders</p>
+        <p class="text-xl font-bold">8</p>
+      </div>
+      <div class="text-center p-4 border border-red-500 rounded-lg">
+        <p class="text-sm">Canceled Orders</p>
+        <p class="text-xl font-bold">3</p>
+      </div>
+    </section>
+
+    <!-- Buttons -->
+    <div class="flex flex-col md:flex-row gap-4 mt-6">
+      <button id="manageListingBtn" class="w-full bg-white border p-3 rounded-lg hover:bg-gray-100">+ Add/ Manage listing</button>
+      <button id="manageInventoryBtn" class="w-full bg-white border p-3 rounded-lg hover:bg-gray-100"><a href="./inventory.html">+ Add/ Manage Inventory</a></button>
+    </div>
+
+    <!-- Latest Listing -->
+    <section class="mt-6">
+      <h2 class="text-lg font-semibold mb-4">Latest Listing</h2>
+
+      <!-- Loading and Empty States -->
+      <div id="loader" class="hidden text-green-600 text-center mb-4">Loading...</div>
+      <div id="noProducts" class="hidden text-center text-red-600 mb-4">No products found.</div>
+
+      <!-- Product Grid -->
+      <div id="productGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+      <!-- Dynamic Product Display -->
+
+    </section>
+  </div>
+
+  <!-- Navigation -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-white border-t shadow-inner p-3 flex justify-between md:justify-evenly text-sm z-50" style="background-color: #FBE9E7;">
+    <button class="flex flex-col items-center">
+      <span class="material-icons " style="color: green;">home</span>
+      Home
+    </button>
+    <button class="flex flex-col items-center">
+      <span class="material-icons" style="color: green;"><a href="/dashboard/listing.html">explore</a></span>
+      Explore
+    </button>
+    <button class="flex flex-col items-center">
+      <span class="material-icons" style="color: green;">chat</span>
+      Chat
+    </button>
+    <button class="flex flex-col items-center">
+      <span class="material-icons" style="color: green;"><a href="/profile/farmer.html">person</a></span>
+      Profile
+    </button>
+    <button class="flex flex-col items-center">
+      <span class="material-icons" style="color: green;">settings</span>
+      Settings
+    </button>
+  </footer>
+
+  <script>
+    const products = [
+  { name: "Fresh Tomatoes", price: 2000, quantity: "20pcs", image: "/images/Tomatoes 1.webp" },
+  { name: "Fresh Vegetables", price: 2500, quantity: "5kg", image: "/images/leafy-vegetables.webp" },
+  { name: "Onions", price: 5000, quantity: "50 pcs", image: "/images/Onions 2.webp" },
+  { name: "Okra", price: 2000, quantity: "20 pcs", image: "/images/okra 2.jpg" },
+  { name: "Garden Eggs", price: 3000, quantity: "1 dozen", image: "/images/garden eggs.jpg" },
+  { name: "Peppers", price: 2000, quantity: "30 pcs", image: "/images/pepper.jpg" },
+  { name: "Plaintains", price: 2000, quantity: "1 bunch", image: "/images/plaintains.webp" },
+  { name: "Cucumbers", price: 1500, quantity: "1pc", image: "/images/cucumber 2.webp" },
+  { name: "Apples", price: 200, quantity: "1pc", image: "/images/Apples.webp" },
+  { name: "Bananas", price: 600, quantity: "1 bunch", image: "/images/Bananas 3.webp" },
+  { name: "Cherry-Agbalumo", price: 100, quantity: "1pc", image: "/images/Agbalumo.webp" },
+  { name: "Oranges", price: 500, quantity: "2pcs", image: "/images/oranges.jpg" },
+  { name: "Watermelons", price: 2000, quantity: "1pc", image: "/images/watermelons.jpg" },
+  { name: "Mangoes", price: 800, quantity: "1pc", image: "/images/mangoes.webp" },
+  { name: "Pineapples", price: 1500, quantity: "1pc", image: "/images/pineapple.webp" },
+  { name: "Avocados", price: 2000, quantity: "1pc", image: "/images/avocado 2.jpg" },
+  { name: "Pawpaw", price: 2550, quantity: "1pc", image: "/images/pawpaw 2.jpg" },
+  { name: "Fresh Catfish", price: 3000, quantity: "3kg", image: "/images/Catfish.jpg" },
+  { name: "Frozen Fish", price: 2000, quantity: "1kg", image: "/images/Frozen fish.jpg" },
+  { name: "Eggs", price: 5500, quantity: "1 crate", image: "/images/eggs.jpg" },
+  { name: "Live Chicken", price: 10000, quantity: "8kg", image: "/images/Live Chicken.webp" },
+  { name: "Frozen Chicken", price: 6500, quantity: "1kg", image: "/images/Frozen Chicken.webp" },
+  { name: "Goat", price: 50000, quantity: "20kg", image: "/images/goat.jpg" },
+  { name: "Sheep", price: 300000, quantity: "50kg", image: "/images/sheep.jpg" },
+  { name: "Ram", price: 420000, quantity: "100kg", image: "/images/ram.jpg" },
+  { name: "Cattle", price: 600000, quantity: "400kg", image: "/images/cows.jpg" },
+  { name: "Yam", price: 1500, quantity: "1 tuber", image: "/images/Yam tuber.webp" },
+  { name: "Beans", price: 150000, quantity: "100kg", image: "/images/bag of beans.jpeg" },
+  { name: "Groundnuts", price: 90000, quantity: "80kg", image: "/images/groundnut.jpg" },
+  { name: "Maize", price: 13000, quantity: "50kg", image: "/images/maize.jpg" },
+  { name: "Cocoa", price: 17500, quantity: "1kg", image: "/images/cocoa.jpg" },
+  { name: "Rice", price: 84000, quantity: "50kg", image: "/images/bag of rice.jpg" }];
+
+    const productGrid = document.getElementById("productGrid");
+    const loader = document.getElementById("loader");
+    const noProducts = document.getElementById("noProducts");
+    const searchInput = document.getElementById("searchInput");
+
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    searchInput.addEventListener("input", () => {
+      const keyword = searchInput.value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(keyword));
+      renderProducts(filtered);
+    });
+
+    function renderProducts(productsList) {
+      productGrid.innerHTML = "";
+      loader.classList.remove("hidden");
+      noProducts.classList.add("hidden");
+
+      setTimeout(() => {
+        loader.classList.add("hidden");
+
+        if (productsList.length === 0) {
+          noProducts.classList.remove("hidden");
+          return;
+        }
+
+        productsList.forEach(product => {
+          const slug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
+          const isFavorite = favorites.includes(slug);
+
+          const card = document.createElement("div");
+          card.className = "bg-white rounded shadow overflow-hidden hover:shadow-lg transition";
+
+          card.innerHTML = `
+            <div class="relative">
+              <button class="fav-btn absolute top-2 right-2 p-1 rounded-full ${isFavorite ? 'text-yellow-300' : 'text-green-600'}">
+                ${isFavorite ? '<i class="fi fi-sr-heart text-lg"></i>' : '<i class="fi fi-rr-heart text-lg"></i>'}
+              </button>
+              <img src="${product.image}" alt="${product.name}" class="w-full h-32 object-cover rounded-md">
+            </div>
+            <div class="p-4">
+              <h2 class="text-md font-semibold">${product.name}</h2>
+              <p class="text-green-700 font-bold">₦${product.price.toLocaleString()}</p>
+              <p class="text-sm text-gray-600">Qty: ${product.quantity}</p>
+              <div class="flex justify-between mt-2">
+                <a href="/product-detail.html?product=${slug}" class="text-sm text-green-600 hover:underline">View</a>
+                <a href="/checkout/shop.html?product=${slug}" class="text-sm text-green-600 hover:underline">Add to Cart </a>
+              </div>
+            </div>
+          `;
+
+          const favBtn = card.querySelector('.fav-btn');
+          favBtn.addEventListener('click', () => {
+            const icon = favBtn.querySelector('i');
+            icon.classList.toggle('fi-sr-heart');
+            icon.classList.toggle('fi-rr-heart');
+          });
+
+          productGrid.appendChild(card);
+        });
+      }, 300);
+    }
+
+    renderProducts(products);
+
+    $(document).ready(function () {
+      $('#manageListingBtn').on('click', function () {
+        alert("Redirecting to Add/Manage Listing Page...");
+        window.location.href = '/dashboard/addlisting.html';
+
+      });
+
+      $('#manageInventoryBtn').on('click', function () {
+         alert("Redirecting to Add/Manage Inventory Page...");
+        window.location.href = '/dashboard/inventory.html';
+
+       });
+    });
+  </script>
+</body>
+</html>
