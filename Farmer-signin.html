@@ -114,6 +114,7 @@
 
   <!-- Scripts -->
   <script>
+    Onboarding-form
     const email = document.getElementById("email");
     const password = document.getElementById("password");
     const loginBtn = document.getElementById("loginBtn");
@@ -150,6 +151,74 @@
       menu.classList.toggle("hidden");
     }
     document.getElementById('mobileMenuButton').addEventListener('click', toggleMobileMenu);
+=======
+ 
+ var email = document.getElementById("email");
+ var password = document.getElementById("password");
+ var loginBtn = document.getElementById("loginBtn");
+ var form = document.getElementById("loginForm");
+
+  function togglePassword() {
+   var input = document.getElementById("password");
+    input.type = input.type === "password" ? "text" : "password";
+  }
+
+  function validateInputs() {
+    if (email.value.trim() && password.value.trim()) {
+      loginBtn.disabled = false;
+      loginBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      loginBtn.classList.add("opacity-100", "cursor-pointer");
+    } else {
+      loginBtn.disabled = true;
+      loginBtn.classList.add("opacity-50", "cursor-not-allowed");
+      loginBtn.classList.remove("opacity-100", "cursor-pointer");
+    }
+  }
+
+  email.addEventListener("input", validateInputs);
+  password.addEventListener("input", validateInputs);
+
+  form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  loginBtn.innerText = "Logging in...";
+  loginBtn.disabled = true;
+
+  try {
+    var response = await fetch("https://farmlink-api.onrender.com/api/v1/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email.value.trim(),
+        password: password.value.trim()
+      })
+    });
+
+   var result = await response.json();
+
+    if (response.ok) {
+      // Save token or user info if needed
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("user", JSON.stringify(result.user));
+
+      // Redirect to the farmer dashboard
+      window.location.href = "farmer.html";
+    } else {
+      alert(result.message || "Login failed");
+      loginBtn.innerText = "Login";
+      loginBtn.disabled = false;
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Network error. Please try again.");
+    loginBtn.innerText = "Login";
+    loginBtn.disabled = false;
+  }
+});
+
+ main
   </script>
 </body>
 </html>
