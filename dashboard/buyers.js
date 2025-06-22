@@ -1,5 +1,5 @@
+// buyers.js
 document.addEventListener('DOMContentLoaded', function() {
-
   // ===== NOTIFICATION FUNCTIONALITY =====
   const notificationBtn = document.getElementById('notification-btn');
   const notificationDropdown = document.getElementById('notification-dropdown');
@@ -102,61 +102,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize notifications
   renderNotifications();
 
-
-  // Show/hide dropdown
-  function toggleCategoryDropdown(show) {
-    if (show) {
-      categoryDropdown.classList.remove('hidden');
-    } else {
-      categoryDropdown.classList.add('hidden');
-    }
-  }
-
-  // Event listeners for search input and icon
-  if (searchInput) {
-    searchInput.addEventListener('focus', () => toggleCategoryDropdown(true));
-    searchInput.addEventListener('click', () => toggleCategoryDropdown(true));
-  }
-
-  if (searchIcon) {
-    searchIcon.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleCategoryDropdown(true);
-      searchInput.focus();
-    });
-  }
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!categoryDropdown.contains(e.target) && 
-        e.target !== searchInput && 
-        e.target !== searchIcon) {
-      toggleCategoryDropdown(false);
-    }
-  });
-
   // ===== SIDEBAR FUNCTIONALITY =====
   const sidebar = document.getElementById('sidebar');
   const sidebarToggle = document.getElementById('sidebar-toggle');
   const sidebarOverlay = document.getElementById('sidebar-overlay');
   const sidebarCollapse = document.getElementById('sidebar-collapse');
   const mainContent = document.getElementById('main-content');
-  const button = document.querySelector(".button");
-  const texts = document.querySelectorAll(".texts");
-
-  button.addEventListener("click", toggleSidebar)
-
-  function toggleSidebar() {
-    texts.forEach(function(text) {
-        if(text.style.display === "block") {
-            text.style.display = "none";
-        }
-
-        else {
-            text.style.display = "block"
-        }
-       })
-     }; 
 
   function toggleSidebar() {
     sidebar.classList.toggle('-translate-x-full');
@@ -226,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
     sidebarCollapse.addEventListener('click', toggleSidebarCollapse);
   }
 
-  // ===== PRODUCT SEARCH AND FILTER =====
+  // ===== SEARCH FUNCTIONALITY =====
   const searchInput = document.getElementById('product-search');
   const categoryDropdown = document.getElementById('category-dropdown');
   const searchIcon = document.querySelector('.uil-search');
@@ -236,6 +187,38 @@ document.addEventListener('DOMContentLoaded', function() {
   const noProducts = document.getElementById('noProducts');
   const categoryButtons = document.querySelectorAll('.overflow-x-auto button');
   const categoryFilterButtons = document.querySelectorAll('.category-filter-btn');
+
+  // Show/hide dropdown
+  function toggleCategoryDropdown(show) {
+    if (show) {
+      categoryDropdown.classList.remove('hidden');
+    } else {
+      categoryDropdown.classList.add('hidden');
+    }
+  }
+
+  // Event listeners for search input and icon
+  if (searchInput) {
+    searchInput.addEventListener('focus', () => toggleCategoryDropdown(true));
+    searchInput.addEventListener('click', () => toggleCategoryDropdown(true));
+  }
+
+  if (searchIcon) {
+    searchIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleCategoryDropdown(true);
+      searchInput.focus();
+    });
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!categoryDropdown.contains(e.target) && 
+        e.target !== searchInput && 
+        e.target !== searchIcon) {
+      toggleCategoryDropdown(false);
+    }
+  });
 
   // Filter products by category
   function filterProducts(category) {
@@ -257,12 +240,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Filter by new categories (special offers, popular sales, etc.)
   function filterByNewCategory(category) {
-    // In a real app, this would filter products based on the category
-    // For now, we'll just show all products and highlight the active button
     categoryFilterButtons.forEach(btn => {
       btn.classList.remove('active');
-      btn.classList.remove('text-white'); // Remove white text if it was added
-      btn.classList.add('text-black'); // Ensure black text
+      btn.classList.remove('text-white');
+      btn.classList.add('text-black');
       if (btn.getAttribute('data-category') === category) {
         btn.classList.add('active');
       }
@@ -280,42 +261,6 @@ document.addEventListener('DOMContentLoaded', function() {
       loader.classList.add('hidden');
     }, 500);
   }
-
-  // Toggle category dropdown
-if (searchInput && categoryDropdown) {
-  // Show dropdown when input is clicked or focused
-  searchInput.addEventListener('click', function() {
-    categoryDropdown.classList.remove('hidden');
-  });
-  
-  searchInput.addEventListener('focus', function() {
-    categoryDropdown.classList.remove('hidden');
-  });
-
-  // Also show dropdown when clicking the search icon
-  const searchIcon = searchInput.nextElementSibling;
-  if (searchIcon) {
-    searchIcon.addEventListener('click', function(e) {
-      e.stopPropagation();
-      categoryDropdown.classList.remove('hidden');
-      searchInput.focus();
-    });
-  }
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-  if (!categoryDropdown.classList.contains('hidden')) {
-    const isClickInside = searchInput.contains(event.target) || 
-                         categoryDropdown.contains(event.target) ||
-                         (searchInput.nextElementSibling && 
-                          searchInput.nextElementSibling.contains(event.target));
-    
-    if (!isClickInside) {
-      categoryDropdown.classList.add('hidden');
-    }
-  }
-});
 
   // Category dropdown selection
   categoryOptions.forEach(option => {
@@ -417,28 +362,6 @@ document.addEventListener('click', function(event) {
     ],
     'john-henry': [
       { sender: 'farmer', text: "I am John Henry, how can I assist you today?", time: '11:45 AM' }
-    ],
-    'farmer-lisa': [
-      { 
-        sender: 'buyer', 
-        text: "Hello Lisa! How are you doing today?", 
-        time: "5:10 PM" 
-      },
-      { 
-        sender: 'farmer', 
-        text: "Hello Michael! Very well, thank you.", 
-        time: "5:12 PM" 
-      },
-      { 
-        sender: 'farmer', 
-        text: "What would you like to get from us today? I am also available to answer your questions.", 
-        time: "5:12 PM" 
-      },
-      { 
-        sender: 'buyer', 
-        text: "Oh, that's nice to hear. I just wanted to ask if you could give a discount on the plantain.", 
-        time: "5:14 PM" 
-      }
     ]
   };
 
@@ -471,7 +394,6 @@ document.addEventListener('click', function(event) {
     ];
     
     farmerList.innerHTML = farmers.map(farmer => {
-      // Special case for Farmer Lisa - link to separate page
       if (farmer.id === 'farmer-lisa') {
         return `
           <a href="/dashboard/farmers-lisa-chat.html" class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3">
@@ -486,7 +408,6 @@ document.addEventListener('click', function(event) {
         `;
       }
       
-      // Regular farmers use the modal
       return `
         <div class="farmer-item p-3 border-b cursor-pointer hover:bg-gray-50 flex items-center gap-3" data-farmer-id="${farmer.id}">
           <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
@@ -592,16 +513,6 @@ document.addEventListener('click', function(event) {
           case 'john-henry':
             reply = "I'll check the availability and get back to you shortly.";
             break;
-          case 'farmer-lisa':
-            // Custom replies for Farmer Lisa
-            if (message.toLowerCase().includes('discount')) {
-              reply = "I can offer you a 10% discount if you purchase more than 5kg of plantain. Would that work for you?";
-            } else if (message.toLowerCase().includes('hello') || message.toLowerCase().includes('hi')) {
-              reply = "Hello Michael! What can I help you with today?";
-            } else {
-              reply = "Thanks for your message! I'll get back to you shortly with more details.";
-            }
-            break;
           default:
             reply = "Thanks for your message! We'll get back to you soon.";
         }
@@ -619,9 +530,8 @@ document.addEventListener('click', function(event) {
 
   // Event Listeners for chat buttons
   function setupChatButtons() {
-    // Get chat buttons from both sidebar and bottom nav
     const chatButtons = [
-      ...document.querySelectorAll('#sidebar button:nth-child(4)'), // Updated index for new buttons
+      ...document.querySelectorAll('#sidebar button:nth-child(4)'),
       ...document.querySelectorAll('.bottom-nav button:nth-child(3)')
     ];
     
@@ -632,7 +542,6 @@ document.addEventListener('click', function(event) {
       });
     });
 
-    // Also handle onclick attributes
     document.querySelectorAll('[onclick*="farmer-list-modal"]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
