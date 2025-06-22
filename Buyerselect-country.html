@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select your Country / Language</title>
+
+  <!-- Tailwind CSS & Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1E1E1E;
+    }
+    input, select {
+      background-color: #FFECEC;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- Navbar -->
+  <header class="bg-green-700 text-white"> 
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold">FarmLink</h1>
+          <p class="mt-2">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-4 ml-6 text-sm font-medium">
+            <li><a href="Select role.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign In</a></li>
+            <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+            <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+            <li><a href="search.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+            <li><a href="shop.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+          </ul>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuButton" class="md:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+        <ul class="space-y-2 mt-2">
+          <li><a href="Select role.html" class="block text-white hover:text-yellow-300">Sign In</a></li>
+          <li><a href="index.html" class="block text-white hover:text-yellow-300">Products</a></li>
+          <li><a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a></li>
+          <li><a href="search.html" class="block text-white hover:text-yellow-300">Search</a></li>
+          <li><a href="shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="px-4 py-6 flex flex-col justify-start flex-grow space-y-5 max-w-md mx-auto w-full">
+
+    <!-- Heading -->
+    <h1 class="text-xl md:text-2xl font-bold text-[#1E1E1E] leading-snug">
+      Select your Country / Language of Your Choice
+    </h1>
+
+    <!-- Form -->
+    <form onsubmit="handleNext(event)" class="text-left space-y-5">
+      <select id="country" required class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none">
+        <option value="" disabled selected>Country</option>
+        <option>Nigeria</option>
+        <option>Ghana</option>
+        <option>Kenya</option>
+        <option>South Africa</option>
+        <option>Uganda</option>
+        <option>Egypt</option>
+        <option>Tanzania</option>
+        <option>Rwanda</option>
+        <option>Ethiopia</option>
+        <option>Senegal</option>
+        <option>Morocco</option>
+        <option>Algeria</option>
+        <option>Namibia</option>
+        <option>Cameroon</option>
+        <option>Zambia</option>
+      </select>
+
+      <select id="language" required class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none">
+        <option value="" disabled selected>Select Language</option>
+        <option>English</option>
+      </select>
+
+      <input type="text" id="state" required placeholder="State of residence"
+             class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
+
+      <input type="text" id="lga" required placeholder="Local Government Area"
+             class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
+
+      <input type="text" id="street" required placeholder="Street Name"
+             class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
+
+      <button type="submit" class="w-full bg-green-700 text-white py-3 text-lg font-semibold rounded-full">
+        Next
+      </button>
+    </form>
+
+    <!-- Login Prompt -->
+    <p class="text-center text-sm mt-4">
+      Have an account? <a href="Buyer-signin.html" class="text-red-600 font-semibold">Login</a>
+    </p>
+  </main>
+
+  <!-- Bottom Swipe Bar -->
+  <footer class="flex justify-center mt-10">
+    <div class="w-24 h-1 bg-black rounded-full"></div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    function handleNext(event) {
+      event.preventDefault();
+      const inputs = ['country', 'language', 'state', 'lga', 'street'];
+      const values = {};
+      for (let id of inputs) {
+        values[id] = document.getElementById(id).value.trim();
+        if (!values[id]) {
+          alert("Please fill in all fields.");
+          return;
+        }
+      }
+      for (let key in values) {
+        localStorage.setItem(key, values[key]);
+      }
+      window.location.href = "Buyer-signup.html";
+    }
+
+    // Mobile Menu Toggle
+    document.getElementById('mobileMenuButton').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>

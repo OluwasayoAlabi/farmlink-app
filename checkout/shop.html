@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="cart.css" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    
 </head>
 
 <body class="bg-gray-100 font-sans">
@@ -18,12 +19,14 @@
             <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
         </div>
         <ul class="hidden md:flex space-x-4 ml-6 text-sm font-medium">
-            <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
-            <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
-            <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
-            <li><a href="search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
-            <li><a href="cart.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
-            <li><a href="contact.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Contact</a></li>
+            <li><a href="../index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Home</a></li>
+            <li><a href="../index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+            <li><a href="../upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+            <li><a href="../search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+            <li><a href="/farmlink-app/checkout/shop.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+            
+            <li><a href="../Farmer-signin.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign Up/Register</a></li>
+           
         </ul>
     </div>
 </nav>
@@ -36,16 +39,14 @@
     </div>
 
     <div class="max-w-4xl mx-auto mt-10 text-center">
-        <a href="check.html" class="inline-block bg-[#FF6600] hover:bg-red-700 text-white font-semibold py-3 px-8 rounded shadow transition">View Cart</a>
+        <a href="Cart.html" class="inline-block bg-yellow-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded shadow transition">View Cart</a>
     </div>
 
     <div id="pagination" class="flex justify-center mt-4"></div>
-    <div class="flex justify-center mt-4 gap-2">
-        <button id="prev-btn">Previous</button>
-        <button id="next-btn">Next</button>
-    </div>
 </main>
 
-<script src="CheckoutJS/Shop.js"></script>
+
+
+<script src="Shop.js"></script>
 </body>
 </html>
