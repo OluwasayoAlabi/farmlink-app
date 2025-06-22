@@ -6,8 +6,8 @@
   <title>Buyer's Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="buyers.css">
+  <script defer src="buyers.js"></script>
 </head>
 <body class="bg-gray-100">
   <!-- Header Container -->
@@ -46,6 +46,27 @@
         <button class="text-yellow-600 bg-white hover:text-green-600 transition">
           <i class="uil uil-bell text-2xl"></i>
         </button>
+
+        <!-- Notification dropdown -->
+  <div class="relative">
+   <button id="notification-btn" class="text-yellow-600 bg-white hover:text-green-600 transition relative">
+    <i class="uil uil-bell text-2xl"></i>
+    <span id="notification-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+  </button>
+  
+  <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-md shadow-lg z-50 border border-gray-200">
+    <div class="p-3 border-b border-gray-200 bg-green-600 text-white rounded-t-md">
+      <h3 class="font-semibold">Notifications</h3>
+    </div>
+    <div id="notification-list" class="max-h-60 overflow-y-auto">
+      <!-- Notifications will be added here dynamically -->
+      <div class="p-3 text-center text-gray-500">No new notifications</div>
+    </div>
+    <div class="p-2 border-t border-gray-200 bg-gray-50 text-center">
+      <button id="mark-all-read" class="text-xs text-green-600 hover:underline">Mark all as read</button>
+    </div>
+  </div>
+</div>
       </div>
     </header>
   </div>

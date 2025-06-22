@@ -284,3 +284,34 @@ main {
   color: black !important;
   border-color: #166534 !important;
 }
+
+/* Notification styles */
+#notification-dropdown {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: #f9fafb;
+}
+
+.notification-item.unread {
+  background-color: #f0fdf4;
+}
+
+.notification-time {
+  font-size: 0.7rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+#notification-badge {
+  transition: all 0.2s ease;
+}

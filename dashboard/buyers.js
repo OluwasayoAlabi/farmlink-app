@@ -1,4 +1,140 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+  // ===== NOTIFICATION FUNCTIONALITY =====
+  const notificationBtn = document.getElementById('notification-btn');
+  const notificationDropdown = document.getElementById('notification-dropdown');
+  const notificationList = document.getElementById('notification-list');
+  const notificationBadge = document.getElementById('notification-badge');
+  const markAllReadBtn = document.getElementById('mark-all-read');
+  
+  // Notification state
+  let notifications = [
+    {
+      id: 1,
+      title: "New message from Farmer Lisa",
+      message: "Your order has been confirmed and will be shipped tomorrow.",
+      time: "10:30 AM",
+      read: false
+    },
+    {
+      id: 2,
+      title: "Special Offer",
+      message: "Get 10% off on all fruits this week!",
+      time: "Yesterday",
+      read: false
+    },
+    {
+      id: 3,
+      title: "Order Shipped",
+      message: "Your order #12345 has been shipped.",
+      time: "Jun 20",
+      read: true
+    }
+  ];
+
+  // Render notifications
+  function renderNotifications() {
+    const unreadCount = notifications.filter(n => !n.read).length;
+    
+    // Update badge
+    if (unreadCount > 0) {
+      notificationBadge.textContent = unreadCount;
+      notificationBadge.classList.remove('hidden');
+    } else {
+      notificationBadge.classList.add('hidden');
+    }
+    
+    // Render notification list
+    if (notifications.length === 0) {
+      notificationList.innerHTML = '<div class="p-3 text-center text-gray-500">No notifications</div>';
+      return;
+    }
+    
+    notificationList.innerHTML = notifications.map(notification => `
+      <div class="notification-item ${notification.read ? '' : 'unread'}" data-id="${notification.id}">
+        <div class="font-medium text-sm">${notification.title}</div>
+        <div class="text-sm text-gray-600">${notification.message}</div>
+        <div class="notification-time">${notification.time}</div>
+      </div>
+    `).join('');
+  }
+
+  // Toggle notification dropdown
+  if (notificationBtn && notificationDropdown) {
+    notificationBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      notificationDropdown.classList.toggle('hidden');
+      
+      // Mark notifications as read when dropdown is opened
+      if (!notificationDropdown.classList.contains('hidden')) {
+        notifications = notifications.map(n => ({ ...n, read: true }));
+        renderNotifications();
+      }
+    });
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!notificationDropdown.contains(e.target) && e.target !== notificationBtn) {
+      notificationDropdown.classList.add('hidden');
+    }
+  });
+
+  // Mark all as read
+  if (markAllReadBtn) {
+    markAllReadBtn.addEventListener('click', function() {
+      notifications = notifications.map(n => ({ ...n, read: true }));
+      renderNotifications();
+    });
+  }
+
+  // Notification item click handler
+  notificationList.addEventListener('click', function(e) {
+    const notificationItem = e.target.closest('.notification-item');
+    if (notificationItem) {
+      const id = parseInt(notificationItem.getAttribute('data-id'));
+      // In a real app, you would navigate to the relevant page
+      console.log('Notification clicked:', id);
+      notificationDropdown.classList.add('hidden');
+    }
+  });
+
+  // Initialize notifications
+  renderNotifications();
+
+
+  // Show/hide dropdown
+  function toggleCategoryDropdown(show) {
+    if (show) {
+      categoryDropdown.classList.remove('hidden');
+    } else {
+      categoryDropdown.classList.add('hidden');
+    }
+  }
+
+  // Event listeners for search input and icon
+  if (searchInput) {
+    searchInput.addEventListener('focus', () => toggleCategoryDropdown(true));
+    searchInput.addEventListener('click', () => toggleCategoryDropdown(true));
+  }
+
+  if (searchIcon) {
+    searchIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleCategoryDropdown(true);
+      searchInput.focus();
+    });
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!categoryDropdown.contains(e.target) && 
+        e.target !== searchInput && 
+        e.target !== searchIcon) {
+      toggleCategoryDropdown(false);
+    }
+  });
+
   // ===== SIDEBAR FUNCTIONALITY =====
   const sidebar = document.getElementById('sidebar');
   const sidebarToggle = document.getElementById('sidebar-toggle');
@@ -93,6 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ===== PRODUCT SEARCH AND FILTER =====
   const searchInput = document.getElementById('product-search');
   const categoryDropdown = document.getElementById('category-dropdown');
+  const searchIcon = document.querySelector('.uil-search');
   const categoryOptions = document.querySelectorAll('.category-option');
   const products = document.querySelectorAll('.product');
   const loader = document.getElementById('loader');
