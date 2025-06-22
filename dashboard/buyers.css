@@ -1,211 +1,286 @@
-/* Additional styles to complement Tailwind */
-/* Add these styles to your existing CSS */
-.sticky-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background-color: white;
-    transition: all 0.3s ease;
-  }
-  
-  /* Optional: Add a shadow effect when scrolling
-  .sticky-header.scrolled {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  } */
-  
-  .shadow-lg {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  }
-
-/* Adjust the main content to account for sticky header */
-  
-main {
-    padding-top: 1rem; /* Adds space below the sticky header */
-  }
-
-  
-#category-dropdown {
-    max-height: 300px;
-    overflow-y: auto;
-    transition: all 0.3s ease;
-  }
-  
-  .category-option.active {
-    background-color: #f0fdf4;
-    color: #166534;
-    font-weight: 600;
-  }
-  
-  /* Product hover effects */
-  .product {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .product:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* Bottom navigation active state */
-  .bottom-nav button.active {
-    color: #166534;
-  }
-  
-  .bottom-nav button.active svg {
-    stroke: #166534;
-  }
-  
-  /* Loading animation */
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .loading-spinner {
-    animation: spin 1s linear infinite;
-    display: inline-block;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 640px) {
-    .product-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .product-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .product-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  /* Sidebar Styles */
+/* Custom styles */
 #sidebar {
-    height: calc(100vh - 4rem); /* Account for top nav bar */
-    top: 4rem; /* Height of top nav */
-    left: 0;
-  }
-  
-  /* Main content adjustment */
-  main {
-    transition: margin-left 0.3s ease;
-    padding-top: 1rem;
-  }
-  
-  /* When sidebar is open on mobile */
-  .sidebar-open main {
-    margin-left: 16rem;
-  }
-  
-  /* Responsive adjustments */
-  @media (min-width: 768px) {
-    /* Fixed sidebar on desktop */
-    #sidebar {
-      transform: translateX(0);
-    }
-    
-    /* Adjust main content margin for desktop */
-    .md\:ml-64 {
-      margin-left: 16rem;
-    }
-    
-    /* Hide mobile nav on desktop */
-    .mobile-nav {
-      display: none;
-    }
-    
-    /* Ensure content doesn't get hidden under fixed elements */
-    .pt-16 {
-      padding-top: 4rem;
-    }
-  }
-  
-  /* Active state for sidebar buttons */
-  .sidebar-button.active {
-    background-color: #f0fdf4;
-    color: #166534;
-    font-weight: 500;
-  }
-  
-  /* Top navigation bar */
-  .top-nav {
-    height: 4rem;
-    z-index: 50;
-  }
-  
-  /* Make sure header appears below top nav but above content */
-  .header {
-    top: 4rem;
-    z-index: 30;
-  }
+  height: 100vh;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out, width 0.3s ease;
+  will-change: transform;
+  z-index: 40;
+  overflow-y: auto;
+}
 
-  /* Chat Styles */
+#sidebar > div {
+  height: calc(100vh - 7rem);
+  overflow-y: auto;
+}
+
+#sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+  background-color: #d1fae5;
+  border-radius: 3px;
+}
+
+#sidebar.collapsed {
+  width: 80px;
+}
+
+#sidebar.collapsed .sidebar-text {
+  display: none;
+}
+
+#sidebar.collapsed #sidebar-collapse i {
+  transform: rotate(180deg);
+}
+
+#sidebar-overlay {
+  transition: opacity 0.3s ease;
+  z-index: 30;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+nav .text-center {
+  flex-grow: 1;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  nav .text-center {
+    text-align: left;
+    flex-grow: 0;
+  }
+  #sidebar {
+    transform: translateX(0);
+  }
+  .fixed {
+    left: 16rem;
+    width: calc(100% - 16rem);
+  }
+  
+  #main-content.collapsed {
+    margin-left: 80px;
+  }
+}
+
+/* Product styles */
+.product {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Category dropdown */
+#category-dropdown {
+  max-height: 300px;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  width: 100%;
+}
+
+/* Add to your CSS file */
+.category-option i {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #718096;
+}
+
+.category-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.2s ease;
+}
+
+.category-option:hover {
+  background-color: #f3f4f6;
+}
+
+.category-option.active {
+  background-color: #f0fdf4;
+  color: #166534;
+  font-weight: 600;
+}
+
+/* Add to your CSS file */
+.category-option i {
+  margin-left: 8px;
+  font-size: 16px;
+}
+
+/* Chat styles */
 #chat-messages {
-    scrollbar-width: thin;
-    scrollbar-color: #d1fae5 transparent;
-  }
-  
-  #chat-messages::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  #chat-messages::-webkit-scrollbar-thumb {
-    background-color: #d1fae5;
-    border-radius: 3px;
-  }
-  
-  #chat-modal, #farmer-list-modal {
-    z-index: 9999;
-  }
+  scrollbar-width: thin;
+  scrollbar-color: #d1fae5 transparent;
+  overflow-y: auto;
+  flex: 1;
+  padding: 1rem;
+}
 
-  .chat-message {
-    max-width: 80%;
-    padding: 0.75rem;
-    border-radius: 1rem;
-    margin-bottom: 0.5rem;
-    word-wrap: break-word;
+#chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+  background-color: #d1fae5;
+  border-radius: 3px;
+}
+
+.chat-message {
+  max-width: 80%;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+}
+
+.message-sent {
+  background-color: #d1fae5;
+  margin-left: auto;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.message-received {
+  background-color: #f3f4f6;
+  margin-right: auto;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+  text-align: right;
+}
+
+/* Farmer list styles */
+.farmer-item {
+  transition: background-color 0.2s ease;
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.farmer-item:hover {
+  background-color: #f3f4f6;
+}
+
+.farmer-item.active {
+  background-color: #f0fdf4;
+  border-left: 3px solid #10b981;
+}
+
+/* Utility classes */
+.hidden {
+  display: none;
+}
+
+.transition {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+/* Mobile bottom nav */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0;
+  z-index: 40;
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+  }
+}
+
+/* Add these styles to your existing CSS */
+@media (min-width: 768px) {
+  nav .flex.items-center {
+    flex-grow: 1;
   }
   
-  .message-sent {
-    background-color: #d1fae5;
+  nav .hidden.md\\:flex {
     margin-left: auto;
-    border-bottom-right-radius: 0.25rem;
+    padding-right: 1rem;
   }
-  
-  .message-received {
-    background-color: #f3f4f6;
-    margin-right: auto;
-    border-bottom-left-radius: 0.25rem;
-  }
-  
-  .message-time {
-    font-size: 0.75rem;
-    color: #6b7280;
-    margin-top: 0.25rem;
-    text-align: right;
-  }
-  
-  .farmer-item {
-    transition: background-color 0.2s ease;
-  }
+}
 
-  .farmer-item.active {
-    background-color: #f0fdf4;
-    border-left: 3px solid #10b981;
+/* Adjust mobile layout */
+@media (max-width: 767px) {
+  nav .flex.items-center {
+    width: 100%;
+    justify-content: space-between;
   }
+}
 
-  .farmer-item:hover {
-    background-color: #f3f4f6;
-  }
+/* Adjust header height calculation */
+main {
+  padding-top: 7.5rem; /* Increased from 7rem (112px) to 7.5rem (120px) */
+}
 
-  /* Ensure links look like other items */
-  a.farmer-item {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+@media (min-width: 768px) {
+  main {
+    padding-top: 7.5rem; /* Match the increased padding */
   }
+}
+
+/* Additional space between header and search */
+.search-section {
+  margin-top: 1rem; /* Adds 16px space below header */
+}
+
+/* Back button in chat modal */
+.back-to-farmers {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back-to-farmers:hover {
+  text-decoration: underline;
+}
+
+/* New category filter buttons */
+.category-filter-btn.active {
+  background-color: #166534 !important;
+  color: black !important;
+  border-color: #166534 !important;
+}

@@ -48,3 +48,52 @@
     font-size: 1rem;
   }
   
+  .floating-chat-btn {
+  /* Positioning */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensures it stays on top */
+
+  /* Size & Shape */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  /* Color & Shadow */
+  background: #4CAF50; /* Green */
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  /* Center the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  /* Animation */
+  transition: all 0.3s;
+}
+
+/* Hover Effects */
+.floating-chat-btn:hover {
+  background: #45a049; /* Darker green */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Flaticon Icon Styling */
+.floating-chat-btn i {
+  font-size: 24px; /* Icon size */
+  line-height: 1; /* Fixes vertical alignment */
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.floating-chat-btn {
+  animation: pulse 2s infinite;
+}
