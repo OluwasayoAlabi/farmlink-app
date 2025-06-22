@@ -109,6 +109,18 @@
   <footer class="flex justify-center mt-10">
     <div class="w-24 h-1 bg-black rounded-full"></div>
   </footer>
-</script>
+
+  <!-- JavaScript -->
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      window.location.href = "Buyer-signin.html";
+    }
+
+    // Mobile nav toggle
+    document.getElementById('mobileMenuButton').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
