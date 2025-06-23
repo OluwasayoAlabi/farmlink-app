@@ -216,7 +216,8 @@ searchInput.addEventListener("input", () => {
   renderProducts(filtered);
 });
 
-// Render products grid// Add this function to handle adding items to the cart
+// Render products grid
+
 function addToCart(product) {
   const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   const existingItemIndex = existingItems.findIndex(item => item.title === product.name);
@@ -231,8 +232,7 @@ function addToCart(product) {
   alert(`Added ${product.name} to cart!`);
 }
 
-// Update the renderProducts function to add event listeners to the cart icon
-function renderProducts(productsList) {
+  function renderProducts(productsList) {
   productGrid.innerHTML = "";
   loader.classList.remove("hidden");
   noProducts.classList.add("hidden");
@@ -252,6 +252,7 @@ function renderProducts(productsList) {
       const card = document.createElement("div");
       card.className = "bg-white rounded shadow overflow-hidden hover:shadow-lg transition";
 
+
       card.innerHTML = `
         <div class="relative">
           <button class="fav-btn absolute top-2 right-2 p-1 rounded-full ${isFavorite ? 'text-yellow-300' : 'text-green-600'} hover:text-yellow-300 transition-colors duration-300" data-slug="${slug}">
@@ -267,9 +268,11 @@ function renderProducts(productsList) {
           <p class="text-green-700 font-bold mb-1">₦${product.price.toLocaleString()}</p>
           <p class="text-gray-600 text-sm mb-2">Quantity: ${product.quantity}</p>
           <div class="flex items-center justify-between mt-2">
-            <a href="./product-detail.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 flex-1 text-center transition">
-              View Details
-            </a>
+          <!-- In your product listing page, update the View Details link in the product card -->
+<a href="./product-detail.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 flex-1 text-center transition">
+  View Details
+</a>
+<a href="/checkout/Cart.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}">
             <button class="add-to-cart-btn ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300" data-product='${JSON.stringify(product)}'>
               <i class="fi fi-rr-shopping-cart text-xl"></i>
             </button>
@@ -283,14 +286,27 @@ function renderProducts(productsList) {
         addToCart(productData);
       });
 
+      const favBtn = card.querySelector('.fav-btn');
+      favBtn.addEventListener('click', () => {
+        const icon = favBtn.querySelector('i');
+        const isFavorited = icon.classList.contains('fi-sr-heart');
+
+        if (isFavorited) {
+      favorites = favorites.filter(fav => fav !== slug); // Remove from favorites
+      icon.classList.replace('fi-sr-heart', 'fi-rr-heart');
+        } else {
+          favorites.push(slug); // Add to favorites
+          icon.classList.replace('fi-rr-heart', 'fi-sr-heart');
+     }
+
+    localStorage.setItem("favorites", JSON.stringify(favorites)); // Update localStorage
+      });
+
       productGrid.appendChild(card);
     });
   }, 500);
 }
 
-// function addToCart(product) {
-//   alert(`Added ${product.name} to cart!`);
-// }
-
 
 renderProducts(products);
+

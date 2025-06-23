@@ -26,7 +26,7 @@
             <li><a href="../search and filter.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
             <li><a href="shop.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
             
-            <li><a href="Select role.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign in</a></li>
+            <li><a href="../Farmer-signin.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign in</a></li>
            
         </ul>
     </div>
@@ -107,7 +107,7 @@
       Home
     </button>
     <button class="flex flex-col items-center">
-      <span class="material-icons" style="color: green;"><a href="listing.html">explore</a></span>
+      <span class="material-icons" style="color: green;"><a href="/dashboard/listing.html">explore</a></span>
       Explore
     </button>
     <button class="flex flex-col items-center">
@@ -160,83 +160,95 @@
   { name: "Rice", price: 84000, quantity: "50kg", image: "/images/bag of rice.jpg" }];
 
     const productGrid = document.getElementById("productGrid");
-    const loader = document.getElementById("loader");
-    const noProducts = document.getElementById("noProducts");
-    const searchInput = document.getElementById("searchInput");
+  const loader = document.getElementById("loader");
+  const noProducts = document.getElementById("noProducts");
+  const searchInput = document.getElementById("searchInput");
 
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  let allProducts = [];
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    searchInput.addEventListener("input", () => {
-      const keyword = searchInput.value.toLowerCase();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(keyword));
-      renderProducts(filtered);
-    });
-
-    function renderProducts(productsList) {
-      productGrid.innerHTML = "";
-      loader.classList.remove("hidden");
-      noProducts.classList.add("hidden");
-
-      setTimeout(() => {
+  // Fetch products from API
+  function fetchProducts() {
+    loader.classList.remove("hidden");
+    fetch("https://farmlink-api.onrender.com/api/v1/products")
+      .then((res) => res.json())
+      .then((data) => {
+        allProducts = data.data || []; // Adjust if response structure is different
+        renderProducts(allProducts);
+      })
+      .catch((error) => {
+        console.error("Failed to load products:", error);
         loader.classList.add("hidden");
+        noProducts.classList.remove("hidden");
+      });
+  }
 
-        if (productsList.length === 0) {
-          noProducts.classList.remove("hidden");
-          return;
-        }
+  // Render product cards
+  function renderProducts(productsList) {
+    productGrid.innerHTML = "";
+    loader.classList.add("hidden");
 
-        productsList.forEach(product => {
-          const slug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
-          const isFavorite = favorites.includes(slug);
-
-          const card = document.createElement("div");
-          card.className = "bg-white rounded shadow overflow-hidden hover:shadow-lg transition";
-
-          card.innerHTML = `
-            <div class="relative">
-              <button class="fav-btn absolute top-2 right-2 p-1 rounded-full ${isFavorite ? 'text-yellow-300' : 'text-green-600'}">
-                ${isFavorite ? '<i class="fi fi-sr-heart text-lg"></i>' : '<i class="fi fi-rr-heart text-lg"></i>'}
-              </button>
-              <img src="${product.image}" alt="${product.name}" class="w-full h-32 object-cover rounded-md">
-            </div>
-            <div class="p-4">
-              <h2 class="text-md font-semibold">${product.name}</h2>
-              <p class="text-green-700 font-bold">₦${product.price.toLocaleString()}</p>
-              <p class="text-sm text-gray-600">Qty: ${product.quantity}</p>
-              <div class="flex justify-between mt-2">
-                <a href="/product-detail.html?product=${slug}" class="text-sm text-green-600 hover:underline">View</a>
-                <a href="/checkout/shop.html?product=${slug}" class="text-sm text-green-600 hover:underline">Add to Cart </a>
-              </div>
-            </div>
-          `;
-
-          const favBtn = card.querySelector('.fav-btn');
-          favBtn.addEventListener('click', () => {
-            const icon = favBtn.querySelector('i');
-            icon.classList.toggle('fi-sr-heart');
-            icon.classList.toggle('fi-rr-heart');
-          });
-
-          productGrid.appendChild(card);
-        });
-      }, 300);
+    if (productsList.length === 0) {
+      noProducts.classList.remove("hidden");
+      return;
     }
 
-    renderProducts(products);
+    productsList.forEach(product => {
+      const slug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
+      const isFavorite = favorites.includes(slug);
 
-    $(document).ready(function () {
-      $('#manageListingBtn').on('click', function () {
-        alert("Redirecting to Add/Manage Listing Page...");
-        window.location.href = 'addlisting.html';
+      const card = document.createElement("div");
+      card.className = "bg-white rounded shadow overflow-hidden hover:shadow-lg transition";
 
+      card.innerHTML = `
+        <div class="relative">
+          <button class="fav-btn absolute top-2 right-2 p-1 rounded-full ${isFavorite ? 'text-yellow-300' : 'text-green-600'}">
+            ${isFavorite ? '<i class="fi fi-sr-heart text-lg"></i>' : '<i class="fi fi-rr-heart text-lg"></i>'}
+          </button>
+          <img src="${product.image}" alt="${product.name}" class="w-full h-32 object-cover rounded-md">
+        </div>
+        <div class="p-4">
+          <h2 class="text-md font-semibold">${product.name}</h2>
+          <p class="text-green-700 font-bold">₦${product.price.toLocaleString()}</p>
+          <p class="text-sm text-gray-600">Qty: ${product.quantity || '-'}</p>
+          <div class="flex justify-between mt-2">
+            <a href="/product-detail.html?product=${slug}" class="text-sm text-green-600 hover:underline">View</a>
+            <a href="/checkout/shop.html?product=${slug}" class="text-sm text-green-600 hover:underline">Add to Cart</a>
+          </div>
+        </div>
+      `;
+
+      // Handle favorites toggle
+      const favBtn = card.querySelector('.fav-btn');
+      favBtn.addEventListener('click', () => {
+        const icon = favBtn.querySelector('i');
+        icon.classList.toggle('fi-sr-heart');
+        icon.classList.toggle('fi-rr-heart');
       });
 
-      $('#manageInventoryBtn').on('click', function () {
-         alert("Redirecting to Add/Manage Inventory Page...");
-        window.location.href = 'inventory.html';
-
-       });
+      productGrid.appendChild(card);
     });
-  </script>
-</body>
-</html>
+  }
+
+  // Search filter
+  searchInput.addEventListener("input", () => {
+    const keyword = searchInput.value.toLowerCase();
+    const filtered = allProducts.filter(p => p.name.toLowerCase().includes(keyword));
+    renderProducts(filtered);
+  });
+
+  // Button Events
+  $(document).ready(function () {
+    $('#manageListingBtn').on('click', function () {
+      alert("Redirecting to Add/Manage Listing Page...");
+      window.location.href = '/dashboard/addlisting.html';
+    });
+
+    $('#manageInventoryBtn').on('click', function () {
+      alert("Redirecting to Add/Manage Inventory Page...");
+      window.location.href = '/dashboard/inventory.html';
+    });
+  });
+
+  // Load products on page load
+  fetchProducts();
