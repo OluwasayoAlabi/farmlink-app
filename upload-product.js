@@ -11,91 +11,106 @@ navbarToggle.addEventListener('click', () => {
 //Multiple image upload and delete button
 const imageUploadInput = document.getElementById('file-input');
 const imagePreviewDiv = document.getElementById('image-preview');
+const uploadButton = document.getElementById('upload-btn');
+
+let selectedFiles = [];
 
 imageUploadInput.addEventListener('change', (e) => {
-  const files = e.target.files;
+  const files = Array.from(e.target.files);
 
-  for (const file of files) {
-    const fileName = file.name;
-    const fileSize = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
-    const fileType = file.type.split('/')[1].toUpperCase();
+  files.forEach(file => {
+    const fileId = crypto.randomUUID();
+    file.id = fileId;
+    selectedFiles.push(file);
 
     const reader = new FileReader();
     reader.onload = () => {
       const html = `
-        <div class="rounded-xl p-4 mt-1">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">  
-              <div class="rounded-lg bg-emerald-500/10 p-2">
-                <img src="${reader.result}" class="h-6 w-6 object-cover rounded" />
-              </div>
-              <div>
-                <p class="text-xs">${fileName}</p>
-                <p class="text-xs text-slate-400">${fileSize} • ${fileType}</p>
-              </div>
+        <div class="rounded-xl p-4 mt-1 bg-gray-100 flex items-center justify-between" data-id="${fileId}">
+          <div class="flex items-center gap-3">  
+            <div class="rounded-lg bg-emerald-500/10 p-2">
+              <img src="${reader.result}" class="h-10 w-10 object-cover rounded" />
             </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-5 w-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-sm font-medium text-green-600">Complete</span>
-
-              <button class="text-red-500 hover:text-red-700">
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                </svg>
-              </button>
+            <div>
+              <p class="text-xs font-medium">${file.name}</p>
+              <p class="text-xs text-slate-400">${(file.size / 1024 / 1024).toFixed(2)} MB</p>
             </div>
           </div>
+          <button class="text-red-500 hover:text-red-700 remove-btn" type="button" aria-label="Remove image">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142M5 7l.867 12.142M10 11v6m4-6v6" />
+            </svg>
+          </button>
         </div>
       `;
-
       imagePreviewDiv.insertAdjacentHTML('beforeend', html);
     };
     reader.readAsDataURL(file);
-  }
+  });
+
+  imageUploadInput.value = ''; // reset input so same file can be selected again
 });
 
 imagePreviewDiv.addEventListener('click', (e) => {
-  if (e.target.closest('button')) {
-    const imageContainer = e.target.closest('.rounded-xl');
-    imageContainer.remove();
+  if (e.target.closest('.remove-btn')) {
+    const container = e.target.closest('[data-id]');
+    const id = container.getAttribute('data-id');
+    selectedFiles = selectedFiles.filter(file => file.id !== id);
+    container.remove();
   }
 });
 
-//Calculation of total price (price per unit x quantity)
-/*
-const pricePerUnitInput = document.getElementById('price-per-unit');
-    const quantityAvailableInput = document.getElementById('quantity-available');
-    const totalValueSpan = document.getElementById('total-value');
+uploadButton.addEventListener('click', (e) => {
+  e.preventDefault(); // prevent form submit if inside a form
 
-    function calculateTotal() {
-      const pricePerUnit = parseFloat(pricePerUnitInput.value) || 0;
-      const quantityAvailable = parseInt(quantityAvailableInput.value) || 0;
-      const totalValue = Math.round (pricePerUnit * quantityAvailable);
-      totalValueSpan.textContent =`₦${totalValue.toLocaleString()}`;
-    }
+  if (selectedFiles.length === 0) {
+    alert('Please select at least one image.');
+    return;
+  }
 
-    pricePerUnitInput.addEventListener('input', calculateTotal);
-    quantityAvailableInput.addEventListener('input', calculateTotal);
+  // Grab values from your inputs by their correct IDs
+  const name = document.getElementById('product-name').value.trim();
+  const description = document.getElementById('product-description').value.trim();
+  const category = document.getElementById('product-category').value.trim();
+  const sizes = document.getElementById('product-size').value.trim();
+  const color = ''; // No color input currently; leave blank or add input field
+  const price = document.getElementById('price-per-unit').value.trim();
+  const totalQty = document.getElementById('quantity-available').value.trim();
 
-    const form = document.getElementById('product-form');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const productName = document.getElementById('product-name').value;
-      const pricePerUnit = parseFloat(document.getElementById('price-per-unit').value);
-      const quantityAvailable = parseInt(document.getElementById('quantity-available').value);
-      const totalValue = pricePerUnit * quantityAvailable;
+  // Basic validation example (optional)
+  if (!name || !description || !category || !sizes || !price || !totalQty) {
+    alert('Please fill in all required fields.');
+    return;
+  }
 
-      console.log(totalValue);      
-      // Upload product data to server or database
-      const productData = {
-        productName,
-        pricePerUnit,
-        quantityAvailable,
-        totalValue,
-      };
-      console.log(productData);
-      // Add code to send productData to server or database
-    });
-*/
+  const formData = new FormData();
+  selectedFiles.forEach(file => formData.append('files[]', file));
+
+  formData.append('name', name);
+  formData.append('description', description);
+  formData.append('category', category);
+  formData.append('sizes', sizes);
+  formData.append('color', color);
+  formData.append('price', price);
+  formData.append('totalQty', totalQty);
+
+  fetch('https://farmlink-api.onrender.com/api/v1/products/add-product', {
+    method: 'POST',
+   headers: {
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTgzMzM4ZTNlNmJjMzRiMDcyN2YxMSIsImlhdCI6MTc1MDYxMDc5NiwiZXhwIjoxNzUwODY5OTk2fQ.oSRiSc-mwdyEVh1oHKW-ol5xoChabVGnc_DKN0diXZI',
+  },
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    alert('Upload successful!');
+    selectedFiles = [];
+    imagePreviewDiv.innerHTML = '';
+    // Optionally reset inputs here if desired
+  })
+  .catch(err => {
+    console.error('Upload failed:', err);
+    alert('Upload failed, please try again.');
+  });
+});
