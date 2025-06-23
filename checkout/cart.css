@@ -9,3 +9,7 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.nav .logo img{
+  width: 50px;
+}
