@@ -27,18 +27,23 @@
     <div class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
         <div>
-          <h1 class="text-3xl font-bold">FarmLink</h1>
+          <div class="flex items-center space-x-2">
+    <img src="Farmlink logo.jpeg" alt="FarmLink Logo" class="w-8 h-8 object-contain"/>
+    <h1 class="text-3xl font-bold">FarmLink</h1>
+</div>
+
           <p class="mt-2">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
         </div>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:block">
           <ul class="flex space-x-4 ml-6 text-sm font-medium">
-            <li><a href="Select role.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign In</a></li>
+           
             <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
             <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
             <li><a href="search.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
             <li><a href="shop.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+            <li><a href="Select role.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign In</a></li>
           </ul>
         </nav>
 
@@ -55,11 +60,12 @@
       <!-- Mobile Navigation -->
       <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
         <ul class="space-y-2 mt-2">
-          <li><a href="Select role.html" class="block text-white hover:text-yellow-300">Sign In</a></li>
+        
           <li><a href="index.html" class="block text-white hover:text-yellow-300">Products</a></li>
           <li><a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a></li>
           <li><a href="search.html" class="block text-white hover:text-yellow-300">Search</a></li>
           <li><a href="shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+          <li><a href="Select role.html" class="block text-white hover:text-yellow-300">Sign In</a></li>
         </ul>
       </div>
     </div>
@@ -70,10 +76,6 @@
     <h1 class="text-xl md:text-2xl font-bold text-[#1E1E1E] leading-snug">Business Information</h1>
 
     <form onsubmit="handleSubmit(event)" class="space-y-5">
- Onboarding-form
-=======
- HEAD
- main
       <input type="text" required placeholder="Name:"
              class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
 
@@ -90,9 +92,6 @@
 
       <input type="text" required placeholder="Products Interested In eg Tomatoes, Fish"
              class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
- Onboarding-form
-=======
-=======
       <input id="name" type="text" required placeholder="Name:"
        class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
 
@@ -109,10 +108,6 @@
 
 <input id="interest" type="text" required placeholder="Products Interested In eg Tomatoes, Fish"
        class="w-full rounded-xl px-4 py-3 text-base border-none focus:outline-none" />
-
- 500609828e421f6617acc967ea779830222835d7
- main
-
       <div class="flex items-start space-x-2">
         <input type="checkbox" required class="mt-1" id="terms" />
         <label for="terms" class="text-sm">
@@ -135,12 +130,11 @@
   </footer>
 
   <!-- JS -->
- Onboarding-form
+ 
   <script>
     function handleSubmit(event) {
       event.preventDefault();
       window.location.href = "upload form.html";
-=======
  HEAD
   <script>
     function handleSubmit(event) {
@@ -154,9 +148,7 @@
       document.getElementById('mobileMenu').classList.toggle('hidden');
     });
   </script>
- Onboarding-form
-=======
-=======
+ 
  <script>
   function handleSubmit(event) {
     event.preventDefault();
@@ -202,8 +194,5 @@
     document.getElementById('mobileMenu').classList.toggle('hidden');
   });
 </script>
-
- 500609828e421f6617acc967ea779830222835d7
- main
 </body>
 </html>

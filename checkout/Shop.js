@@ -1,3 +1,13 @@
+
+
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
+});
+
+
 const productList = document.getElementById("product-list");
 
 const categories = [
