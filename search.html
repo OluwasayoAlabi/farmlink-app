@@ -55,7 +55,7 @@
                     <li><a href="index.html" class="block text-white hover:text-yellow-300">Products</a></li>
                     <li><a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a></li>
                     <li><a href="search.html" class="block text-white hover:text-yellow-300">Search</a></li>
-                    <li><a href="search.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+                    <li><a href="shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
                     <li><a href="Select role.html" class="block text-white hover:text-yellow-300">Sign In</a></li>
                 </ul>
             </div>
@@ -201,52 +201,52 @@
         const products = [
             // Bags/Bigger Quantities
             { id: 1, name: "Bag of Beans", category: "Bags/Bigger Quantities", quantity: 1, unit: "bag", price: "₦60,000", image: "/images/bag of beans.jpeg", size: 50 },
-            { id: 2, name: "Bag of Cocoa", category: "Bags/Bigger Quantities", quantity: 1, unit: "kg", price: "₦17,500", image: "farmlink-app/images/cocoa.jpg", size: 65 },
-            { id: 3, name: "Bag of Groundnuts", category: "Bags/Bigger Quantities", quantity: 80, unit: "kg", price: "₦90,000", image: "farmlink-app/images/groundnut.jpg", size: 80 },
-            { id: 4, name: "Bag of Maize", category: "Bags/Bigger Quantities", quantity: 50, unit: "kg", price: "₦13,000", image: "farmlink-app/images/maize.jpg", size: 50 },
-            { id: 5, name: "Bag of Rice", category: "Bags/Bigger Quantities", quantity: 50, unit: "kg", price: "₦84,000", image: "farmlink-app/images/bag of rice.jpg", size: 50 },
+            { id: 2, name: "Bag of Cocoa", category: "Bags/Bigger Quantities", quantity: 1, unit: "kg", price: "₦17,500", image: "/images/cocoa.jpg", size: 65 },
+            { id: 3, name: "Bag of Groundnuts", category: "Bags/Bigger Quantities", quantity: 80, unit: "kg", price: "₦90,000", image: "/images/groundnut.jpg", size: 80 },
+            { id: 4, name: "Bag of Maize", category: "Bags/Bigger Quantities", quantity: 50, unit: "kg", price: "₦13,000", image: "/images/maize.jpg", size: 50 },
+            { id: 5, name: "Bag of Rice", category: "Bags/Bigger Quantities", quantity: 50, unit: "kg", price: "₦84,000", image: "/images/bag of rice.jpg", size: 50 },
             
             // Crops
-            { id: 6, name: "Groundnut ", category: "Crops", quantity: 1, unit: "kg", price: "₦4,500", image: "farmlink-app/images/groundnut.jpg", size: 1 },
-            { id: 7, name: "Beans ", category: "Crops", quantity: 1, unit: "kg", price: "₦7,500", image: "farmlink-app/images/bag of beans.jpeg", size: 1 },
-            { id: 8, name: "Maize ", category: "Crops", quantity: 1, unit: "pc", price: "₦600", image: "farmlink-app/images/maize.jpg", size: 0.5 },
-            { id: 9, name: "Rice ", category: "Crops", quantity: 1, unit: "kg", price: "₦2,500", image: "farmlink-app/images/bag of rice.jpg", size: 1 },
-            { id: 34, name: "Cocoa", category: "Crops", quantity: 500, unit: "kg", price: "₦9,000", image: "farmlink-app/images/cocoa.jpg", size: 500 },
+            { id: 6, name: "Groundnut ", category: "Crops", quantity: 1, unit: "kg", price: "₦4,500", image: "/images/groundnut.jpg", size: 1 },
+            { id: 7, name: "Beans ", category: "Crops", quantity: 1, unit: "kg", price: "₦7,500", image: "/images/bag of beans.jpeg", size: 1 },
+            { id: 8, name: "Maize ", category: "Crops", quantity: 1, unit: "pc", price: "₦600", image: "/images/maize.jpg", size: 0.5 },
+            { id: 9, name: "Rice ", category: "Crops", quantity: 1, unit: "kg", price: "₦2,500", image: "/images/bag of rice.jpg", size: 1 },
+            { id: 34, name: "Cocoa", category: "Crops", quantity: 500, unit: "kg", price: "₦9,000", image: "/images/cocoa.jpg", size: 500 },
             
             // Animal Products
-            { id: 10, name: "Fresh Catfish", category: "Animal Products", quantity: 3, unit: "kg", price: "₦3,000", image: "farmlink-app/images/Catfish.jpg", size: 3 },
-            { id: 11, name: "Frozen Fish", category: "Animal Products", quantity: 1, unit: "kg", price: "₦2,000", image: "farmlink-app/images/Frozen fish.jpg", size: 1 },
-            { id: 12, name: "Live Chicken", category: "Animal Products", quantity: 1, unit: "bird", price: "₦10,000", image: "farmlink-app/images/Live Chicken.webp", size: 2 },
-            { id: 13, name: "Frozen Chicken", category: "Animal Products", quantity: 1, unit: "kg", price: "₦6,500", image: "farmlink-app/images/Frozen Chicken.webp", size: 1 },
-            { id: 14, name: "Eggs ", category: "Animal Products", quantity: 1, unit: "crate", price: "₦5,500", image: "farmlink-app/images/eggs.jpg", size: 5 },
+            { id: 10, name: "Fresh Catfish", category: "Animal Products", quantity: 3, unit: "kg", price: "₦3,000", image: "/images/Catfish.jpg", size: 3 },
+            { id: 11, name: "Frozen Fish", category: "Animal Products", quantity: 1, unit: "kg", price: "₦2,000", image: "/images/Frozen fish.jpg", size: 1 },
+            { id: 12, name: "Live Chicken", category: "Animal Products", quantity: 1, unit: "bird", price: "₦10,000", image: "/images/Live Chicken.webp", size: 2 },
+            { id: 13, name: "Frozen Chicken", category: "Animal Products", quantity: 1, unit: "kg", price: "₦6,500", image: "/images/Frozen Chicken.webp", size: 1 },
+            { id: 14, name: "Eggs ", category: "Animal Products", quantity: 1, unit: "crate", price: "₦5,500", image: "/images/eggs.jpg", size: 5 },
             
             // Fruits
-            { id: 15, name: "Apples", category: "Fruits", quantity: 1, unit: "pc", price: "₦200", image: "farmlink-app/images/Apples.webp", size: 0.2 },
-            { id: 16, name: "Bananas", category: "Fruits", quantity: 1, unit: "bunch", price: "₦600", image: "farmlink-app/images/Bananas 3.webp", size: 3 },
-            { id: 17, name: "Cherry/Agbalumo", category: "Fruits", quantity: 1, unit: "pc", price: "₦100", image: "farmlink-app/images/Agbalumo.webp", size: 0.1 },
-            { id: 18, name: "Oranges", category: "Fruits", quantity: 2, unit: "pc", price: "₦500", image: "farmlink-app/images/oranges.jpg", size: 0.4 },
-            { id: 19, name: "Watermelons", category: "Fruits", quantity: 1, unit: "pc", price: "₦2,000", image: "farmlink-app/images/watermelons.jpg", size: 5 },
-            { id: 32, name: "Mangoes", category: "Fruits", quantity: 1, unit: "pc", price: "₦800", image: "farmlink-app/images/mangoes 2.jpg", size: 0.3 },
-            { id: 33, name: "Pawpaw", category: "Fruits", quantity: 1, unit: "pc", price: "₦2,550", image: "farmlink-app/images/pawpaw 2.jpg", size: 2 },
-            { id: 35, name: "Pineapple", category: "Fruits", quantity: 1, unit: "pc", price: "₦1,500", image: "farmlink-app/images/pineapple.webp", size: 1.5 },
-            { id: 37, name: "Avocado", category: "Fruits", quantity: 1, unit: "pc", price: "₦2,000", image: "farmlink-app/images/avocado 2.jpg", size: 0.5 },
+            { id: 15, name: "Apples", category: "Fruits", quantity: 1, unit: "pc", price: "₦200", image: "/images/Apples.webp", size: 0.2 },
+            { id: 16, name: "Bananas", category: "Fruits", quantity: 1, unit: "bunch", price: "₦600", image: "/images/Bananas 3.webp", size: 3 },
+            { id: 17, name: "Cherry/Agbalumo", category: "Fruits", quantity: 1, unit: "pc", price: "₦100", image: "/images/Agbalumo.webp", size: 0.1 },
+            { id: 18, name: "Oranges", category: "Fruits", quantity: 2, unit: "pc", price: "₦500", image: "/images/oranges.jpg", size: 0.4 },
+            { id: 19, name: "Watermelons", category: "Fruits", quantity: 1, unit: "pc", price: "₦2,000", image: "/images/watermelons.jpg", size: 5 },
+            { id: 32, name: "Mangoes", category: "Fruits", quantity: 1, unit: "pc", price: "₦800", image: "/mangoes 2.jpg", size: 0.3 },
+            { id: 33, name: "Pawpaw", category: "Fruits", quantity: 1, unit: "pc", price: "₦2,550", image: "/images/pawpaw 2.jpg", size: 2 },
+            { id: 35, name: "Pineapple", category: "Fruits", quantity: 1, unit: "pc", price: "₦1,500", image: "/images/pineapple.webp", size: 1.5 },
+            { id: 37, name: "Avocado", category: "Fruits", quantity: 1, unit: "pc", price: "₦2,000", image: "/images/avocado 2.jpg", size: 0.5 },
             
             // Livestock
-            { id: 20, name: "Goat", category: "Livestock", quantity: 20, unit: "kg", price: "₦50,000", image: "farmlink-app/images/goat.jpg", size: 20 },
-            { id: 21, name: "Sheep", category: "Livestock", quantity: 50, unit: "kg", price: "₦300,000", image: "farmlink-app/images/sheep.jpg", size: 50 },
-            { id: 22, name: "Cattle", category: "Livestock", quantity: 400, unit: "kg", price: "600,000", image: "farmlink-app/images/cows.jpg", size: 400 },
-            { id: 31, name: "Ram", category: "Livestock", quantity: 100, unit: "kg", price: "₦420,000", image: "farmlink-app/images/ram.jpg", size: 100 },
+            { id: 20, name: "Goat", category: "Livestock", quantity: 20, unit: "kg", price: "₦50,000", image: "/images/goat.jpg", size: 20 },
+            { id: 21, name: "Sheep", category: "Livestock", quantity: 50, unit: "kg", price: "₦300,000", image: "/images/sheep.jpg", size: 50 },
+            { id: 22, name: "Cattle", category: "Livestock", quantity: 400, unit: "kg", price: "600,000", image: "/images/cows.jpg", size: 400 },
+            { id: 31, name: "Ram", category: "Livestock", quantity: 100, unit: "kg", price: "₦420,000", image: "/images/ram.jpg", size: 100 },
             
             // Vegetables
-            { id: 23, name: "Fresh Tomatoes", category: "Vegetables", quantity: 20, unit: "pcs", price: "₦2,000", image: "farmlink-app/images/Tomatoes 1.webp", size: 5 },
-            { id: 24, name: "Fresh Vegetables", category: "Vegetables", quantity: 5, unit: "kg", price: "₦2,500", image: "farmlink-app/images/leafy-vegetables.webp", size: 5 },
-            { id: 25, name: "Onions", category: "Vegetables", quantity: 50, unit: "pcs", price: "₦5,000", image: "farmlink-app/images/Onions 2.webp", size: 10 },
-            { id: 26, name: "Okra", category: "Vegetables", quantity: 20, unit: "pcs", price: "₦2,000", image: "farmlink-app/images/okra 2.jpg", size: 2 },
-            { id: 27, name: "Pepper", category: "Vegetables", quantity: 30, unit: "pcs", price: "₦2,000", image: "farmlink-app/images/pepper.jpg", size: 3 },
-            { id: 28, name: "Cucumbers", category: "Vegetables", quantity: 1, unit: "pcs", price: "₦1,500", image: "farmlink-app/images/cucumber 2.webp", size: 0.5 },
-            { id: 29, name: "Plantains", category: "Vegetables", quantity: 1, unit: "bunch", price: "₦2,000", image: "farmlink-app/images/plaintains.webp", size: 3 },
-            { id: 30, name: "Yam (Tuber)", category: "Vegetables", quantity: 1, unit: "tuber", price: "₦1,500", image: "farmlink-app/images/Yam tuber.webp", size: 2 },
-            { id: 36, name: "Garden Eggs", category: "Vegetables", quantity: 1, unit: "dozen", price: "₦3,000", image: "farmlink-app/images/garden eggs.jpg", size: 1 }
+            { id: 23, name: "Fresh Tomatoes", category: "Vegetables", quantity: 20, unit: "pcs", price: "₦2,000", image: "/images/Tomatoes 1.webp", size: 5 },
+            { id: 24, name: "Fresh Vegetables", category: "Vegetables", quantity: 5, unit: "kg", price: "₦2,500", image: "/images/leafy-vegetables.webp", size: 5 },
+            { id: 25, name: "Onions", category: "Vegetables", quantity: 50, unit: "pcs", price: "₦5,000", image: "/images/Onions 2.webp", size: 10 },
+            { id: 26, name: "Okra", category: "Vegetables", quantity: 20, unit: "pcs", price: "₦2,000", image: "/images/okra 2.jpg", size: 2 },
+            { id: 27, name: "Pepper", category: "Vegetables", quantity: 30, unit: "pcs", price: "₦2,000", image: "/images/pepper.jpg", size: 3 },
+            { id: 28, name: "Cucumbers", category: "Vegetables", quantity: 1, unit: "pcs", price: "₦1,500", image: "/images/cucumber 2.webp", size: 0.5 },
+            { id: 29, name: "Plantains", category: "Vegetables", quantity: 1, unit: "bunch", price: "₦2,000", image: "/images/plaintains.webp", size: 3 },
+            { id: 30, name: "Yam (Tuber)", category: "Vegetables", quantity: 1, unit: "tuber", price: "₦1,500", image: "/images/Yam tuber.webp", size: 2 },
+            { id: 36, name: "Garden Eggs", category: "Vegetables", quantity: 1, unit: "dozen", price: "₦3,000", image: "/images/garden eggs.jpg", size: 1 }
         ];
 
         // DOM Elements
@@ -400,7 +400,7 @@
                         <span class="text-gray-600">Qty: ${product.quantity} ${product.unit}</span>
                     </div>
                     <p class="text-green-700 font-medium">${product.price}</p>
-                    <a href="cart.html" class="mt-3 w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md transition duration-200 flex items-center justify-center gap-2">
+                    <a href="shop.html" class="mt-3 w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md transition duration-200 flex items-center justify-center gap-2">
                         <i class="fas fa-shopping-cart"></i>
                         Add to Cart
                     </a>
