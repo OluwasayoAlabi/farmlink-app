@@ -152,7 +152,7 @@ images.forEach((image, index) => {
   img.classList.add('w-full', 'h-60', 'object-fill');
 
   const seeDetailsLink = document.createElement('a');
-  seeDetailsLink.href = `product-detail.html?product=${image.name.toLowerCase().replace(' ', '-')}`;
+  seeDetailsLink.href = `../product-detail.html?product=${image.name.toLowerCase().replace(' ', '-')}`;
   seeDetailsLink.textContent = 'See Details';
   seeDetailsLink.classList.add('block','mt-2', 'text-black', 'pl-2', 'hover:text-green-700');
 
