@@ -3,194 +3,194 @@ const products = [
     name: "Fresh Tomatoes",
     price: 2000,
     quantity: "20pcs",
-    image: "images/Tomatoes 1.webp"
+    image: "images/Tomatoes 1.webp",
   },
   {
     name: "Fresh Vegetables",
     price: 2500,
     quantity: "5kg",
-    image: "images/leafy-vegetables.webp"
+    image: "images/leafy-vegetables.webp",
   },
   {
     name: "Onions",
     price: 5000,
     quantity: "50 pcs",
-    image: "images/Onions 2.webp"
+    image: "images/Onions 2.webp",
   },
   {
     name: "Okra",
     price: 2000,
     quantity: "20 pcs",
-    image: "images/okra 2.jpg"
+    image: "images/okra 2.jpg",
   },
   {
     name: "Garden Eggs",
     price: 3000,
     quantity: "1 dozen",
-    image: "images/garden eggs.jpg"
+    image: "images/garden eggs.jpg",
   },
   {
     name: "Peppers",
     price: 2000,
     quantity: "30 pcs",
-    image: "images/pepper.jpg"
+    image: "images/pepper.jpg",
   },
   {
     name: "Plaintains",
     price: 2000,
     quantity: "1 bunch",
-    image: "images/plaintains.webp"
+    image: "images/plaintains.webp",
   },
   {
     name: "Cucumbers",
     price: 1500,
     quantity: "1pc",
-    image: "images/cucumber 2.webp"
+    image: "images/cucumber 2.webp",
   },
   {
     name: "Apples",
     price: 200,
     quantity: "1pc",
-    image: "images/Apples.webp"
+    image: "images/Apples.webp",
   },
   {
     name: "Bananas",
     price: 600,
     quantity: "1 bunch",
-    image: "images/Bananas 3.webp"
+    image: "images/Bananas 3.webp",
   },
   {
     name: "Cherry-Agbalumo",
     price: 100,
     quantity: "1pc",
-    image: "images/Agbalumo.webp"
+    image: "images/Agbalumo.webp",
   },
   {
     name: "Oranges",
     price: 500,
     quantity: "2pcs",
-    image: "images/oranges.jpg"
+    image: "images/oranges.jpg",
   },
   {
     name: "Watermelons",
     price: 2000,
     quantity: "1pc",
-    image: "images/watermelons.jpg"
+    image: "images/watermelons.jpg",
   },
   {
     name: "Mangoes",
     price: 800,
     quantity: "1pc",
-    image: "images/mangoes.webp"
+    image: "images/mangoes.webp",
   },
   {
     name: "Pineapples",
     price: 1500,
     quantity: "1pc",
-    image: "images/pineapple.webp"
+    image: "images/pineapple.webp",
   },
   {
     name: "Avocados",
     price: 2000,
     quantity: "1pc",
-    image: "images/avocado 2.jpg"
+    image: "images/avocado 2.jpg",
   },
   {
     name: "Pawpaw",
     price: 2550,
     quantity: "1pc",
-    image: "images/pawpaw 2.jpg"
+    image: "images/pawpaw 2.jpg",
   },
   {
     name: "Fresh Catfish",
     price: 3000,
     quantity: "3kg",
-    image: "images/Catfish.jpg"
+    image: "images/Catfish.jpg",
   },
   {
     name: "Frozen Fish",
     price: 2000,
     quantity: "1kg",
-    image: "images/Frozen fish.jpg"
+    image: "images/Frozen fish.jpg",
   },
   {
     name: "Eggs",
     price: 5500,
     quantity: "1 crate",
-    image: "images/eggs.jpg"
+    image: "images/eggs.jpg",
   },
   {
     name: "Live Chicken",
     price: 10000,
     quantity: "8kg",
-    image: "images/Live Chicken.webp"
+    image: "images/Live Chicken.webp",
   },
   {
     name: "Frozen Chicken",
     price: 6500,
     quantity: "1kg",
-    image: "images/Frozen Chicken.webp"
+    image: "images/Frozen Chicken.webp",
   },
   {
     name: "Goat",
     price: 50000,
     quantity: "20kg",
-    image: "images/goat.jpg"
+    image: "images/goat.jpg",
   },
   {
     name: "Sheep",
     price: 300000,
     quantity: "50kg",
-    image: "images/sheep.jpg"
+    image: "images/sheep.jpg",
   },
   {
     name: "Ram",
     price: 420000,
     quantity: "100kg",
-    image: "images/ram.jpg"
+    image: "images/ram.jpg",
   },
   {
     name: "Cattle",
     price: 600000,
     quantity: "400kg",
-    image: "images/cows.jpg"
+    image: "images/cows.jpg",
   },
   {
     name: "Yam",
     price: 1500,
     quantity: "1 tuber",
-    image: "images/Yam tuber.webp"
+    image: "images/Yam tuber.webp",
   },
   {
     name: "Beans",
     price: 150000,
     quantity: "100kg",
-    image: "images/bag of beans.jpeg"
+    image: "images/bag of beans.jpeg",
   },
   {
     name: "Groundnuts",
     price: 90000,
     quantity: "80kg",
-    image: "images/groundnut.jpg"
+    image: "images/groundnut.jpg",
   },
   {
     name: "Maize",
     price: 13000,
     quantity: "50kg",
-    image: "images/maize.jpg"
+    image: "images/maize.jpg",
   },
   {
     name: "Cocoa",
     price: 17500,
     quantity: "1kg",
-    image: "images/cocoa.jpg"
+    image: "images/cocoa.jpg",
   },
   {
     name: "Rice",
     price: 84000,
     quantity: "50kg",
-    image: "images/bag of rice.jpg"
-  }
+    image: "images/bag of rice.jpg",
+  },
 ];
 
 const productGrid = document.getElementById("productGrid");
@@ -210,7 +210,9 @@ menuToggle.addEventListener("click", () => {
 // Listen for search input changes
 searchInput.addEventListener("input", () => {
   const keyword = searchInput.value.toLowerCase();
-  const filtered = products.filter(p => p.name.toLowerCase().includes(keyword));
+  const filtered = products.filter((p) =>
+    p.name.toLowerCase().includes(keyword)
+  );
   renderProducts(filtered);
 });
 
@@ -244,7 +246,7 @@ function addToCart(product) {
     }
 
     productsList.forEach(product => {
-     const slug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
+      const slug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
       const isFavorite = favorites.includes(slug);
     
       const card = document.createElement("div");
@@ -253,17 +255,14 @@ function addToCart(product) {
 
       card.innerHTML = `
         <div class="relative">
-          
-           <button class="fav-btn absolute top-2 right-2 p-1 rounded-full ${isFavorite ? 'text-yellow-300' : 'text-green-600'} hover:text-yellow-300 transition-colors duration-300" data-slug="${slug}">
+          <button class="fav-btn absolute top-2 right-2 p-1 rounded-full ${isFavorite ? 'text-yellow-300' : 'text-green-600'} hover:text-yellow-300 transition-colors duration-300" data-slug="${slug}">
             ${isFavorite
               ? '<i class="fi fi-sr-heart text-lg"></i>'
               : '<i class="fi fi-rr-heart text-lg"></i>'
             }
           </button>
-
           <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-md">
         </div>
-
         <div class="p-4">
           <h2 class="text-lg font-semibold mb-1">${product.name}</h2>
           <p class="text-green-700 font-bold mb-1">₦${product.price.toLocaleString()}</p>
@@ -277,7 +276,6 @@ function addToCart(product) {
             <button class="add-to-cart-btn ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300" data-product='${JSON.stringify(product)}'>
               <i class="fi fi-rr-shopping-cart text-xl"></i>
             </button>
-            </a>
           </div>
         </div>
       `;
@@ -309,9 +307,6 @@ function addToCart(product) {
   }, 500);
 }
 
-function addToCart(product) {
-  alert(`Added ${product.name} to cart!`);
-}
 
 renderProducts(products);
 

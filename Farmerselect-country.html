@@ -26,19 +26,22 @@
   <header class="bg-green-700 text-white"> 
     <div class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
-        <div>
-          <h1 class="text-3xl font-bold">FarmLink</h1>
-          <p class="mt-2">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
-        </div>
+      <div>
+            <h1 class="text-2xl font-bold">
+              <img src="images/farmlink logo.jpg" alt="logo" class="h-20 w-auto inline-block" width="376" height="376"  />
+            </h1>
+            <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+          </div>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:block">
           <ul class="flex space-x-4 ml-6 text-sm font-medium">
-            <li><a href="Select role.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign In</a></li>
+           
             <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
             <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
             <li><a href="search.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
-            <li><a href="shop.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+            <li><a href="/checkout/shop.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+             <li><a href="Select role.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Sign In</a></li>
           </ul>
         </nav>
 
@@ -55,11 +58,12 @@
       <!-- Mobile Navigation -->
       <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
         <ul class="space-y-2 mt-2">
-          <li><a href="Select role.html" class="block text-white hover:text-yellow-300">Sign In</a></li>
+         
           <li><a href="index.html" class="block text-white hover:text-yellow-300">Products</a></li>
           <li><a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a></li>
           <li><a href="search.html" class="block text-white hover:text-yellow-300">Search</a></li>
-          <li><a href="shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+          <li><a href="/checkout/shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+           <li><a href="Select role.html" class="block text-white hover:text-yellow-300">Sign In</a></li>
         </ul>
       </div>
     </div>
@@ -140,7 +144,7 @@
       for (let key in values) {
         localStorage.setItem(key, values[key]);
       }
-      window.location.href = "Farmer-signup.html";
+      window.location.href = "Farmerbusiness-info.html";
     }
 
     // Mobile Menu Toggle

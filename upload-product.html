@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="bg-green-700 text-white sticky top-0 pl-3">
-  <nav class="flex justify-between items-center p-4">
+  <nav class="flex justify-between items-center py-4 px-9 max-w-7xl">
     <div class="header">
 
       <h1 class="text-2xl font-bold">
@@ -25,10 +25,11 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
     </button>
-    <div class="hidden md:flex">
-      <ul class="flex space-x-4 ml-6 text-sm font-medium">
-        <li><a href="index.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Products</a></li>
-         <li><a href="upload-product.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+    <div class="hidden md:flex ">
+      <ul class="flex space-x-9 text-sm font-medium">
+        <li><a href="index.html" class="bg-green-700 text-white px-4 py-4 rounded hover:bg-green-600 transition">Products</a></li>
+         <li><a href="upload-product.html" class="bg-green-700 text-white font-medium px-1 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+         <li><a href="./dashboard/farmer-dashboard.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Farmer Dashboard</a></li>
         <li><a href="search.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Search</a></li>
         <li><a href="checkout/shop.html" class="bg-green-700 text-white px-1 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
       </ul>
@@ -38,6 +39,7 @@
     <ul class="space-y-2 mt-2">
       <li><a href="index.html" class="block hover:text-yellow-300">Products</a></li>
        <li><a href="upload-product.html" class="block hover:text-yellow-300">Upload</a></li>
+       <li><a href="./dashboard/farmer-dashboard.html" class="block hover:text-yellow-300">Farmer Dashboard</a></li>
       <li><a href="search.html" class="block hover:text-yellow-300">Search</a></li>
       <li><a href="checkout/shop.html" class="block hover:text-yellow-300">Cart</a></li>
     </ul>
@@ -45,22 +47,23 @@
 </div>
    
 
-  <div class=" mt-2">
-    <form id="product-form" class="max-w-md mx-auto p-4 md:p-6 lg:p-8 rounded shadow-md md:max-w-lg lg:max-w-2xl">
-        <h2 class="text-lg md:text-xl lg:text-2xl font-bold mb-4">Upload Product</h2>
-  
 
-      <div class="mb-4">
+<div class="max-w-xl mx-auto p-4">
+
+
+  <div class="mb-4">
     <label for="product-name" class="block text-sm font-medium mb-2">Product Name:</label>
     <input type="text" id="product-name" name="product-name" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
-      </div>
+  </div>
 
-      <div class="mb-4">
+ 
+  <div class="mb-4">
     <label for="product-description" class="block text-sm font-medium mb-2">Product Description:</label>
     <textarea id="product-description" name="product-description" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring"></textarea>
-      </div>
+  </div>
 
-      <div class="mb-4">
+
+  <div class="mb-4">
     <label for="product-category" class="block text-sm font-medium mb-2">Product Category:</label>
     <select id="product-category" name="product-category" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
       <option value="">Select a category</option>
@@ -70,29 +73,31 @@
       <option value="grains">Grains</option>
       <option value="legumes">Legumes</option>
       <option value="livestocks">Livestocks</option>
-      <option>Staple/Crops</option>
+      <option value="Staple/Crops">Staple/Crops</option>
       <option value="vegetables">Vegetables</option>
     </select>
-     </div>
+  </div>
 
-      <div class="mb-4">
-    <label for="product-price-per-unit" class="block text-sm font-medium mb-2">Price Per Unit:</label>
-       <input type="number" id="price-per-unit" name="product-price" placeholder="Enter price &#x20A6" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
-     </div>
 
-     <div class="mb-4">
-    <label for="quantity" class="block text-sm font-medium mb-2" >Quantity:</label>
-    <input id="quantity-available" type="number" id="quantity" name="quantity" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
-     </div>
-     
-      <div class="mb-4">
+  <div class="mb-4">
+    <label for="price-per-unit" class="block text-sm font-medium mb-2">Price Per Unit:</label>
+    <input type="number" id="price-per-unit" name="product-price" placeholder="Enter price ₦" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
+  </div>
+
+ 
+  <div class="mb-4">
+    <label for="quantity-available" class="block text-sm font-medium mb-2">Quantity:</label>
+    <input id="quantity-available" type="number" name="quantity" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
+  </div>
+
+  <div class="mb-4">
     <label for="product-size" class="block text-sm font-medium mb-2">Product Size:</label>
     <input type="text" id="product-size" name="product-size" required class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
-      </div>
+  </div>
 
-     <div class="mb-4">
+  <div class="mb-4">
     <label for="unit-of-measurement" class="block text-sm font-medium mb-2">Unit of Measurement:</label>
-    <select id="unit-of-measurement" name="unit-of-measurement" required class="block w-full p-2 rounded-lg border  border-gray-300 focus:outline-none focus:ring mx-auto">
+    <select id="unit-of-measurement" name="unit-of-measurement" required class="block w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring">
       <option value="">Select a unit</option>
       <option value="g">g</option>
       <option value="kg">kg</option>
@@ -102,25 +107,27 @@
       <option value="doz">doz</option>
       <option value="lb">lb</option>
     </select>
-     </div>
-     
-    <!--<div>
-      <div  class="mb-2 text-center">
-         <p>Total: <span id="total-value" class="text-xl p-1"></span></p>
-
-      </div>
-      !-->
-
-      
-      <div class="mb-4">
-    <label for="product-image" class="block text-sm font-medium mb-2">Product Images:</label>
-      <input type="file" accept="image/*" required="" id="file-input" multiple>
-      <div id="image-preview"></div>
-     </div>
-      <button type="submit" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring duration-150">Submit</button>
-      
   </div>
-  </form>
+
+  
+  <div class="mb-4">
+    <label for="product-color" class="block text-sm font-medium mb-2">Product Color:</label>
+    <input type="text" id="product-color" name="product-color" class="block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring">
+  </div>
+
+ 
+  <div class="mb-4">
+    <label for="file-input" class="block text-sm font-medium mb-2">Product Images:</label>
+    <input type="file" accept="image/*" id="file-input" multiple class="mb-2">
+    <div id="image-preview" class="space-y-2"></div>
+  </div>
+
+
+  <button type="button" class="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring duration-150" id="upload-btn">
+    Submit
+  </button>
+</div>
+
   <script src="./upload-product.js"></script>
 </body>
 </html>

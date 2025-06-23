@@ -32,26 +32,28 @@ window.addEventListener("DOMContentLoaded", function () {
   if (defaultTab) defaultTab.click();
 });
 
-//Gallery Images
+// Gallery Images
 const galleryImages = [
-  { src: "./Assets/Frame 993.png", alt: "Image 1" },                                         
-  { src: "./Assets/Frame 995.png", alt: "Image 2" },                                          
-  { src: "./Assets/Image holder 3.png", alt: "Image 3" },  
-  { src: "./Assets/fd627a94ca67dc8a722a0b6344fa480f.png", alt: "Image 4" },
-  { src: "./Assets/f47963e772c2867da04ce051b703384d.png", alt: "Image 5" }, 
-  { src: "./Assets/b1c0182c3bbdc748f1965dded47db9f8.png", alt: "Image 6" },
+  { src: "../images/Agbalumo.webp", alt: "Image 1" },
+  { src: "../images/Apples.webp", alt: "Image 2" },
+  { src: "../images/Catfish.jpg", alt: "Image 3" },
+  { src: "../images/avocado.webp", alt: "Image 4" },
+  { src: "../images/bag of rice.jpg", alt: "Image 5" },
+  { src: "../images/Cashews 500.webp", alt: "Image 6" },
+];
 
-  ];
+// Update gallery count
+document.getElementById("galleryCount").textContent = galleryImages.length;
 
-                   
- const galleryContainer = document.getElementById("galleryGrid");
-  galleryImages.forEach((img) => {
+// Populate gallery grid
+const galleryContainer = document.getElementById("galleryGrid");
+galleryImages.forEach((img) => {
   const imageElement = document.createElement("img");
   imageElement.src = img.src;
   imageElement.alt = img.alt;
   imageElement.className = "w-full h-32 object-cover rounded-lg";
   galleryContainer.appendChild(imageElement);
-  });
+});
 
   // Add modal logic
 const modal = document.getElementById("galleryModal");
@@ -113,8 +115,7 @@ function renderGalleryModal() {
         }
       }
     });
-
-    //Navbar toggle
+//Navbar toggle
 const navbarToggle = document.querySelector('[data-collapse-toggle="navbar-search"]');
 const navbarSearch = document.getElementById('mobileMenu');
 
@@ -122,7 +123,6 @@ navbarToggle.addEventListener('click', () => {
   navbarSearch.classList.toggle('hidden');
   
 });
-
 //back arrow button
    document.getElementById('closeModalBtn').addEventListener('click', function () {
     window.history.back();
