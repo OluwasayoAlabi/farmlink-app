@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Chat with Farmer Lisa</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.css" rel="stylesheet">
+  <style>
+    .chat-message {
+      max-width: 80%;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      margin-bottom: 0.5rem;
+      word-wrap: break-word;
+    }
+    .message-sent {
+      background-color: #065f46; /* Dark green for buyer */
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 0.25rem;
+    }
+    .message-received {
+      background-color: #86efac; /* Light green for farmer */
+      color: #1f2937;
+      margin-right: auto;
+      border-bottom-left-radius: 0.25rem;
+    }
+    .message-time {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7); /* Light for dark bg */
+      margin-top: 0.25rem;
+      text-align: right;
+    }
+    .message-received .message-time {
+      color: #4b5563; /* Darker for light bg */
+    }
+    .faq-link {
+      color: #ef4444; /* Red color for FAQ link */
+      text-decoration: underline;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Chat Header -->
+  <header class="bg-green-600 text-white p-4 sticky top-0 z-10 flex items-center gap-4">
+    <a href="buyer settings.html" class="text-white">
+      <i class="uil uil-arrow-left text-xl"></i>
+    </a>
+    
+    <!-- Profile Picture -->
+    <div class="relative">
+      <img src="/images/farmer lisa.jpg" alt="Farmer Lisa" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-md">
+      <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></span>
+    </div>
+    
+    <div class="flex-1">
+      <h1 class="font-semibold">Support</h1>
+      <p class="text-xs opacity-80">Farmer Lisa</p>
+    </div>
+  </header>
+
+  <!-- Chat Messages Container -->
+  <div id="chat-messages" class="p-4 space-y-3 overflow-y-auto" style="height: calc(100vh - 8rem); margin-bottom: 4rem;">
+    <!-- Messages will appear here -->
+  </div>
+
+  <!-- Chat Input -->
+  <div class="bg-white p-4 border-t fixed bottom-0 left-0 right-0">
+    <div class="flex gap-2">
+      <input id="chat-input" type="text" placeholder="Enter your message..." 
+             class="flex-1 border border-gray-300 text-black rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+      <button id="send-message" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+        <i class="uil uil-message"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const chatMessages = document.getElementById('chat-messages');
+      const chatInput = document.getElementById('chat-input');
+      const sendMessageBtn = document.getElementById('send-message');
+
+      // Initial chat history for support page
+      const chatHistory = [
+        {
+          sender: 'farmer',
+          text: "Hello Michael! Kindly go through the <a href='faq.html' class='faq-link' target='_blank'>FAQ</a> section to see if your intended question has been answered there but if not, how may I help you today?",
+          time: "5:12 PM"
+        },
+        {
+          sender: 'buyer',
+          text: "Hi there! I placed an order but there was no option for payment. How can this be so?",
+          time: "5:13 PM"
+        },
+        {
+          sender: 'farmer',
+          text: "Kindly send a screenshot of what your page looks like when you try to make payment.",
+          time: "5:13 PM"
+        }
+      ];
+
+      // Render messages
+      function renderMessages() {
+        chatMessages.innerHTML = chatHistory.map(msg => `
+          <div class="flex ${msg.sender === 'buyer' ? 'justify-end' : 'justify-start'}">
+            <div class="${msg.sender === 'buyer' ? 'message-sent' : 'message-received'} chat-message">
+              <div>${msg.text}</div>
+              <div class="message-time">${msg.time}</div>
+            </div>
+          </div>
+        `).join('');
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // Send new message
+      function sendMessage() {
+        const message = chatInput.value.trim();
+        if (message) {
+          // Add user message
+          chatHistory.push({
+            sender: 'buyer',
+            text: message,
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          });
+          
+          chatInput.value = '';
+          renderMessages();
+          
+          // Simulate farmer reply after 1-2 seconds
+          setTimeout(() => {
+            const replies = [
+              "Thank you for the information. We're looking into this issue.",
+              "Could you please confirm if you're seeing any error messages?",
+              "We appreciate your patience while we resolve this matter.",
+              "I've forwarded this to our technical team for immediate attention."
+            ];
+            const randomReply = replies[Math.floor(Math.random() * replies.length)];
+            
+            chatHistory.push({
+              sender: 'farmer',
+              text: randomReply,
+              time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            });
+            
+            renderMessages();
+          }, 1000 + Math.random() * 1000);
+        }
+      }
+
+      // Event listeners
+      sendMessageBtn.addEventListener('click', sendMessage);
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+      });
+
+      // Initial render
+      renderMessages();
+    });
+  </script>
+</body>
+</html>

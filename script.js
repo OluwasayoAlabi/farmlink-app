@@ -259,7 +259,7 @@ function renderProducts(productsList) {
 <a href="./product-detail.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}" class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 flex-1 text-center transition">
   View Details
 </a>
-<a href="./shop.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}">
+<a href="/checkout/Cart.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}">
             <button class="add-to-cart-btn ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300">
             <i class="fi fi-rr-shopping-cart text-xl"></i>
             </button>
