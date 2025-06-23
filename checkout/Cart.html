@@ -23,7 +23,7 @@
           <span class="w-1/2">Item</span>
           <span class="w-1/4">Price</span>
           <span class="w-1/4">Quantity</span>
-          <span class=" cart-subtotal w-1/4">SubTotal</span>
+          <span class="cart-subtotal w-1/4 hidden md:block">SubTotal</span>
         </div>
 
         <div class="cart-items"></div>
@@ -34,11 +34,13 @@
           </div>
 
           <div class="mt-4 flex justify-between">
-           <a href="CartSummary.html"> <button
-            class="btn-purchase bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-6 rounded shadow transition"
-          >
-            Place Order
-          </button></a>
+            <a href="CartSummary.html">
+              <button
+                class="btn-purchase bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-6 rounded shadow transition"
+              >
+                Place Order
+              </button></a
+            >
             <a
               href="shop.html"
               class="bg-[#FF6600] hover:bg-red-700 text-white font-semibold py-2 px-6 rounded shadow transition"
@@ -49,8 +51,6 @@
       </section>
     </main>
 
-    <script src="Cart.js">
-    
-    </script>
+    <script src="Cart.js"></script>
   </body>
 </html>

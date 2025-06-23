@@ -12,19 +12,20 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     cartRow.innerHTML = `
-<div class="cart-item w-1/2 flex items-center gap-3">
+<div class="cart-item w-1/2 flex flex-col items-center gap-1 md:flex-row md:items-center">
   <img src="${image}" alt="${title}" class="w-16 h-16 object-cover rounded-md" />
-  <span class="cart-title font-semibold">${title}</span>
+  <span class="cart-title font-semibold text-center md:text-left">${title}</span>
 </div>
 <span class="cart-price w-1/4 text-green-700 font-semibold">${price}</span>
-<div class="cart-quantity w-1/4 flex items-center">
+<div class="cart-quantity w-1/4 flex flex-col md:flex-row items-center">
   <input class="cart-gty w-16 border border-gray-300 rounded text-center" type="number" value="${quantity}" min="1" />
-  <button class="remove-btn ml-3 bg-red-500 hover:bg-red-600 text-white rounded px-2 py-1 text-sm">Remove</button>
+  <button class="remove-btn mt-2 md:mt-0 md:ml-3 bg-red-500 hover:bg-red-600 text-white rounded px-2 py-1 text-sm">Remove</button>
 </div>
-<span class="cart-subtotal w-1/4 text-gray-800 font-semibold">₦${(
+<span class="cart-subtotal w-1/4 hidden md:block text-gray-800 font-semibold">₦${(
       price * quantity
     ).toFixed(2)}</span>
 `;
+
 
     cartItemsContainer.appendChild(cartRow);
     updateTotal();
