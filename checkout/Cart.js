@@ -109,7 +109,56 @@ document.addEventListener("DOMContentLoaded", function () {
       updateTotal(); 
     }
   }
+      document.getElementById("placeOrderBtn").addEventListener("click", function () {
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
+  if (cartItems.length === 0) {
+    alert("Your cart is empty.");
+    return;
+  }
+
+  const totalAmount = localStorage.getItem("cartTotal") || 0;
+
+  // You can replace these with actual form values later
+  const orderData = {
+    items: cartItems,
+    totalAmount: parseFloat(totalAmount),
+    customer: {
+      name: "Test User",
+      email: "test@example.com",
+      phone: "08012345678"
+    }
+  };
+
+  fetch("https://farmlink-api.onrender.com/api/v1/orders/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(orderData)
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Failed to place order.");
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Order success:", data);
+      alert("✅ Order placed successfully!");
+
+      // Clear cart
+      localStorage.removeItem("cartItems");
+      localStorage.removeItem("cartTotal");
+
+      // Redirect or reload
+      window.location.href = "confirmation.html"; // Change if needed
+    })
+    .catch(error => {
+      console.error("Order error:", error);
+      alert("❌ Failed to place order. Please try again.");
+    });
+});
  
   loadCartFromLocalStorage();
 });
