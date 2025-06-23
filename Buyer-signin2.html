@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buyer Sign In</title>
+
+  <!-- Tailwind CSS + Inter Font -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    input::placeholder {
+      color: #6B7280;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-white min-h-screen flex flex-col justify-between">
+
+  <!-- Navbar -->
+  <header class="bg-green-700 text-white"> 
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-3xl font-bold">FarmLink</h1>
+          <p class="mt-2">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-4 ml-6 text-sm font-medium">
+            <li><a href="index.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Products</a></li>
+            <li><a href="upload-product.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Upload</a></li>
+            <li><a href="search.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Search</a></li>
+            <li><a href="shop.html" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition">Cart</a></li>
+          </ul>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuButton" class="md:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+        <ul class="space-y-2 mt-2">
+          <li><a href="index.html" class="block text-white hover:text-yellow-300">Products</a></li>
+          <li><a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a></li>
+          <li><a href="search.html" class="block text-white hover:text-yellow-300">Search</a></li>
+          <li><a href="shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="px-4 py-6 flex-grow">
+    <!-- Back Button -->
+    <div class="mb-4">
+      <button onclick="history.back()" class="text-2xl font-bold">&#8592;</button>
+    </div>
+
+    <main class="flex flex-col items-center justify-start space-y-6 max-w-md mx-auto w-full">
+      <h1 class="text-2xl font-bold text-black w-full text-left">Sign in</h1>
+
+      <!-- Form -->
+      <form id="loginForm" class="w-full space-y-4">
+        <!-- Email -->
+        <input type="email" required placeholder="buyer@gmail.com" id="email"
+               class="w-full rounded-xl px-4 py-3 bg-pink-100 text-gray-800 text-base outline-none" />
+
+        <!-- Password Field -->
+        <div class="relative">
+          <input type="password" required placeholder="" id="password"
+                 class="w-full rounded-xl px-4 py-3 bg-pink-100 text-gray-800 text-base pr-10 outline-none" />
+          <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-3 flex items-center text-gray-500">
+            👁️
+          </button>
+        </div>
+
+        <!-- Links -->
+        <div class="flex justify-between text-sm">
+          <a href="Buyer-signup.html" class="text-red-600 font-semibold">Create Account</a>
+          <a href="Buyer-Reset password.html" class="text-black font-medium">Forgot Password?</a>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit"
+                id="loginBtn"
+                class="w-full py-3 text-lg font-semibold rounded-full text-white bg-green-700 opacity-50 cursor-not-allowed"
+                >
+          Login
+        </button>
+      </form>
+
+      <!-- Divider -->
+      <div class="w-full flex items-center justify-center space-x-2 text-gray-500 my-4">
+        <div class="flex-grow border-t border-black"></div>
+        <span class="text-sm px-2">or</span>
+        <div class="flex-grow border-t border-black"></div>
+      </div>
+
+      <!-- Social Buttons -->
+      <div class="flex space-x-6">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="h-6 w-6"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Facebook-icon-1.png" alt="Facebook" class="h-6 w-6"/>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="flex justify-center mt-10">
+    <div class="w-24 h-1 bg-black rounded-full"></div>
+  </footer>
+
+  <!-- JS -->
+ 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    // Enable login button only when inputs are filled
+    $('#email, #password').on('input', function () {
+      const emailFilled = $('#email').val().trim() !== '';
+      const passFilled = $('#password').val().trim() !== '';
+
+      if (emailFilled && passFilled) {
+        $('#loginBtn').removeClass('opacity-50 cursor-not-allowed');
+      } else {
+        $('#loginBtn').addClass('opacity-50 cursor-not-allowed');
+      }
+    });
+
+    // Login form submit handler
+    $('#loginForm').on('submit', function (e) {
+      e.preventDefault();
+
+      const email = $('#email').val().trim();
+      const password = $('#password').val().trim();
+
+      if (!email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const loginData = {
+        email: email,
+        password: password
+      };
+
+      console.log("🔐 Logging in user...", loginData);
+
+      $.ajax({
+        url: "https://farmlink-api.onrender.com/api/v1/users/login",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(loginData),
+        success: function (response) {
+          console.log("✅ Login successful:", response);
+          
+          // Store token in localStorage
+          localStorage.setItem("authToken", response.token);
+          localStorage.setItem("userData", JSON.stringify(response.user));
+
+          alert("🎉 Login successful!");
+
+          // Redirect to the dashboard/home page
+          window.location.href = "Buyersbusiness-info.html";
+        },
+        error: function (xhr) {
+          const message = xhr.responseJSON?.message || "Login failed. Please try again.";
+          console.error("❌ Login error:", message);
+          alert("Error: " + message);
+        }
+      });
+    });
+
+    // Toggle mobile nav
+    $('#mobileMenuButton').on('click', function () {
+      $('#mobileMenu').toggleClass('hidden');
+    });
+  });
+
+  // Toggle password visibility
+  function togglePassword() {
+    const pwdInput = $('#password');
+    const currentType = pwdInput.attr('type');
+    pwdInput.attr('type', currentType === 'password' ? 'text' : 'password');
+  }
+</script>
+
+</body>
+</html>
