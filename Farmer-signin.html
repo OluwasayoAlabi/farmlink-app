@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buyer Sign In</title>
+  <title>farmer Sign In</title>
 
   <!-- Tailwind CSS + Inter Font -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -25,19 +25,18 @@
   <header class="bg-green-700 text-white">
     <div class="container mx-auto px-4 py-4">
       <div class="flex justify-between items-center">
-      <div>
-            <h1 class="text-2xl font-bold">
-              <img src="images/farmlink logo.jpg" alt="logo" class="h-20 w-auto inline-block" width="376" height="376"  />
-            </h1>
-            <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
-          </div>
+        <div>
+          <h1 class="text-3xl font-bold">FarmLink</h1>
+          <p class="mt-1 text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
+        </div>
+
         <!-- Desktop Navigation -->
         <nav class="hidden md:block">
           <ul class="flex space-x-4 ml-6 text-sm font-medium">
             <li><a href="products.html" class="px-4 py-2 hover:bg-green-600 rounded">Products</a></li>
             <li><a href="upload-product.html" class="px-4 py-2 hover:bg-green-600 rounded">Upload</a></li>
             <li><a href="search.html" class="px-4 py-2 hover:bg-green-600 rounded">Search</a></li>
-            <li><a href="/checkout/shop.html" class="px-4 py-2 hover:bg-green-600 rounded">Cart</a></li>
+            <li><a href="shop.html" class="px-4 py-2 hover:bg-green-600 rounded">Cart</a></li>
           </ul>
         </nav>
 
@@ -56,7 +55,7 @@
           <li><a href="products.html" class="block text-white hover:text-yellow-300">Products</a></li>
           <li><a href="upload-product.html" class="block text-white hover:text-yellow-300">Upload</a></li>
           <li><a href="search.html" class="block text-white hover:text-yellow-300">Search</a></li>
-          <li><a href="/checkout/shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
+          <li><a href="shop.html" class="block text-white hover:text-yellow-300">Cart</a></li>
         </ul>
       </div>
     </div>
@@ -114,12 +113,14 @@
   </footer>
 
   <!-- Scripts -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <script>
-    Onboarding-form
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const loginBtn = document.getElementById("loginBtn");
-    const form = document.getElementById("loginForm");
+  $(document).ready(function () {
+    const $email = $('#email');
+    const $password = $('#password');
+    const $loginBtn = $('#loginBtn');
+    const $form = $('#loginForm');
 
     function togglePassword() {
       const input = document.getElementById("password");
@@ -127,99 +128,49 @@
     }
 
     function validateInputs() {
-      if (email.value.trim() && password.value.trim()) {
-        loginBtn.disabled = false;
-        loginBtn.classList.remove("opacity-50", "cursor-not-allowed");
-        loginBtn.classList.add("opacity-100", "cursor-pointer");
+      if ($email.val().trim() && $password.val().trim()) {
+        $loginBtn.prop('disabled', false).removeClass("opacity-50 cursor-not-allowed").addClass("opacity-100 cursor-pointer");
       } else {
-        loginBtn.disabled = true;
-        loginBtn.classList.add("opacity-50", "cursor-not-allowed");
-        loginBtn.classList.remove("opacity-100", "cursor-pointer");
+        $loginBtn.prop('disabled', true).addClass("opacity-50 cursor-not-allowed").removeClass("opacity-100 cursor-pointer");
       }
     }
 
-    email.addEventListener("input", validateInputs);
-    password.addEventListener("input", validateInputs);
+    $email.on("input", validateInputs);
+    $password.on("input", validateInputs);
 
-    form.addEventListener("submit", function (e) {
+    $form.on("submit", function (e) {
       e.preventDefault();
-      window.location.href = "Farmerselect-country.html";
+
+      $loginBtn.text("Logging in...");
+      $loginBtn.prop("disabled", true);
+
+      $.ajax({
+        url: "https://farmlink-api.onrender.com/api/v1/users/login",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+          email: $email.val().trim(),
+          password: $password.val().trim()
+        }),
+        success: function (response) {
+          localStorage.setItem("token", response.token);
+          localStorage.setItem("user", JSON.stringify(response.user));
+
+          // Redirect to dashboard
+          window.location.href = "/dashboard/farmer.html";
+        },
+        error: function (xhr) {
+          const message = xhr.responseJSON?.message || "Login failed";
+          alert(message);
+          $loginBtn.text("Login").prop("disabled", false);
+        }
+      });
     });
 
-    // Mobile nav toggle
-    function toggleMobileMenu() {
-      const menu = document.getElementById("mobileMenu");
-      menu.classList.toggle("hidden");
-    }
-    document.getElementById('mobileMenuButton').addEventListener('click', toggleMobileMenu);
-=======
- 
- var email = document.getElementById("email");
- var password = document.getElementById("password");
- var loginBtn = document.getElementById("loginBtn");
- var form = document.getElementById("loginForm");
+    // Attach togglePassword if you're using a show/hide password icon
+    window.togglePassword = togglePassword;
+  });
+</script>
 
-  function togglePassword() {
-   var input = document.getElementById("password");
-    input.type = input.type === "password" ? "text" : "password";
-  }
-
-  function validateInputs() {
-    if (email.value.trim() && password.value.trim()) {
-      loginBtn.disabled = false;
-      loginBtn.classList.remove("opacity-50", "cursor-not-allowed");
-      loginBtn.classList.add("opacity-100", "cursor-pointer");
-    } else {
-      loginBtn.disabled = true;
-      loginBtn.classList.add("opacity-50", "cursor-not-allowed");
-      loginBtn.classList.remove("opacity-100", "cursor-pointer");
-    }
-  }
-
-  email.addEventListener("input", validateInputs);
-  password.addEventListener("input", validateInputs);
-
-  form.addEventListener("submit", async function (e) {
-  e.preventDefault();
-
-  loginBtn.innerText = "Logging in...";
-  loginBtn.disabled = true;
-
-  try {
-    var response = await fetch("https://farmlink-api.onrender.com/api/v1/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email: email.value.trim(),
-        password: password.value.trim()
-      })
-    });
-
-   var result = await response.json();
-
-    if (response.ok) {
-      // Save token or user info if needed
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("user", JSON.stringify(result.user));
-
-      // Redirect to the farmer dashboard
-      window.location.href = "farmer.html";
-    } else {
-      alert(result.message || "Login failed");
-      loginBtn.innerText = "Login";
-      loginBtn.disabled = false;
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Network error. Please try again.");
-    loginBtn.innerText = "Login";
-    loginBtn.disabled = false;
-  }
-});
-
- main
-  </script>
 </body>
 </html>
