@@ -293,11 +293,6 @@ function renderProducts(productsList) {
 }
 
 
-// function addToCart(product) {
-//   alert(`Added ${product.name} to cart!`);
-// }
-
-
 
 
 renderProducts(products);
