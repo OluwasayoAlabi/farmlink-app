@@ -705,4 +705,6 @@ document.addEventListener('click', function(e) {
   
   // Activate "All" button by default
   document.querySelector('.category-filter-btn[data-category="all"]').classList.add('active');
+
+  
 });

@@ -215,7 +215,22 @@ searchInput.addEventListener("input", () => {
 });
 
 // Render products grid
-function renderProducts(productsList) {
+
+function addToCart(product) {
+  const existingItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const existingItemIndex = existingItems.findIndex(item => item.title === product.name);
+
+  if (existingItemIndex > -1) {
+    alert("Item already added to cart");
+    return; 
+  }
+
+  existingItems.push({ title: product.name, price: product.price, image: product.image, quantity: 1 });
+  localStorage.setItem("cartItems", JSON.stringify(existingItems));
+  alert(`Added ${product.name} to cart!`);
+}
+
+  function renderProducts(productsList) {
   productGrid.innerHTML = "";
   loader.classList.remove("hidden");
   noProducts.classList.add("hidden");
@@ -235,7 +250,6 @@ function renderProducts(productsList) {
       const card = document.createElement("div");
       card.className = "bg-white rounded shadow overflow-hidden hover:shadow-lg transition";
 
-      const productSlug = encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, "-"));
 
       card.innerHTML = `
         <div class="relative">
@@ -260,28 +274,34 @@ function renderProducts(productsList) {
   View Details
 </a>
 <a href="/checkout/Cart.html?product=${encodeURIComponent(product.name.toLowerCase().replace(/\s+/g, '-'))}">
-            <button class="add-to-cart-btn ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300">
-            <i class="fi fi-rr-shopping-cart text-xl"></i>
+            <button class="add-to-cart-btn ml-3 w-10 h-10 flex items-center justify-center rounded-full border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-colors duration-300" data-product='${JSON.stringify(product)}'>
+              <i class="fi fi-rr-shopping-cart text-xl"></i>
             </button>
             </a>
           </div>
         </div>
       `;
 
-      // const addToCartBtn = card.querySelector('.add-to-cart-btn');
-      // addToCartBtn.addEventListener('click', () => addToCart(product));
+      const addToCartBtn = card.querySelector('.add-to-cart-btn');
+      addToCartBtn.addEventListener('click', () => {
+        const productData = JSON.parse(addToCartBtn.getAttribute('data-product'));
+        addToCart(productData);
+      });
 
       const favBtn = card.querySelector('.fav-btn');
       favBtn.addEventListener('click', () => {
         const icon = favBtn.querySelector('i');
         const isFavorited = icon.classList.contains('fi-sr-heart');
+
         if (isFavorited) {
-          icon.classList.remove('fi-sr-heart');
-          icon.classList.add('fi-rr-heart');
+      favorites = favorites.filter(fav => fav !== slug); // Remove from favorites
+      icon.classList.replace('fi-sr-heart', 'fi-rr-heart');
         } else {
-          icon.classList.remove('fi-rr-heart');
-          icon.classList.add('fi-sr-heart');
-        }
+          favorites.push(slug); // Add to favorites
+          icon.classList.replace('fi-rr-heart', 'fi-sr-heart');
+     }
+
+    localStorage.setItem("favorites", JSON.stringify(favorites)); // Update localStorage
       });
 
       productGrid.appendChild(card);
@@ -289,9 +309,9 @@ function renderProducts(productsList) {
   }, 500);
 }
 
-
 function addToCart(product) {
   alert(`Added ${product.name} to cart!`);
 }
 
 renderProducts(products);
+
