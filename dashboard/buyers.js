@@ -102,6 +102,103 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize notifications
   renderNotifications();
 
+  let cartItems = [];
+
+// Cart functionality
+const cartBtn = document.getElementById('cart-btn');
+const cartDropdown = document.getElementById('cart-dropdown');
+const cartList = document.getElementById('cart-list');
+const cartBadge = document.getElementById('cart-badge');
+
+function renderCartItems() {
+  // Update badge
+  if (cartItems.length > 0) {
+    cartBadge.textContent = cartItems.length;
+    cartBadge.classList.remove('hidden');
+  } else {
+    cartBadge.classList.add('hidden');
+  }
+  
+  // Render cart list
+  if (cartItems.length === 0) {
+    cartList.innerHTML = '<div class="p-3 text-center text-gray-500">Your cart is empty</div>';
+    return;
+  }
+  
+  cartList.innerHTML = cartItems.map((item, index) => `
+    <div class="cart-item p-3 border-b flex justify-between items-center" data-index="${index}">
+      <div class="flex-1">
+        <div class="font-medium text-sm">${item.name}</div>
+        <div class="text-sm text-gray-600">${item.quantity} • ₦${item.price}</div>
+      </div>
+      <button class="remove-from-cart text-red-500 hover:text-red-700">
+        <i class="uil uil-trash-alt"></i>
+      </button>
+    </div>
+  `).join('');
+}
+
+// Toggle cart dropdown
+if (cartBtn && cartDropdown) {
+  cartBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    cartDropdown.classList.toggle('hidden');
+    renderCartItems();
+  });
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (!cartDropdown.contains(e.target) && e.target !== cartBtn) {
+    cartDropdown.classList.add('hidden');
+  }
+});
+
+// Remove item from cart
+cartList.addEventListener('click', function(e) {
+  if (e.target.closest('.remove-from-cart')) {
+    const cartItem = e.target.closest('.cart-item');
+    const index = parseInt(cartItem.getAttribute('data-index'));
+    cartItems.splice(index, 1);
+    renderCartItems();
+  }
+});
+
+// Add to cart functionality
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+    e.preventDefault();
+    const addToCartBtn = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
+    
+    const productName = addToCartBtn.closest('.product').querySelector('h4').textContent;
+    const productPrice = addToCartBtn.closest('.product').querySelector('p.text-green-700').textContent.replace('₦', '').replace(',', '');
+    const productQuantity = addToCartBtn.closest('.product').querySelector('p.text-xs').textContent;
+    
+    // Add product to cart
+    cartItems.push({
+      name: productName,
+      price: productPrice,
+      quantity: productQuantity,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    });
+    
+    renderCartItems();
+    
+    // Show a quick confirmation
+    const originalText = addToCartBtn.textContent;
+    addToCartBtn.textContent = "Added!";
+    addToCartBtn.classList.add('bg-green-800');
+    
+    setTimeout(() => {
+      addToCartBtn.textContent = originalText;
+      addToCartBtn.classList.remove('bg-green-800');
+    }, 1000);
+    
+    // Show cart dropdown automatically
+    cartDropdown.classList.remove('hidden');
+  }
+});
+
   // ===== SIDEBAR FUNCTIONALITY =====
   const sidebar = document.getElementById('sidebar');
   const sidebarToggle = document.getElementById('sidebar-toggle');
@@ -125,7 +222,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Toggle sidebar collapse
   function toggleSidebarCollapse() {
-    sidebar.classList.toggle('collapsed');
+  sidebar.classList.toggle('collapsed');
+  
+  if (sidebar.classList.contains('collapsed')) {
+    sidebar.style.width = '4rem';
+    document.querySelector('.fixed').style.left = '4rem';
+    document.querySelector('.fixed').style.width = 'calc(100% - 4rem)';
+    document.querySelector('#main-content').style.marginLeft = '4rem';
+  } else {
+    sidebar.style.width = '16rem';
+    document.querySelector('.fixed').style.left = '16rem';
+    document.querySelector('.fixed').style.width = 'calc(100% - 16rem)';
+    document.querySelector('#main-content').style.marginLeft = '16rem';
+  }
     mainContent.classList.toggle('collapsed');
     
     // Rotate the collapse icon

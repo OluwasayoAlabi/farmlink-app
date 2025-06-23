@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard - Settings</title>
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --light-blue: #60a5fa;
+            --dark-blue: #3b82f6;
+            --light-yellow: #fbbf24;
+            --yellow: #eab308;
+            --light-green: #34d399;
+            --green: #10b981;
+            --danger-color: #ff4a6b;
+            --text-color: #2d3748;
+            --border-color: #e2e8f0;
+            --hover-bg: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+        }
+        
+        .settings-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--green);
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+        
+        .back-button:hover {
+            background-color: white;
+            text-decoration: none;
+        }
+        
+        .back-button svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .settings-header {
+            margin-bottom: 32px;
+        }
+        
+        .settings-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .settings-box {
+            background-color: white;
+            border-radius: 12px;
+            padding: 8px 0;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+        
+        .settings-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .settings-item:not(:last-child) {
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .settings-item:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .icon-container svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .settings-text {
+            flex-grow: 1;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .chevron-right {
+            color: #000000;
+        }
+        
+        .chevron-right svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .danger-item {
+            color: var(--danger-color);
+        }
+        
+        .danger-item .icon-container {
+            border-color: rgba(239, 68, 68, 0.2);
+            background-color: rgba(239, 68, 68, 0.05);
+        }
+        
+        .danger-item .icon-container svg {
+            color: var(--danger-color);
+        }
+        
+        .primary-item {
+            color: var(--primary-color);
+        }
+        
+        .primary-item .icon-container {
+            border-color: rgba(74, 107, 255, 0.2);
+            background-color: rgba(74, 107, 255, 0.05);
+        }
+        
+        .primary-item .icon-container svg {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <a href="/dashboard/buyers.html" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Home
+        </a>
+        
+        <div class="settings-header">
+            <h1>Settings</h1>
+        </div>
+        
+        <!-- Account Settings Box -->
+        <div class="settings-box">
+            <div class="settings-item">
+                <div class="icon-container" style="border-color: rgba(96, 165, 250, 0.2); background-color: rgba(96, 165, 250, 0.05);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--light-blue);">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                </div>
+                <div class="settings-text">Switch Account</div>
+                <div class="chevron-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="icon-container" style="border-color: rgba(234, 179, 8, 0.2); background-color: rgba(234, 179, 8, 0.05);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--yellow);">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                </div>
+                <div class="settings-text">Language</div>
+                <div class="chevron-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Legal & Support Box -->
+        <div class="settings-box">
+            <div class="settings-item">
+                <div class="icon-container" style="border-color: rgba(59, 130, 246, 0.2); background-color: rgba(59, 130, 246, 0.05);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--dark-blue);">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </div>
+                <div class="settings-text">Privacy Policy</div>
+                <div class="chevron-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="icon-container" style="border-color: rgba(251, 191, 36, 0.2); background-color: rgba(251, 191, 36, 0.05);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--light-yellow);">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg>
+                </div>
+                <div class="settings-text">Customer Support</div>
+                <div class="chevron-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+            </div>
+            <div class="settings-item">
+                <div class="icon-container" style="border-color: rgba(96, 165, 250, 0.2); background-color: rgba(96, 165, 250, 0.05);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--light-blue);">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <div class="settings-text">Terms & Conditions</div>
+                <div class="chevron-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Delete Account Box -->
+        <div class="settings-box">
+            <div class="settings-item danger-item">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </div>
+                <div class="settings-text">Delete Account</div>
+                <div class="chevron-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Log Out Box -->
+        <div class="settings-box">
+            <div class="settings-item" style="color: var(--light-green);">
+                <div class="icon-container" style="border-color: rgba(52, 211, 153, 0.2); background-color: rgba(52, 211, 153, 0.05);">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: var(--light-green);">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                </div>
+                <div class="settings-text">Log Out</div>
+                <div class="chevron-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

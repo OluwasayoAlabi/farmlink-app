@@ -10,67 +10,85 @@
   <script defer src="buyers.js"></script>
 </head>
 <body class="bg-gray-100">
-  <!-- Header Container -->
-  <div class="fixed top-0 left-0 right-0 z-50 md:left-64 transition-all duration-300">
-    <!-- Top Navigation Bar -->
-    <nav class="bg-green-700 text-white shadow-md">
-      <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center flex-1">
-          <button id="sidebar-toggle" class="mr-4 md:hidden">
-            <i class="uil uil-bars text-xl"></i>
-          </button>
-        <!-- Moved heading/slogan container here -->
-      <div class="ml-4 md:ml-0 mr-auto"> <!-- Added ml-4 for mobile, removed on desktop Added mr-auto to push everything right -->
+  <!-- Header Container - Updated -->
+<div class="fixed top-0 left-0 right-0 z-50  md:left-64">
+  <!-- Top Navigation Bar -->
+  <nav class="bg-green-700 text-white shadow-md">
+    <div class="flex items-center justify-between px-4 py-3 mx-auto">
+      <div class="flex items-center">
+        <button id="sidebar-toggle" class="mr-4 md:hidden">
+          <i class="uil uil-bars text-xl"></i>
+        </button>
+        <div class="mr-auto">
           <h1 class="text-2xl font-bold">FarmLink</h1>
           <p class="text-xs md:text-sm">Empowering Farmers. Reducing Waste. Connecting Markets.</p>
         </div>
-        <div class="hidden md:flex space-x-6 ml-auto text-sm font-medium"> <!-- Increased space-x and ml -->
-          <a href="/dashboard/buyers.html" class="px-3 py-2 rounded hover:bg-green-600">Home</a>
-          <a href="/index.html" class="px-3 py-2 rounded hover:bg-green-600">Products</a>
-          <a href="/search.html" class="px-3 py-2 rounded hover:bg-green-600">Search</a>
-          <a href="/upload-product.html" class="px-3 py-2 rounded hover:bg-green-600">Profile</a>
-        </div>
       </div>
-    </nav>
 
-    <!-- Header Section -->
-    <header class="flex items-center justify-between px-4 py-3 text-black bg-white shadow-md">
-      <div>
-        <h2 class="text-lg font-semibold">Hello, Michael!</h2> 
+
+      <div class="hidden md:flex space-x-4 ml-1 text-sm font-medium">
+      <a href="../dashboard/buyers.html" class="px-3 py-2 rounded hover:bg-green-600">Home</a>
+      <a href="../index.html" class="px-3 py-2 rounded hover:bg-green-600">Products</a>
+      <a href="../search.html" class="px-3 py-2 rounded hover:bg-green-600">Search</a>
+      <a href="../dashboard/buyer profile.html" class="px-3 py-2 rounded hover:bg-green-600">Profile</a>
       </div>
+    </div>
+  </nav>
+
+  <!-- Header Section - Updated -->
+  <header class="flex items-center justify-between px-4 py-3 text-black bg-white shadow-md">
+    <div>
+      <h2 class="text-lg font-semibold">Hello, Michael!</h2> 
+    </div>
     
-      <div class="flex items-center gap-4">
-        <button class="border-gray-200 text-green-700 bg-white hover:text-yellow-600 transition">
+    <div class="flex items-center gap-3">
+      <!-- Cart Button -->
+      <div class="relative">
+        <button id="cart-btn" class="text-green-700 hover:text-yellow-600 transition relative">
           <i class="uil uil-shopping-cart text-2xl"></i>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
         </button>
         
-        <!-- Notification dropdown -->
-        <div class="relative">
-          <button id="notification-btn" class="text-yellow-600 bg-white hover:text-green-600 transition relative">
-            <i class="uil uil-bell text-2xl"></i>
-            <span id="notification-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
-          </button>
-          
-          <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-md shadow-lg z-50 border border-gray-200">
-            <div class="p-3 border-b border-gray-200 bg-green-600 text-white rounded-t-md">
-              <h3 class="font-semibold">Notifications</h3>
-            </div>
-            <div id="notification-list" class="max-h-60 overflow-y-auto">
-              <!-- Notifications will be added here dynamically -->
-              <div class="p-3 text-center text-gray-500">No new notifications</div>
-            </div>
-            <div class="p-2 border-t border-gray-200 bg-gray-50 text-center">
-              <button id="mark-all-read" class="text-xs text-green-600 hover:underline">Mark all as read</button>
-            </div>
+        <div id="cart-dropdown" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-md shadow-lg z-50 border border-gray-200">
+          <div class="p-3 border-b border-gray-200 bg-green-600 text-white rounded-t-md">
+            <h3 class="font-semibold">Cart Items</h3>
+          </div>
+          <div id="cart-list" class="max-h-60 overflow-y-auto">
+            <div class="p-3 text-center text-gray-500">Your cart is empty</div>
+          </div>
+          <div class="p-2 border-t border-gray-200 bg-gray-50 text-center">
+            <a href="/checkout/Cart.html" class="text-xs font-semibold text-green-600 hover:underline">View Cart</a>
           </div>
         </div>
       </div>
-    </header>
-  </div>
+      
+      <!-- Notification Button -->
+      <div class="relative">
+        <button id="notification-btn" class="text-yellow-600 hover:text-green-600 transition relative">
+          <i class="uil uil-bell text-2xl"></i>
+          <span id="notification-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+        </button>
+        
+        <div id="notification-dropdown" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-md shadow-lg z-50 border border-gray-200">
+          <div class="p-3 border-b border-gray-200 bg-green-600 text-white rounded-t-md">
+            <h3 class="font-semibold">Notifications</h3>
+          </div>
+          <div id="notification-list" class="max-h-60 overflow-y-auto">
+            <div class="p-3 text-center text-gray-500">No new notifications</div>
+          </div>
+          <div class="p-2 border-t border-gray-200 bg-gray-50 text-center">
+            <button id="mark-all-read" class="text-xs text-green-600 hover:underline">Mark all as read</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
 
-  <!-- Sidebar -->
-  <aside id="sidebar" class="fixed top-0 left-0 h-full w-fit bg-white shadow-lg z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
-    <div class="p-4 space-y-2 mt-28 overflow-y-auto h-[calc(100vh-7rem)]">
+<!-- Sidebar - Updated -->
+<aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+  <div class="p-4 space-y-2 mt-20 overflow-y-auto h-[calc(100vh-5rem)]">
+
       <!-- Collapse Toggle Button -->
       <button id="sidebar-collapse" class="sidebar-collapse button flex items-center justify-center w-full p-2 mb-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
         <i class="uil uil-left-arrow-to-left text-xl text-green-600"></i>
@@ -97,27 +115,28 @@
         <span class="sidebar-text texts text-gray-800 group-hover:text-gray-900">Chat</span>
       </button>
 
-      <button onclick="window.location.href='favorites.html'" class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
+      <button onclick="window.location.href='favorites.html' "class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
         <i class="uil uil-heart text-xl text-green-600"></i>
         <span class="sidebar-text texts text-gray-800 group-hover:text-gray-900">Favorites</span>
       </button>
 
-      <button onclick="window.location.href='buyer profile.html'" class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
+      <button onclick="window.location.href='buyer profile.html' "class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
         <i class="uil uil-user text-xl text-green-600"></i>
         <span class="sidebar-text texts text-gray-800 group-hover:text-gray-900">Profile</span>
       </button>
 
-      <button class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
+      <button onclick="window.location.href='buyer settings.html' "class="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-green-50 group">
         <i class="uil uil-setting text-xl text-green-600"></i>
         <span class="sidebar-text texts text-gray-800 group-hover:text-gray-900">Settings</span>
       </button>
+
     </div>
   </aside>
 
   <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
 
   <!-- Main Content -->
-  <div id="main-content" class="md:ml-64 transition-all duration-300" style="padding-top: 120px;">
+  <div id="main-content" class="md:ml-64 transition-all duration-300" style="padding-top: 70px;">
     <!-- Search Section -->
     <div class="flex items-center gap-3 px-4 py-3 mt-4">
       <div class="relative w-full max-w-md mx-auto">
@@ -193,42 +212,42 @@
 
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div class="bg-white shadow rounded overflow-hidden product hover:shadow-lg transition" data-category="vegetables" data-name="Tomatoes">
-            <img src="/images/Tomatoes 1.webp" class="h-32 w-full object-cover" alt="Tomatoes" />
+            <img src="/images/tomato.png" class="h-32 w-full object-cover" alt="Tomatoes" />
             <div class="p-2">
               <h4 class="font-semibold text-sm">Fresh Ripe Organic Tomatoes</h4>
               <p class="text-green-700 font-bold text-sm">₦2,000</p>
               <p class="text-xs font-bold text-black">20pcs</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
           <div class="bg-white shadow rounded overflow-hidden product" data-category="fruits" data-name="Oranges">
-            <img src="/images/oranges.jpg" class="h-32 w-full object-cover" alt="Oranges" />
+            <img src="/images/orange.png" class="h-32 w-full object-cover" alt="Oranges" />
             <div class="p-2">
               <h4 class="font-semibold text-sm">Fresh Ripe Organic Oranges</h4>
               <p class="text-green-700 font-bold text-sm">₦500</p>
               <p class="text-xs font-bold text-black">2pcs</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
           <div class="bg-white shadow rounded overflow-hidden product" data-category="vegetables" data-name="Okra">
-            <img src="/images/okra 2.jpg" class="h-32 w-full object-cover" alt="Okra"/>
+            <img src="/images/okra 2.png" class="h-32 w-full object-cover" alt="Okra"/>
             <div class="p-2">
               <h4 class="font-semibold text-sm">Fresh Ripe Okra</h4>
               <p class="text-green-700 font-bold text-sm">₦2,000</p>
               <p class="text-xs font-bold text-black">20pcs</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
           <div class="bg-white shadow rounded overflow-hidden product" data-category="livestock" data-name="Live Chicken">
-            <img src="/images/Live Chicken.webp" class="h-32 w-full object-cover" alt="Live Chicken" />
+            <img src="/images/live chicken.png" class="h-32 w-full object-cover" alt="Live Chicken" />
             <div class="p-2">
               <h4 class="font-semibold text-sm">Live Adult Chicken</h4>
               <p class="text-green-700 font-bold text-sm">₦10,000</p>
               <p class="text-xs font-bold text-black">8kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -238,7 +257,7 @@
               <h4 class="font-semibold text-sm">Fresh Vegetables</h4>
               <p class="text-green-700 font-bold text-sm">₦2,500</p>
               <p class="text-xs font-bold text-black">8kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -248,7 +267,7 @@
               <h4 class="font-semibold text-sm">Onions</h4>
               <p class="text-green-700 font-bold text-sm">₦5,000</p>
               <p class="text-xs font-bold text-black">8kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -258,7 +277,7 @@
               <h4 class="font-semibold text-sm">Apples</h4>
               <p class="text-green-700 font-bold text-sm">₦200</p>
               <p class="text-xs font-bold text-black">1pc</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -268,7 +287,7 @@
               <h4 class="font-semibold text-sm">Cattle</h4>
               <p class="text-green-700 font-bold text-sm">₦600,000</p>
               <p class="text-xs font-bold text-black">400kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -278,7 +297,7 @@
               <h4 class="font-semibold text-sm">Plaintains</h4>
               <p class="text-green-700 font-bold text-sm">₦2,000</p>
               <p class="text-xs font-bold text-black">1 bunch</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -288,7 +307,7 @@
               <h4 class="font-semibold text-sm">Mangoes</h4>
               <p class="text-green-700 font-bold text-sm">₦800</p>
               <p class="text-xs font-bold text-black">1 pc</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -298,7 +317,7 @@
               <h4 class="font-semibold text-sm">Frozen Fish</h4>
               <p class="text-green-700 font-bold text-sm">₦2,000</p>
               <p class="text-xs font-bold text-black">1 kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -308,7 +327,7 @@
               <h4 class="font-semibold text-sm">Bag of Rice</h4>
               <p class="text-green-700 font-bold text-sm">₦84,000</p>
               <p class="text-xs font-bold text-black">50 kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -318,7 +337,7 @@
               <h4 class="font-semibold text-sm">Yam</h4>
               <p class="text-green-700 font-bold text-sm">₦1,500</p>
               <p class="text-xs font-bold text-black">1 tuber</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -328,7 +347,7 @@
               <h4 class="font-semibold text-sm">Eggs</h4>
               <p class="text-green-700 font-bold text-sm">₦5,500</p>
               <p class="text-xs font-bold text-black">1 crate</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -338,7 +357,7 @@
               <h4 class="font-semibold text-sm">Pawpaw</h4>
               <p class="text-green-700 font-bold text-sm">₦2,550</p>
               <p class="text-xs font-bold text-black">1 pc</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -348,7 +367,7 @@
               <h4 class="font-semibold text-sm">Maize</h4>
               <p class="text-green-700 font-bold text-sm">₦13,000</p>
               <p class="text-xs font-bold text-black">50kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -358,7 +377,7 @@
               <h4 class="font-semibold text-sm">Ram</h4>
               <p class="text-green-700 font-bold text-sm">₦420,000</p>
               <p class="text-xs font-bold text-black">100kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -368,7 +387,7 @@
               <h4 class="font-semibold text-sm">Beans</h4>
               <p class="text-green-700 font-bold text-sm">₦150,000</p>
               <p class="text-xs font-bold text-black">100kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -378,7 +397,7 @@
               <h4 class="font-semibold text-sm">Groundnut</h4>
               <p class="text-green-700 font-bold text-sm">₦90,000</p>
               <p class="text-xs font-bold text-black">80kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
@@ -388,7 +407,7 @@
               <h4 class="font-semibold text-sm">Cocoa</h4>
               <p class="text-green-700 font-bold text-sm">₦17,500</p>
               <p class="text-xs font-bold text-black">1kg</p>
-              <a href="../shop.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center">Add to Cart</a>
+              <a href="/checkout/Cart.html" class="block mt-2 w-full bg-green-600 text-white py-1 rounded hover:bg-green-700 text-center add-to-cart-btn">Add to Cart</a>
             </div>
           </div>
 
